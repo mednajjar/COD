@@ -1,10 +1,10 @@
 import useStyles from './styles';
 import React from 'react';
-import {AppBar, Toolbar, IconButton, Menu, MenuItem, CardMedia} from '@material-ui/core';
+import {AppBar,Badge, Toolbar, IconButton, Menu, MenuItem, CardMedia} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import {useHistory} from 'react-router-dom';
 import logo from './cashondelivery.png'
-
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 
 
@@ -33,10 +33,15 @@ const UpBar = () => {
           image={logo}
           title="Contemplative Reptile"
         />
-        
-          <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="menu" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-            <MenuIcon className={classes.btn} />
-          </IconButton>
+          <div className={classes.menuButton} >
+        <IconButton aria-label="show 17 new notifications" color="inherit">
+              <Badge badgeContent={1} color="secondary" >
+                <ShoppingCartIcon style={{color: 'black'}} />
+              </Badge>
+            </IconButton>
+              
+            <MenuIcon className={classes.btn} onClick={handleClick}/>
+          </div>
           <Menu
             id="simple-menu"
             anchorEl={anchorEl}

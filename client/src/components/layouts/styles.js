@@ -5,7 +5,8 @@ export default makeStyles((theme) => ({
       flexGrow: 1,
     },
     menuButton: {
-      marginRight: theme.spacing(2),
+      marginRight: theme.spacing(6),
+      display: 'inline-flex'
     },
     title: {
       flexGrow: 1,
@@ -25,6 +26,7 @@ export default makeStyles((theme) => ({
     },
     menu:{
       background: 'white',
+      cursor: 'pointer'
     },
     space:{
       display: 'inline-flex',
@@ -34,6 +36,7 @@ export default makeStyles((theme) => ({
     },
     btn:{
       color: 'black',
-      fontSize: 40
+      fontSize: 40, 
+      marginLeft: '30%'
     }
   }));
