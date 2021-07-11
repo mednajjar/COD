@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles, CssBaseline, Paper, Stepper, Step, StepLabel, Button, Typography, Grid, TextField} from '@material-ui/core';
 import AddressForm from './AddressForm';
-import PaymentForm from './PaymentForm';
+import PaymentForm from './CompteForm';
 import Review from './Review';
 import {useHistory} from 'react-router-dom';
 
