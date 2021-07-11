@@ -20,13 +20,17 @@ const useStyles = makeStyles((theme) => ({
   },
   imageList: {
    
-    width: '80%',
+    width: '70%',
     margin: '0 auto',
     height: '100%',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      
+    },
   },
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
@@ -39,32 +43,32 @@ const useStyles = makeStyles((theme) => ({
  const itemData = [
     {
     img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Image',
+    title: 'Titre cpmlet de l\'image ',
     author: 'author',
    },
    {
     img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Image',
+    title: 'Titre cpmlet de l\'image',
     author: 'author',
    },
     {
     img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Image',
+    title: 'Titre cpmlet de l\'image',
     author: 'author',
    },
    {
     img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Image',
+    title: 'Titre cpmlet de l\'image',
     author: 'author',
    },
     {
     img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Image',
+    title: 'Titre cpmlet de l\'image',
     author: 'author',
    },
    {
     img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Image',
+    title: 'Titre cpmlet de l\'image',
     author: 'author',
    },
  ];
@@ -79,9 +83,10 @@ const Home = () => {
             <ImageList className={classes.imageList}>
                
                 {itemData.map((item) => (
-                <ImageListItem key={item.img} style={{width: 350,height: 'auto', margin: '2%'}}>
+                <ImageListItem key={item.img} style={{width: 300, height: 'auto', margin: '2%'}}>
                     <img src={item.img} alt={item.title} style={{width: '100%'}} />
                     <ImageListItemBar
+                    
                     title={item.title}
                     subtitle={<span>by: {item.author}</span>}
                     actionIcon={
