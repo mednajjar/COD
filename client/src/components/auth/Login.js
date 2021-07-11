@@ -1,5 +1,5 @@
 import React from 'react'
-import {Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Grid, Box, Typography, Container} from '@material-ui/core';
+import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container} from '@material-ui/core';
 import {Link} from 'react-router-dom'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './LoginStyles';
@@ -48,10 +48,6 @@ const Login = () => {
             type="password"
             id="password"
             autoComplete="current-password"
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
           />
           <Button
             type="submit"

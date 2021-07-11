@@ -1,8 +1,9 @@
 import useStyles from './styles';
 import React from 'react';
-import {AppBar, Toolbar, Typography, Button, IconButton, Menu, MenuItem} from '@material-ui/core';
+import {AppBar, Toolbar, IconButton, Menu, MenuItem, CardMedia} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import {useHistory} from 'react-router-dom';
+import logo from './cashondelivery.png'
 
 
 
@@ -21,38 +22,20 @@ const UpBar = () => {
         setAnchorEl(null);
     };
 
-    const handleChange1 = (e)=>{
-      e.preventDefault();
-      history.push('/vendeur');
-      return handleClose()
-    }
-    const handleChange2 = (e)=>{
-      e.preventDefault();
-      history.push('/livreur');
-      return handleClose()
-    }
-    const handleChange3 = (e)=>{
-      e.preventDefault();
-      history.push('/contact');
-      return handleClose()
-    }
-    const handleChange4 = (e)=>{
-      e.preventDefault();
-      history.push('/login');
-      return handleClose()
-    }
-    const handleChange5 = (e)=>{
-      e.preventDefault();
-      history.push('/register');
-      return handleClose()
-    }
     const classes = useStyles();
     return (
         <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-            <MenuIcon />
+      <AppBar position="static" className={classes.menu}>
+        <Toolbar className={classes.space} >
+          
+        <CardMedia
+          className={classes.media}
+          image={logo}
+          title="Contemplative Reptile"
+        />
+        
+          <IconButton edge="end" className={classes.menuButton} color="inherit" aria-label="menu" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+            <MenuIcon className={classes.btn} />
           </IconButton>
           <Menu
             id="simple-menu"
@@ -62,15 +45,14 @@ const UpBar = () => {
             onClose={handleClose}
             className={classes.toggleMenu}
           >
-            <MenuItem onClick={(e)=>handleChange1(e)}>Devenir vendeur</MenuItem>
-            <MenuItem onClick={(e)=>handleChange2(e)}>Devenir livreur</MenuItem>
-            <MenuItem onClick={(e)=>handleChange3(e)}>Contact us</MenuItem>
+            <MenuItem onClick={()=>{history.push('/'); return handleClose()}}>Accueil</MenuItem>
+            <MenuItem onClick={()=>{history.push('/vendeur'); return handleClose()}}>Devenir vendeur</MenuItem>
+            <MenuItem onClick={()=>{history.push('/livreur'); return handleClose()}}>Devenir livreur</MenuItem>
+            <MenuItem onClick={()=>{history.push('/contact'); return handleClose()}}>Contact us</MenuItem>
+            <MenuItem onClick={()=>{history.push('/register'); return handleClose()}}>Register</MenuItem>
+            <MenuItem onClick={()=>{history.push('/login'); return handleClose()}}>Login</MenuItem>
+            <MenuItem onClick={()=>{}}>Logout</MenuItem>
           </Menu>
-          <Typography variant="h6" className={classes.title}>
-            COD
-          </Typography>
-          <Button color="inherit" onClick={(e)=>handleChange5(e)}>Register</Button>
-          <Button color="inherit" onClick={(e)=>handleChange4(e)}>Login</Button>
         </Toolbar>
       </AppBar>
     </div>

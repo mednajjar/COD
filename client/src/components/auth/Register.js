@@ -1,5 +1,5 @@
 import React from 'react';
-import {Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Grid, Box, Typography, Container} from '@material-ui/core';
+import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './RegisterStyles'
@@ -73,12 +73,6 @@ const Register = () => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid>
           </Grid>
