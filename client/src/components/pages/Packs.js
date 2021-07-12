@@ -2,12 +2,13 @@ import React from 'react';
 import useStyles from './PackStyles';
 import {Button, Card, CardActions, CardContent, CardHeader, CssBaseline, Grid, Typography, Container} from '@material-ui/core';
 import StarIcon from '@material-ui/icons/StarBorder';
+import { useHistory } from 'react-router-dom';
 
 const tiers = [
     {
       title: 'Free',
       price: '0',
-      description: ['10 users included', '2 GB of storage', 'Help center access', 'Email support'],
+      description: ['50 produits à insérer', 'Support 7/7', 'Email support'],
       buttonText: 'Sign up for free',
       buttonVariant: 'outlined',
     },
@@ -16,9 +17,8 @@ const tiers = [
       subheader: 'Most popular',
       price: '15',
       description: [
-        '20 users included',
-        '10 GB of storage',
-        'Help center access',
+        '500 produits à insérer',
+        'Support 24/24',
         'Priority email support',
       ],
       buttonText: 'Get started',
@@ -28,18 +28,23 @@ const tiers = [
       title: 'Enterprise',
       price: '30',
       description: [
-        '50 users included',
-        '30 GB of storage',
-        'Help center access',
+        'Insertion des produits illimité',
+        'Support 24/24',
         'Phone & email support',
       ],
-      buttonText: 'Contact us',
+      buttonText: 'Get this pack',
       buttonVariant: 'outlined',
     },
   ];
 
 const Packs = () => {
     const classes = useStyles();
+    const history = useHistory();
+    const submit = (x) =>{
+    
+        x === 'Sign up for free' ? history.push("/vendeurDashboard") : history.push("/checkout")
+     
+    }
     return (
         <React.Fragment>
       <CssBaseline />
@@ -71,7 +76,7 @@ const Packs = () => {
                 <CardContent>
                   <div className={classes.cardPricing}>
                     <Typography component="h2" variant="h3" color="textPrimary">
-                      ${tier.price}
+                      {tier.price} MAD
                     </Typography>
                     <Typography variant="h6" color="textSecondary">
                       /mo
@@ -86,7 +91,7 @@ const Packs = () => {
                   </ul>
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant} color="primary">
+                  <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={()=>submit(tier.buttonText)}>
                     {tier.buttonText}
                   </Button>
                 </CardActions>
