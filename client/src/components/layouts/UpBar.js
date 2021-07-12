@@ -13,7 +13,10 @@ const UpBar = () => {
   const history = useHistory();
 
     const [anchorEl, setAnchorEl] = React.useState(null);
-
+    const [cart, setCart] = React.useState(1);
+    const submit =()=>{
+      cart > 0 ? history.push('/cart') : alert('You don\'t have any item on shopping cart' )
+    }
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -35,7 +38,7 @@ const UpBar = () => {
         />
           <div className={classes.menuButton} >
         <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={1} color="secondary" >
+              <Badge badgeContent={cart} color="secondary" onClick={()=>submit()}>
                 <ShoppingCartIcon style={{color: 'black'}} />
               </Badge>
             </IconButton>
