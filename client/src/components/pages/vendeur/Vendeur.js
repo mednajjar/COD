@@ -18,7 +18,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
     titleV: {
-        marginTop: '3%',
+        marginTop: '1%',
     },
     layout: {
         width: 'auto',
@@ -73,6 +73,15 @@ const useStyles = makeStyles((theme) => ({
         marginTop: theme.spacing(2),
         
     },
+    paperVendeur: {
+        width: '80%',
+        margin: '1% auto',
+        paddingTop: '2%',
+        paddingBottom: '2%',
+        [theme.breakpoints.down('sm')]: {
+            width: '100%', 
+        },
+    }
     
 
     
@@ -110,7 +119,7 @@ const Vendeur = () => {
         history.push('/packs')
     }
     return (
-        <React.Fragment>
+        <Paper className={classes.paperVendeur}>
             <CssBaseline />
                 <Typography component="h1" variant="h4" align="center" className={classes.titleV}>
                     Devenir Vendeur
@@ -174,7 +183,7 @@ const Vendeur = () => {
                 </Paper>
                 <Copyright />
             </main>
-        </React.Fragment>
+        </Paper>
     )
 }
 

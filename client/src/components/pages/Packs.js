@@ -1,6 +1,6 @@
 import React from 'react';
 import useStyles from './PackStyles';
-import {Button, Card, CardActions, CardContent, CardHeader, CssBaseline, Grid, Typography, Container} from '@material-ui/core';
+import {Button, Card, CardActions, CardContent, CardHeader, CssBaseline, Grid, Typography, Container, Paper} from '@material-ui/core';
 import StarIcon from '@material-ui/icons/StarBorder';
 import { useHistory } from 'react-router-dom';
 
@@ -46,7 +46,7 @@ const Packs = () => {
      
     }
     return (
-        <React.Fragment>
+        <Paper className={classes.paperPack}>
       <CssBaseline />
       {/* Hero unit */}
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
@@ -101,7 +101,7 @@ const Packs = () => {
         </Grid>
       </Container>
      
-    </React.Fragment>
+    </Paper>
     )
 }
 

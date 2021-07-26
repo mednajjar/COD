@@ -1,5 +1,5 @@
 import React from 'react'
-import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container} from '@material-ui/core';
+import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, Paper} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import TwoWheelerIcon from '@material-ui/icons/TwoWheeler';
 import useStyles from '../auth/RegisterStyles';
@@ -17,6 +17,7 @@ function Copyright() {
 const Livreur = () => {
     const classes = useStyles();
     return (
+      <Paper className={classes.paperLivreur}>
         <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
@@ -119,6 +120,7 @@ const Livreur = () => {
         <Copyright />
       </Box>
     </Container>
+    </Paper>
     )
 }
 

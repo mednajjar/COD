@@ -1,30 +1,43 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
-import ImageListItemBar from '@material-ui/core/ImageListItemBar';
-import IconButton from '@material-ui/core/IconButton';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import {Link} from 'react-router-dom';
-
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import SideBar from '../layouts/SideBar';
+import Products from '../layouts/Products';
+// import Divider from '@material-ui/core/Divider'
 const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
+  content: {
+    width: '80%',
     margin: '1% auto',
+    padding: '0.1%',
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap-reverse',
+    justifyContent: 'space-between',
+    overflow: 'hidden',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%', 
+    },
+  },
+  root: {
+    width: '66vw',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'center',
-    overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
+   
+  
+    
   },
   imageList: {
-    width: '70%',
+    width: '100%',
     margin: '0 auto',
     height: '100%',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
+    overflow: 'hidden',
     justifyContent: 'center',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
@@ -35,88 +48,43 @@ const useStyles = makeStyles((theme) => ({
     color: 'rgba(255, 255, 255, 0.54)',
   },
   itemBar: {
-    height: '10vh'
+    height: '12vh',
+    padding: '1%',
+    [theme.breakpoints.down('sm')]: {
+      height: '16vh', 
+    },
   }
  
 }));
 
 
 
- const itemData = [
-    {
-      id: 1,
-    img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    price: 30,
-    author: 'author',
-   },
-   {
-     id: 2,
-    img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    price: 30,    
-    author: 'author',
-   },
-    {
-      id: 3,
-    img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    price: 30,    
-    author: 'author',
-   },
-   {
-     id: 4,
-    img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    price: 30,    
-    author: 'author',
-   },
-    {
-      id: 5,
-    img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    price: 30,    
-    author: 'author',
-   },
-   {
-     id: 6,
-    img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    price: 30,    
-    author: 'author',
-   },
- ];
 
 
 
 const Home = () => {
     const classes = useStyles();
     return (
-        <div className={classes.root}>
-                
-            <ImageList className={classes.imageList}>
-               
-                {itemData.map((item) => (
-                <ImageListItem key={item.id} style={{width: 300, height: 'auto', margin: '2%'}}>
-                  <Link to={`/product/${item.id}`} >
-                    <img src={item.img} alt={item.title} style={{width: '100%'}} />
-                  </Link>
-                    <ImageListItemBar
-                    className={classes.itemBar}
-                    title={item.title}
-                    subtitle={<><h3>Prix: {item.price} MAD</h3><br></br><span>by: {item.author}</span></>}
-                    actionIcon={
-                        <IconButton className={classes.icon}>
-                        <ShoppingCartIcon />
-                        </IconButton>
-                    }
-                    />
-                </ImageListItem>
-                ))}
+        <div className={classes.content}>
+              {/* <SideBar />
+        <Paper className={classes.root} variant="outlined" square>
+            <Products />
+        </Paper> */}
+        
+        <Grid>
+            <Grid container style={{flexWrap: 'wrap-reverse'}}>
+              <Grid item xs={12} sm={12} md={4} lg={3}>
+              <SideBar />
+              </Grid>
 
-             
-            </ImageList>
-        </div>
+              <Grid item xs sm style={{ marginBottom: '2%' }}>
+                <Card>
+                <Products />               
+                </Card>
+              </Grid>
+            </Grid>
+          </Grid>
+                </div>
     )
 }
 

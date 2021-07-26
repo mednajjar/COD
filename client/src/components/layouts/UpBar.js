@@ -1,70 +1,128 @@
 import useStyles from './styles';
-import React from 'react';
-import {AppBar,Badge, Toolbar, IconButton, Menu, MenuItem, CardMedia} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import {useHistory} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Badge, Toolbar, IconButton, CardMedia, Typography } from '@material-ui/core';
+// import MenuIcon from '@material-ui/icons/Menu';
+import { useHistory, Link } from 'react-router-dom';
 import logo from './cashondelivery.png'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from 'reactstrap';
+import HomeIcon from '@material-ui/icons/Home';
+import { useCart } from "react-use-cart";
 
 
 
 const UpBar = () => {
+  const classes = useStyles();
   const history = useHistory();
+  const { items } = useCart();
+  const [isOpen, setIsOpen] = useState(false);
+  let toggle = () => setIsOpen(!isOpen);
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const [cart, setCart] = React.useState(1);
-    const submit =()=>{
-      cart > 0 ? history.push('/cart') : alert('You don\'t have any item on shopping cart' )
-    }
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+  const [cart, setCart] = React.useState(0);
+  const submit = () => {
+    history.push('/cart')
+  }
+  useEffect(() => {
+    setCart(items.length)
+  }, [items])
+  return (
+    <>
+      <div className={classes.root}>
+        <div position="static" className={classes.menu}>
+          <Toolbar className={classes.space} >
+            <CardMedia
+              className={classes.media}
+              image={logo}
+              title="Contemplative Reptile"
+            />
+            <div className={classes.menuButton} >
+              <div className="d-flex flex-wrap justify-content-end">
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+              <Nav>
+                <UncontrolledDropdown nav inNavbar style={{ alignSelf: 'center' }}>
+                  <DropdownToggle nav className="fw-bold fs-6 " style={{ color: "black", paddingLeft: 0 }}>
+                    <Typography className="fw-bold">
+                      Se connecter
+                    </Typography>
+                  </DropdownToggle>
+                  <DropdownMenu>
+                    <DropdownItem className="text-warning fw-bold">
+                      <Link to="/login" className={classes.linkStyle}>
+                        SE CONNECTER
+                      </Link>
+                    </DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem className="text-warning fw-bold">
+                      <Link to="/register" className={classes.linkStyle}>
+                        CREER UN COMPTE
+                      </Link>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+                {/* <NavbarText>Logout</NavbarText> */}
+              </Nav>
+              <IconButton aria-label="show 17 new notifications" color="inherit" style={{ backgroundColor: 'transparent' }}>
+                <Badge badgeContent={cart} color="secondary" onClick={() => submit()}>
+                  <Typography style={{ marginRight: '12%' }}><b>Panier</b></Typography>
+                  <ShoppingCartIcon style={{ color: 'black' }} />
+                </Badge>
+              </IconButton>
+              </div>
 
-    const classes = useStyles();
-    return (
-        <div className={classes.root}>
-      <AppBar position="static" className={classes.menu}>
-        <Toolbar className={classes.space} >
-          
-        <CardMedia
-          className={classes.media}
-          image={logo}
-          title="Contemplative Reptile"
-        />
-          <div className={classes.menuButton} >
-        <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={cart} color="secondary" onClick={()=>submit()}>
-                <ShoppingCartIcon style={{color: 'black'}} />
-              </Badge>
-            </IconButton>
-              
-            <MenuIcon className={classes.btn} onClick={handleClick}/>
-          </div>
-          <Menu
-            id="simple-menu"
-            anchorEl={anchorEl}
-            keepMounted
-            open={Boolean(anchorEl)}
-            onClose={handleClose}
-            className={classes.toggleMenu}
-          >
-            <MenuItem onClick={()=>{history.push('/'); return handleClose()}}>Accueil</MenuItem>
-            <MenuItem onClick={()=>{history.push('/vendeur'); return handleClose()}}>Devenir vendeur</MenuItem>
-            <MenuItem onClick={()=>{history.push('/livreur'); return handleClose()}}>Devenir livreur</MenuItem>
-            <MenuItem onClick={()=>{history.push('/contact'); return handleClose()}}>Contact us</MenuItem>
-            <MenuItem onClick={()=>{history.push('/register'); return handleClose()}}>Register</MenuItem>
-            <MenuItem onClick={()=>{history.push('/login'); return handleClose()}}>Login</MenuItem>
-            <MenuItem onClick={()=>{}}>Logout</MenuItem>
-          </Menu>
-        </Toolbar>
-      </AppBar>
-    </div>
-    )
+              {/* <MenuIcon className={classes.btn} onClick={handleClick}/> */}
+            </div>
+          </Toolbar>
+        </div>
+        <div className={classes.menu2}>
+          <Navbar light expand="md" className="ps-4 pe-4 ">
+            <NavbarBrand ><Link to="/"><HomeIcon style={{ fontSize: '2rem', color: 'white' }} /></Link></NavbarBrand>
+            <NavbarToggler onClick={toggle} />
+            <Collapse isOpen={isOpen} navbar>
+              <Nav className="mr-auto" navbar>
+                <NavItem>
+                  <NavLink href="/offre" className="text-white">MEILLEURES OFFRES</NavLink>
+                </NavItem>
+                <UncontrolledDropdown nav inNavbar>
+                  <DropdownToggle nav caret className="text-white">
+                    GAGNEZ DE L'ARGENT
+              </DropdownToggle>
+                  <DropdownMenu right>
+                    <DropdownItem className="fw-bold">
+                      <Link to="/vendeur" className={classes.linkStyle}>
+                        Vendez sur Cash on Delivery
+                </Link>
+                    </DropdownItem>
+                    <DropdownItem divider />
+                    <DropdownItem className="fw-bold">
+                      <Link to="/livreur" className={classes.linkStyle}>
+                        Devenir livreur
+                </Link>
+                    </DropdownItem>
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+                <NavItem>
+                  <NavLink href="/contact" className="text-white">CONTACTEZ NOUS</NavLink>
+                </NavItem>
+              </Nav>
+
+            </Collapse>
+          </Navbar>
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default UpBar

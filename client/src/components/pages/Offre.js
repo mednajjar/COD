@@ -12,13 +12,13 @@ const useStyles = makeStyles((theme) => ({
         },
       }
 }))
-const Contact = () => {
+const Offre = () => {
     const classes = useStyles();
     return (
         <Paper className={classes.paper}>
-            <h2 className="text-center">Contact page</h2>
+            <h2 className="text-center">Offre page</h2>
         </Paper>
     )
 }
 
-export default Contact
+export default Offre

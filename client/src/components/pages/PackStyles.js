@@ -21,7 +21,7 @@ export default makeStyles((theme) => ({
       margin: theme.spacing(1, 1.5),
     },
     heroContent: {
-      padding: theme.spacing(8, 0, 6),
+      padding: theme.spacing(1, 0, 6),
     },
     cardHeader: {
       backgroundColor:
@@ -43,4 +43,13 @@ export default makeStyles((theme) => ({
         paddingBottom: theme.spacing(6),
       },
     },
+    paperPack: {
+      width: '80%',
+      margin: '1% auto',
+      paddingTop: '2%',
+      paddingBottom: '2%',
+      [theme.breakpoints.down('sm')]: {
+        width: '100%', 
+      },
+    }
   }));

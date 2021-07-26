@@ -12,7 +12,8 @@ import VendeurDash from './dashboard/vendeur/VendeurDash';
 import CustomerDash from './dashboard/customer/CustomerDash';
 import Product from './pages/ProductId';
 import Cart from './pages/cart/Cart'
-
+import Checkout from './pages/checkout/Checkout';
+import Offre from './pages/Offre';
 const Routes = () => {
     return (
         <Switch>
@@ -28,6 +29,8 @@ const Routes = () => {
             <Route path='/customerDashboard' component={CustomerDash} />
             <Route path='/product/:id' component={Product} />
             <Route path='/cart' component={Cart} />
+            <Route path='/checkout' component={Checkout} />
+            <Route path='/offre' component={Offre} />
         </Switch>
     )
 }
