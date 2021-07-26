@@ -48,11 +48,11 @@ const Cart = () => {
                                             </td>
                                             <td>
                                                 <tr>
-                                                    <td>{item.title}</td>
+                                                    <td><h6>{item.title}</h6></td>
                                                 </tr>
                                                 <tr>
-                                                    <tr><b>Price:</b>&nbsp; {item.price} DH</tr>
-                                                    <tr><b>Quantity:</b>&nbsp; {item.quantity}</tr>
+                                                    <tr><h6><span className="fw-bold">Price:</span>&nbsp; {item.price} DH</h6></tr>
+                                                    <tr><h6><span className="fw-bold">Quantity:</span>&nbsp; {item.quantity}</h6></tr>
                                                 </tr>
                                             </td>
                                             <td>

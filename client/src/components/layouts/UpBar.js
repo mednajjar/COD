@@ -90,33 +90,32 @@ const UpBar = () => {
             <NavbarBrand ><Link to="/"><HomeIcon style={{ fontSize: '2rem', color: 'white' }} /></Link></NavbarBrand>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
-              <Nav className="mr-auto" navbar>
-                <NavItem>
-                  <NavLink href="/offre" className="text-white">MEILLEURES OFFRES</NavLink>
+              <Nav className="mr-auto align-items-center " navbar>
+                <NavItem className="ps-1 pe-1">
+                  <Link to="/offre" className="text-white text-decoration-none">MEILLEURES OFFRES</Link>
                 </NavItem>
-                <UncontrolledDropdown nav inNavbar>
+                <UncontrolledDropdown nav inNavbar className="ps-1 pe-1">
                   <DropdownToggle nav caret className="text-white">
                     GAGNEZ DE L'ARGENT
-              </DropdownToggle>
+                  </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem className="fw-bold">
                       <Link to="/vendeur" className={classes.linkStyle}>
                         Vendez sur Cash on Delivery
-                </Link>
+                      </Link>
                     </DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem className="fw-bold">
                       <Link to="/livreur" className={classes.linkStyle}>
                         Devenir livreur
-                </Link>
+                      </Link>
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
-                <NavItem>
-                  <NavLink href="/contact" className="text-white">CONTACTEZ NOUS</NavLink>
+                <NavItem className="align-items-center ps-1 pe-1">
+                  <Link to="/contact" className="text-white text-decoration-none">CONTACTEZ NOUS</Link>
                 </NavItem>
               </Nav>
-
             </Collapse>
           </Navbar>
         </div>
