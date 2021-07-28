@@ -29,18 +29,18 @@ const Cart = () => {
         removeItem,
         emptyCart,
       } = useCart();
-    
-      if (isEmpty) return <h5 className="text-center mt-5">Votre Panier est Vide!</h5>;
+
+      if (isEmpty) return <Paper className={classes.paper}><h5 className="text-center mt-5 mb-5">Votre Panier est Vide!</h5></Paper>;
     return (
         <Paper className={classes.paper}>
         <section className="py-4 container">
             <div className="row justify-content-center">
                 <div className="col-12">
-        
                     <table className="table table-light table-hover m-0">
                         <tbody>
                             {
                                 items.map((item, index)=>{
+                                    
                                     return(
                                         <tr key={index} className="lh-lg">
                                             <td>
@@ -69,14 +69,14 @@ const Cart = () => {
                 </div>
                 <div className="d-flex mt-2 justify-content-end">
                     <div className="d-flex flex-column col-auto bg-light p-3 shadow-sm">
-                    <div className="col-auto">
+                    <div className="col-auto p-2">
                         <h6><span className="fw-bold">Total items:</span> {totalItems}</h6>
                         <h6><span className="fw-bold">Total Price:</span> {cartTotal} DH</h6>
                     </div>
                     <div className="col-auto d-flex ">
                         <div className="d-flex col-12 justify-content-between">
-                            <button className="btn btn-danger m-2" onClick={()=>emptyCart()}>Clear Cart</button>
-                            <button className="btn m-2 text-white" style={{background: '#278BE3'}} onClick={()=>history.push('/checkout')}>Checkout</button>
+                            <button className="btn btn-warning m-2 fw-bold" onClick={()=>emptyCart()}>Clear Cart</button>
+                            <button className="btn m-2 text-white fw-bold" style={{background: '#278BE3'}} onClick={()=>history.push('/checkout')}>Checkout</button>
                         </div>
                     </div>
                     </div>

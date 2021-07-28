@@ -8,7 +8,7 @@ const tiers = [
     {
       title: 'Free',
       price: '0',
-      description: ['50 produits à insérer', 'Support 7/7', 'Email support'],
+      description: ['50 produits limit', 'Support 7/7', 'Email support'],
       buttonText: 'Sign up for free',
       buttonVariant: 'outlined',
     },
@@ -17,7 +17,7 @@ const tiers = [
       subheader: 'Most popular',
       price: '15',
       description: [
-        '500 produits à insérer',
+        '500 produits limit',
         'Support 24/24',
         'Priority email support',
       ],
