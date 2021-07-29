@@ -9,28 +9,34 @@ import ShopTwoIcon from '@material-ui/icons/ShopTwo';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import {Link} from 'react-router-dom';
-
+import sky from '../../assets/sky.jpg'
 const useStyles = makeStyles((theme) => ({
     paper: {
         position: 'relative',
         width: '80%',
         height: '70vh',
         margin: '1% auto',
-        paddingBottom: '2%',
         [theme.breakpoints.down('sm')]: {
           width: '100%', 
+          height: '120vh'
         },
       },
       redBack: { 
-        background: '#D44848',
-        height: '35vh',
-        opacity: .6
+        opacity: .2,
+        width: '100%',
+        height: '100%',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundSize: '100%',
+        [theme.breakpoints.down('sm')]: {
+            backgroundSize: 0,
+          },
       },
       formContent:{
         position: 'absolute',
         paddingTop: '3%',
         paddingBottom: '3%',
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
         top: '17%',
         height: 'auto',
         left: 0, 
@@ -40,7 +46,10 @@ const useStyles = makeStyles((theme) => ({
         boxShadow: '0px 0px 17px 3px rgba(0,0,0,0.47)',
         webkitBoxShadow: '0px 0px 17px 3px rgba(0,0,0,0.47)',
         mozBoxShadow: '0px 0px 17px 3px rgba(0,0,0,0.47)',
-        borderRadius: '5px'
+        borderRadius: '5px',
+        [theme.breakpoints.down('sm')]: {
+            top: '4%',
+          },
       },
       leftCard:{
         height: 'auto',
@@ -71,8 +80,8 @@ const useStyles = makeStyles((theme) => ({
 const Contact = () => {
     const classes = useStyles();
     return (
-        <Paper className={classes.paper}>
-            <Grid xs={12} sm={12} md={12} lg={12} className={classes.redBack}></Grid>
+        <Paper className={classes.paper} >
+            <Grid xs={12} sm={12} md={12} lg={12} className={classes.redBack} style={{backgroundImage: `url(${sky})`}}></Grid>
             <Grid container xs={11} sm={11} md={8} lg={8} className={classes.formContent} >
                 <div className={classes.contact}>
                     <h4>Contactez nous</h4>
@@ -124,7 +133,7 @@ const Contact = () => {
                     </Grid>
                     <Grid item xs={12} sm={12}>
                     <TextField
-                        className="col-12 bg-white"
+                        className="col-12 bg-transparent"
                         id="filled-multiline-flexible"
                         label="Multiline *"
                         multiline
@@ -133,8 +142,6 @@ const Contact = () => {
                     
                         />
                     </Grid>
-                
-                   
                 </Grid>
                     <button className="btn btn-primary col-12 mt-4">Send</button>
                 </Grid>
