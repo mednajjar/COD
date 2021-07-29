@@ -9,7 +9,10 @@ import ShopTwoIcon from '@material-ui/icons/ShopTwo';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import {Link} from 'react-router-dom';
-import sky from '../../assets/sky.jpg'
+import sky from '../../assets/sky.jpg';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const useStyles = makeStyles((theme) => ({
     paper: {
         position: 'relative',
@@ -79,6 +82,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 const Contact = () => {
     const classes = useStyles();
+    const notify = () => toast("Message sent");
     return (
         <Paper className={classes.paper} >
             <Grid xs={12} sm={12} md={12} lg={12} className={classes.redBack} style={{backgroundImage: `url(${sky})`}}></Grid>
@@ -143,7 +147,8 @@ const Contact = () => {
                         />
                     </Grid>
                 </Grid>
-                    <button className="btn btn-primary col-12 mt-4">Send</button>
+                    <button className="btn btn-primary col-12 mt-4" onClick={notify}>Send</button>
+                    <ToastContainer />
                 </Grid>
                 </div>
             </Grid>
