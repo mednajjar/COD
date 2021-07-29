@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import SideBar from '../layouts/SideBar';
 import Products from '../layouts/Products';
-// import Divider from '@material-ui/core/Divider'
+
 const useStyles = makeStyles((theme) => ({
   content: {
     width: '80%',
@@ -66,15 +66,12 @@ const Home = () => {
     const classes = useStyles();
     return (
         <div className={classes.content}>
-              {/* <SideBar />
-        <Paper className={classes.root} variant="outlined" square>
-            <Products />
-        </Paper> */}
-        
-        <Grid>
+    
+
+   
             <Grid container style={{flexWrap: 'wrap-reverse'}}>
-              <Grid item xs={12} sm={12} md={4} lg={3}>
-              <SideBar />
+              <Grid item xs={12} sm={12} md={4} lg={2}>
+                <SideBar />
               </Grid>
 
               <Grid item xs sm style={{ marginBottom: '2%' }}>
@@ -83,8 +80,9 @@ const Home = () => {
                 </Card>
               </Grid>
             </Grid>
-          </Grid>
-                </div>
+     
+    
+        </div>
     )
 }
 
