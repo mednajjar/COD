@@ -5,10 +5,10 @@ import { Badge, Toolbar, IconButton, CardMedia, Typography } from '@material-ui/
 import { useHistory, Link } from 'react-router-dom';
 import logo from './cashondelivery.png'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import MenuIcon from '@material-ui/icons/Menu';
 import {
   Collapse,
   Navbar,
-  NavbarToggler,
   NavbarBrand,
   Nav,
   NavItem,
@@ -48,7 +48,6 @@ const UpBar = () => {
             />
             <div className={classes.menuButton} >
               <div className="d-flex flex-wrap justify-content-end">
-
               <Nav>
                 <UncontrolledDropdown nav inNavbar style={{ alignSelf: 'center' }}>
                   <DropdownToggle nav className="fw-bold fs-6 " style={{ color: "black", paddingLeft: 0 }}>
@@ -70,7 +69,6 @@ const UpBar = () => {
                     </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
-                {/* <NavbarText>Logout</NavbarText> */}
               </Nav>
               <IconButton aria-label="show 17 new notifications" color="inherit" style={{ backgroundColor: 'transparent' }}>
                 <Badge badgeContent={cart} color="secondary" onClick={() => submit()}>
@@ -79,15 +77,13 @@ const UpBar = () => {
                 </Badge>
               </IconButton>
               </div>
-
-              {/* <MenuIcon className={classes.btn} onClick={handleClick}/> */}
             </div>
           </Toolbar>
         </div>
         <div className={classes.menu2}>
           <Navbar light expand="md" className="ps-4 pe-4 ">
             <NavbarBrand ><Link to="/"><HomeIcon style={{ fontSize: '2rem', color: 'white' }} /></Link></NavbarBrand>
-            <NavbarToggler onClick={toggle} />
+            <MenuIcon className={classes.mainMenu} onClick={toggle}/>
             <Collapse isOpen={isOpen} navbar>
               <Nav className="mr-auto align-items-center " navbar>
                 <NavItem className="ps-1 pe-1">

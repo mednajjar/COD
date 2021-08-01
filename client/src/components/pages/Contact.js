@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         },
       },
       redBack: { 
-        opacity: .2,
+        opacity: .5,
         width: '100%',
         height: '100%',
         backgroundRepeat: 'no-repeat',
@@ -139,7 +139,7 @@ const Contact = () => {
                     <TextField
                         className="col-12 bg-transparent"
                         id="filled-multiline-flexible"
-                        label="Multiline *"
+                        label="Message *"
                         multiline
                         maxRows={4}
                         onChange=""

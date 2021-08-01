@@ -62,5 +62,16 @@ export default makeStyles((theme) => ({
     },
     iconSpace: {
       marginRight: '4%'
+    },
+    mainMenu:{
+      display: 'none',
+      color: 'white',
+      borderRadius: '4px',
+      fontSize: 32,
+      padding: '1%',
+        border: '1px solid white', 
+      [theme.breakpoints.down('768')]: {
+        display: 'block'
+      }, 
     }
   }));

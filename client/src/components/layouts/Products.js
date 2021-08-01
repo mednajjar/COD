@@ -7,6 +7,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { useCart } from "react-use-cart";
+import itemData from './Data';
 const useStyles = makeStyles((theme) => ({
   content: {
     width: '80%',
@@ -72,50 +73,7 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const itemData = [
-  {
-    id: 1,
-    img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    price: 30,
-    author: 'author',
-  },
-  {
-    id: 2,
-    img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    price: 30,
-    author: 'author',
-  },
-  {
-    id: 3,
-    img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    price: 30,
-    author: 'author',
-  },
-  {
-    id: 4,
-    img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    price: 30,
-    author: 'author',
-  },
-  {
-    id: 5,
-    img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    price: 30,
-    author: 'author',
-  },
-  {
-    id: 6,
-    img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
-    title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    price: 30,
-    author: 'author',
-  },
-];
+
 const Products = () => {
   const classes = useStyles();
   const { addItem } = useCart();

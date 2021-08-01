@@ -1,10 +1,10 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import SideBar from '../layouts/SideBar';
 import Products from '../layouts/Products';
-
+import axios from 'axios'
 const useStyles = makeStyles((theme) => ({
   content: {
     width: '80%',
@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
     const classes = useStyles();
+
     return (
         <div className={classes.content}>
     
