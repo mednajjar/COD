@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -18,22 +18,31 @@ const useStyles = makeStyles((theme) => ({
         [theme.breakpoints.down('sm')]: {
           width: '100%', 
         },
-       img:{
-           border:'2px solid black',
-           background: 'yellow',
-       },
-       related:{
-           width: '10%',
-           border: '1px solid black'
-       }
       
-      }
+      
+      },
+      img:{
+        border:'2px solid black',
+        background: 'yellow',
+    },
+    related:{
+        width: '10%',
+        border: '1px solid black'
+    },
+    imgSize:{
+        width: '100px',
+        height: '100px',
+        [theme.breakpoints.down('sm')]: {
+            width: '70px', 
+            height: '70px',
+          },
+    }
 }))
 const ProductId = () => {
     const classes = useStyles();
     const {id} = useParams();
     const { addItem } = useCart();
-
+    const [selected, setSelected] = useState("https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg")
     return (
         <Paper className={classes.paper}>
             {
@@ -43,20 +52,36 @@ const ProductId = () => {
         <Grid container lg={8} className="mx-auto bg-light">
                 <Grid item xs sm className="p-3 col-6">
                     <ButtonBase className="col-12">
-                    <img className="col-12" alt="complex" src={item.img} />
+                    <img className="col-12" alt="complex" src={selected} />
                     </ButtonBase>
                     <Grid item className="d-flex justify-content-between mt-2">
-                        <ButtonBase className="border border-primary">
-                            <img className="col-12" alt="complex" src={item.img} />
+                        <ButtonBase className="border">
+                            <img className={classes.imgSize} style={{border: selected === "https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg" ? "2px solid orange" : "none"}} 
+                            alt="complex" 
+                            src="https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg"
+                            onClick={()=>setSelected("https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg")} 
+                            />
                         </ButtonBase>
                         <ButtonBase className="border">
-                            <img className="col-12" alt="complex" src={item.img} />
+                            <img className={classes.imgSize} style={{border: selected === "https://sc04.alicdn.com/kf/Hc8c5d0d14f574450a8797e678841a9deU.jpg" ? "2px solid orange" : "none"}} 
+                            alt="complex" 
+                            src="https://sc04.alicdn.com/kf/Hc8c5d0d14f574450a8797e678841a9deU.jpg"
+                            onClick={()=>setSelected("https://sc04.alicdn.com/kf/Hc8c5d0d14f574450a8797e678841a9deU.jpg")} 
+                            />
                         </ButtonBase>
                         <ButtonBase className="border">
-                            <img className="col-12" alt="complex" src={item.img} />
+                            <img className={classes.imgSize} style={{border: selected === "https://m.media-amazon.com/images/I/71hzYEQJftL._AC_SX466_.jpg" ? "2px solid orange" : "none"}} 
+                            alt="complex" 
+                            src="https://m.media-amazon.com/images/I/71hzYEQJftL._AC_SX466_.jpg"
+                            onClick={()=>setSelected("https://m.media-amazon.com/images/I/71hzYEQJftL._AC_SX466_.jpg")} 
+                            />
                         </ButtonBase>
                         <ButtonBase className="border">
-                            <img className="col-12" alt="complex" src={item.img} />
+                            <img className={classes.imgSize} style={{border: selected === "https://i5.walmartimages.com/asr/fbbdea99-387a-4775-9e84-6c67de1a6681.6b070a7b22523d1ee8318efd6dcc9cb5.jpeg" ? "2px solid orange" : "none"}} 
+                            alt="complex" 
+                            src="https://i5.walmartimages.com/asr/fbbdea99-387a-4775-9e84-6c67de1a6681.6b070a7b22523d1ee8318efd6dcc9cb5.jpeg"
+                            onClick={()=>setSelected("https://i5.walmartimages.com/asr/fbbdea99-387a-4775-9e84-6c67de1a6681.6b070a7b22523d1ee8318efd6dcc9cb5.jpeg")} 
+                            />
                         </ButtonBase>
                     </Grid>
                 </Grid>
@@ -92,19 +117,19 @@ const ProductId = () => {
             <h4>Les produits peuvent intéresser</h4>
             
             <Grid className="border p-2 d-flex flex-wrap justify-content-between">
-                <Grid xs={12} sm={12} md={3} lg={4} className="d-flex flex-column p-2">
+                <Grid xs={12} sm={4} md={4} lg={4} className="d-flex flex-column p-2">
                     <div className="border p-4">
                         <img className="col-12" alt="complex" src={item.img} />
                     </div>
                     <div className="text-start mt-2"><h5>{item.price} DH</h5><h5>{item.title}</h5></div>
                 </Grid>
-                <Grid xs={12} sm={12} md={3} lg={4} className="d-flex flex-column p-2">
+                <Grid xs={12} sm={4} md={4} lg={4} className="d-flex flex-column p-2">
                     <div className="border p-4">
                         <img className="col-12" alt="complex" src={item.img} />
                     </div>
                     <div className="text-start mt-2"><h5>{item.price} DH</h5><h5>{item.title}</h5></div>
                 </Grid>
-                <Grid xs={12} sm={12} md={3} lg={4} className="d-flex flex-column p-2">
+                <Grid xs={12} sm={4} md={4} lg={4} className="d-flex flex-column p-2">
                     <div className="border p-4">
                         <img className="col-12" alt="complex" src={item.img} />
                     </div>
