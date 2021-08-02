@@ -9,6 +9,9 @@ import itemData from '../layouts/Data';
 import {Link} from 'react-router-dom';
 import { useCart } from "react-use-cart";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
+
 const useStyles = makeStyles((theme) => ({
     paper: {
         width: '80%',
@@ -52,7 +55,13 @@ const ProductId = () => {
         <Grid container lg={8} className="mx-auto bg-light">
                 <Grid item xs sm className="p-3 col-6">
                     <ButtonBase className="col-12">
-                    <img className="col-12" alt="complex" src={selected} />
+                        <Zoom>
+                            <img
+                            alt="product"
+                            src={selected}
+                            width="100%"                     
+                            />
+                        </Zoom>
                     </ButtonBase>
                     <Grid item className="d-flex justify-content-between mt-2">
                         <ButtonBase className="border">
@@ -117,31 +126,35 @@ const ProductId = () => {
             <h4>Les produits peuvent intéresser</h4>
             
             <Grid className="border p-2 d-flex flex-wrap justify-content-between">
-                <Grid xs={12} sm={4} md={4} lg={4} className="d-flex flex-column p-2">
-                    <div className="border p-4">
-                        <img className="col-12" alt="complex" src={item.img} />
-                    </div>
-                    <div className="text-start mt-2"><h5>{item.price} DH</h5><h5>{item.title}</h5></div>
+                <Grid xs={12} sm={4} md={4} lg={4}>
+                    <ButtonBase className="d-flex flex-column p-2">
+                        <div className="border p-4">
+                            <img className="col-12" alt="complex" src={item.img} />
+                        </div>
+                        <div className="text-start mt-2"><h5>{item.price} DH</h5><h5>{item.title}</h5></div>
+                    </ButtonBase>
                 </Grid>
-                <Grid xs={12} sm={4} md={4} lg={4} className="d-flex flex-column p-2">
-                    <div className="border p-4">
-                        <img className="col-12" alt="complex" src={item.img} />
-                    </div>
-                    <div className="text-start mt-2"><h5>{item.price} DH</h5><h5>{item.title}</h5></div>
+                <Grid xs={12} sm={4} md={4} lg={4}>
+                    <ButtonBase className="d-flex flex-column p-2">
+                        <div className="border p-4">
+                            <img className="col-12" alt="complex" src={item.img} />
+                        </div>
+                        <div className="text-start mt-2"><h5>{item.price} DH</h5><h5>{item.title}</h5></div>
+                    </ButtonBase>
                 </Grid>
-                <Grid xs={12} sm={4} md={4} lg={4} className="d-flex flex-column p-2">
-                    <div className="border p-4">
-                        <img className="col-12" alt="complex" src={item.img} />
-                    </div>
-                    <div className="text-start mt-2"><h5>{item.price} DH</h5><h5>{item.title}</h5></div>
-                </Grid>
-                
+                <Grid xs={12} sm={4} md={4} lg={4}>
+                    <ButtonBase className="d-flex flex-column p-2">
+                        <div className="border p-4">
+                            <img className="col-12" alt="complex" src={item.img} />
+                        </div>
+                        <div className="text-start mt-2"><h5>{item.price} DH</h5><h5>{item.title}</h5></div>
+                    </ButtonBase>
+                </Grid> 
             </Grid>
         </Grid>
             </>
        )
    }
-     
 
         </Paper>
     )
