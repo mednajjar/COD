@@ -1,8 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper } from '@material-ui/core';
-
-
+import { Grid, Paper } from '@material-ui/core';
+import Routes from './routes';
+// import {BrowserRouter as Router} from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     paper: {
         width: '80%',
@@ -18,11 +18,12 @@ const VendeurDash = () => {
     const classes = useStyles();
     return (
         <Paper className={classes.paper}>
-            <h2 className="text-center">Vendeur Dashboard page</h2>
-            <div className="d-flex justify-content-around mt-5">
-                <h1>Hello Vendeur</h1>
-            </div>
-        </Paper>
+            
+                <Grid>
+                    <Routes />
+                </Grid>
+           
+            </Paper>
     )
 }
 

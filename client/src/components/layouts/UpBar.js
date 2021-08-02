@@ -1,6 +1,6 @@
 import useStyles from './styles';
 import React, { useState, useEffect } from 'react';
-import { Badge, Toolbar, IconButton, CardMedia, Typography } from '@material-ui/core';
+import { Badge, Toolbar, IconButton, CardMedia, Typography, ListItem, ListItemAvatar, Avatar, ListItemText  } from '@material-ui/core';
 // import MenuIcon from '@material-ui/icons/Menu';
 import { useHistory, Link } from 'react-router-dom';
 import logo from './cashondelivery.png'
@@ -27,6 +27,8 @@ const UpBar = () => {
   const history = useHistory();
   const { items } = useCart();
   const [isOpen, setIsOpen] = useState(false);
+  const avatar = "https://pfpmaker.com/_nuxt/img/profile-4.871e331.png"
+  const [role, setRole] = useState('vendeur')
   let toggle = () => setIsOpen(!isOpen);
 
   const [cart, setCart] = React.useState(0);
@@ -80,7 +82,117 @@ const UpBar = () => {
             </div>
           </Toolbar>
         </div>
-        <div className={classes.menu2}>
+        {
+          role === 'vendeur' ? (
+            <div className={classes.menu2}>
+          <Navbar light expand="md" className="ps-4 pe-4 ">
+            <NavbarBrand >
+              <ListItem button>
+                <ListItemAvatar>
+                  <Avatar alt="Profile Picture" src={avatar} />
+                </ListItemAvatar>
+                <ListItemText primary="Vendeur" className="text-white" />
+              </ListItem>
+              </NavbarBrand>
+            <MenuIcon className={classes.mainMenu} onClick={toggle}/>
+            <Collapse isOpen={isOpen} navbar>
+              <Nav className="mr-auto align-items-center " navbar>
+                <NavItem className="ps-3 pe-3">
+                  <Link to="/vendeurDashboard/myStore" className="text-white text-decoration-none">PRODUITS</Link>
+                </NavItem>
+                <NavItem className="ps-3 pe-3">
+                  <Link to="/vendeurDashboard/addProduct" className="text-white text-decoration-none">AJOUTER PRODUITS</Link>
+                </NavItem>
+                <NavItem className="align-items-center ps-1 pe-1">
+                  <Link to="/vendeurDashboard/shipping" className="text-white text-decoration-none">LIVRAISON</Link>
+                </NavItem>
+              </Nav>
+            </Collapse>
+          </Navbar>
+        </div>
+          ) : role === 'livreur' ? (
+            <div className={classes.menu2}>
+          <Navbar light expand="md" className="ps-4 pe-4 ">
+            <NavbarBrand >
+              <ListItem button>
+                <ListItemAvatar>
+                  <Avatar alt="Profile Picture" src={avatar} />
+                </ListItemAvatar>
+                <ListItemText primary="Livreur" className="text-white" />
+              </ListItem>
+              </NavbarBrand>
+            <MenuIcon className={classes.mainMenu} onClick={toggle}/>
+            <Collapse isOpen={isOpen} navbar>
+              <Nav className="mr-auto align-items-center " navbar>
+                <NavItem className="ps-3 pe-3">
+                  <Link to="/vendeurDashboard/myStore" className="text-white text-decoration-none">PRODUITS</Link>
+                </NavItem>
+                <NavItem className="ps-3 pe-3">
+                  <Link to="/vendeurDashboard/addProduct" className="text-white text-decoration-none">AJOUTER PRODUITS</Link>
+                </NavItem>
+                <NavItem className="align-items-center ps-1 pe-1">
+                  <Link to="/vendeurDashboard/shipping" className="text-white text-decoration-none">LIVRAISON</Link>
+                </NavItem>
+              </Nav>
+            </Collapse>
+          </Navbar>
+        </div>
+          ) : role === 'admin' ? (
+            <div className={classes.menu2}>
+          <Navbar light expand="md" className="ps-4 pe-4 ">
+            <NavbarBrand >
+              <ListItem button>
+                <ListItemAvatar>
+                  <Avatar alt="Profile Picture" src={avatar} />
+                </ListItemAvatar>
+                <ListItemText primary="admin" className="text-white" />
+              </ListItem>
+              </NavbarBrand>
+            <MenuIcon className={classes.mainMenu} onClick={toggle}/>
+            <Collapse isOpen={isOpen} navbar>
+              <Nav className="mr-auto align-items-center " navbar>
+                <NavItem className="ps-3 pe-3">
+                  <Link to="/vendeurDashboard/myStore" className="text-white text-decoration-none">PRODUITS</Link>
+                </NavItem>
+                <NavItem className="ps-3 pe-3">
+                  <Link to="/vendeurDashboard/addProduct" className="text-white text-decoration-none">AJOUTER PRODUITS</Link>
+                </NavItem>
+                <NavItem className="align-items-center ps-1 pe-1">
+                  <Link to="/vendeurDashboard/shipping" className="text-white text-decoration-none">LIVRAISON</Link>
+                </NavItem>
+              </Nav>
+            </Collapse>
+          </Navbar>
+        </div>
+          ) : role === 'customer' ? (
+            <div className={classes.menu2}>
+          <Navbar light expand="md" className="ps-4 pe-4 ">
+            <NavbarBrand >
+              <ListItem button>
+                <ListItemAvatar>
+                  <Avatar alt="Profile Picture" src={avatar} />
+                </ListItemAvatar>
+                <ListItemText primary="Customer" className="text-white" />
+              </ListItem>
+              </NavbarBrand>
+            <MenuIcon className={classes.mainMenu} onClick={toggle}/>
+            <Collapse isOpen={isOpen} navbar>
+              <Nav className="mr-auto align-items-center " navbar>
+                <NavItem className="ps-3 pe-3">
+                  <Link to="/vendeurDashboard/myStore" className="text-white text-decoration-none">PRODUITS</Link>
+                </NavItem>
+                <NavItem className="ps-3 pe-3">
+                  <Link to="/vendeurDashboard/addProduct" className="text-white text-decoration-none">AJOUTER PRODUITS</Link>
+                </NavItem>
+                <NavItem className="align-items-center ps-1 pe-1">
+                  <Link to="/vendeurDashboard/shipping" className="text-white text-decoration-none">LIVRAISON</Link>
+                </NavItem>
+              </Nav>
+            </Collapse>
+          </Navbar>
+        </div>
+          ) : (
+            <div className={classes.menu2}>
           <Navbar light expand="md" className="ps-4 pe-4 ">
             <NavbarBrand ><Link to="/"><HomeIcon style={{ fontSize: '2rem', color: 'white' }} /></Link></NavbarBrand>
             <MenuIcon className={classes.mainMenu} onClick={toggle}/>
@@ -113,7 +225,11 @@ const UpBar = () => {
               </Nav>
             </Collapse>
           </Navbar>
-        </div>
+        </div> 
+          )
+        }
+        
+        
       </div>
     </>
   )
