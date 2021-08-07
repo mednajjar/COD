@@ -12,8 +12,10 @@ import TableRow from '@material-ui/core/TableRow';
 import Data from '../../../layouts/Data';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
+import {useHistory} from 'react-router-dom';
+
 const columns = [
-    { id: 'product', label: 'Product', minWidth: 170 },
+    { id: 'product', label: 'Product', minWidth: 100 },
     { id: 'title', label: 'Title', minWidth: 100 },
     {
       id: 'price',
@@ -38,8 +40,7 @@ const columns = [
     },
   ];
   
-  function createData(product, title, price, date) {
-    const action = <><button className="btn btn-secondary me-1"><EditIcon/></button><button className="btn btn-danger"><DeleteIcon/></button></>;
+  function createData(product, title, price, date, action) {
     return { product, title, price, date, action };
   }
   
@@ -51,12 +52,20 @@ const useStyles = makeStyles({
 
 const MyStore = () => {
     const classes = useStyles();
+    const history = useHistory();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     let rows = [];
      
     Data.map((item)=>{
-        rows.push(createData(<img src={item.img} className="col-3" />, item.title, item.price, '00-00-0000')) 
+        rows.push(createData(
+        <img src={item.img} className="col-3" />,
+         item.title,
+         item.price,
+         '00-00-0000',
+         <><button className="btn btn-secondary me-1" onClick={()=>history.push(`/vendeurDashboard/editProduct/${item.id}`)}><EditIcon/></button>
+         <button className="btn btn-danger" onClick={()=>{(window.confirm("are you sure you want to delete this item!")) ? alert('confirmed') : alert('not confirmed')}}><DeleteIcon/></button>
+         </>)) 
 
     })
 

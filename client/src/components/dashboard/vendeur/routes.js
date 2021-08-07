@@ -15,7 +15,7 @@ const Routes =()=>{
         <Switch>
             <Route path="/vendeurDashboard/myStore" component={Store} />
             <Route path="/vendeurDashboard/shipping" component={Shipping} />
-            <Route path="/vendeurDashboard/editProduct" component={EditProduct} />
+            <Route path="/vendeurDashboard/editProduct/:id" component={EditProduct} />
             <Route path="/vendeurDashboard/addProduct" component={AddProduct} />
         </Switch>
         
