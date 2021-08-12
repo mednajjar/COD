@@ -64,7 +64,7 @@ const MyStore = () => {
          item.price,
          '00-00-0000',
          <><button className="btn btn-secondary me-1" onClick={()=>history.push(`/vendeurDashboard/editProduct/${item.id}`)}><EditIcon/></button>
-         <button className="btn btn-danger" onClick={()=>{(window.confirm("are you sure you want to delete this item!")) ? alert('confirmed') : alert('not confirmed')}}><DeleteIcon/></button>
+         <button className="btn btn-danger" onClick={()=>{(window.confirm("are you sure you want to delete this item!")) ? alert(`item id ${item.id} deleted test!`) : alert('not confirmed')}}><DeleteIcon/></button>
          </>)) 
 
     })

@@ -6,6 +6,7 @@ import Routes from './routes';
 const useStyles = makeStyles((theme) => ({
     paper: {
         width: '80%',
+        height: 'auto',
         margin: '1% auto',
         paddingTop: '2%',
         paddingBottom: '2%',
@@ -19,7 +20,7 @@ const VendeurDash = () => {
     return (
         <Paper className={classes.paper}>
             
-                <Grid>
+                <Grid style={{marginBottom: '6%'}}>
                     <Routes />
                 </Grid>
            

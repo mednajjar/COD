@@ -105,7 +105,7 @@ const EditProduct = () => {
                   <i className="mt-4">
                   { 
                     file ? (<img src={file} alt="image" className="col-3 border"/>)          
-                       : <img src={image} alt="image principale" style={{width:'20%', cursor: 'pointer'}} />
+                       : <img src={image} alt="image principale" style={{width:'15%', cursor: 'pointer'}} />
                     }
                   </i>
                 </label>
@@ -115,7 +115,7 @@ const EditProduct = () => {
                   { 
                     files.length > 0 ? files.map((img, index)=>
                       <img key={index} src={img} alt="image" className="col-3 border"/>          
-                      ) : <img src={images} alt="images" style={{width:'20%', cursor: 'pointer'}} />
+                      ) : <img src={images} alt="images" style={{width:'15%', cursor: 'pointer'}} />
                     }
                   </i>
                  

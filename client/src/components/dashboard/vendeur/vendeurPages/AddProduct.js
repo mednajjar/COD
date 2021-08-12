@@ -7,6 +7,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import image from '../../../../assets/image.png';
 import images from '../../../../assets/images.png';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {Link} from 'react-router-dom';
 const useStyles = makeStyles((theme)=>({
   editor:{
       height: 'auto',
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme)=>({
     flexDirection: 'column',
     justifyContent: 'center',
     background: '#f9f9f9',
-    marginTop: '4%',
+    marginTop: '2%',
     marginLeft: 'auto',
     marginRight: 'auto',
     height: 'auto',
@@ -27,11 +28,11 @@ const useStyles = makeStyles((theme)=>({
   }
 }))
 const AddProduct = () => {
+  const classes = useStyles()
   const [file, setFile] = useState('')
   const [files, setFiles] = useState([])
     const [editorState, setEditorState] = useState(() =>EditorState.createEmpty());
     console.log('magic',editorState.getCurrentContent().getPlainText())
-    const classes = useStyles()
 
   const fileOnChange = (e) =>{
     if(e.target.files){
@@ -47,12 +48,34 @@ const AddProduct = () => {
     }
     
   }
+const [title, setTitle] = useState('')
+const [price, setPrice] = useState()
+const [error, setError] = useState('')
+const [error2, setError2] = useState('')
+const onchange = (e)=>{
+setTitle(e.target.value)
+setPrice(e.target.value)
+}
 
+console.log(title.length)
+
+
+// const test = ()=>{
+// let temp = {};
+// temp.title = 
+// }
+// useEffect(()=>{
+// test();
+// test2();
+// },[test, test2])
+console.log('error',error)
+console.log('error2',error2)
  console.log('file',file)
  console.log('files',files)
     return (
       
         <Grid container className="mx-auto d-flex flex-column p-3">
+              <form action="">
             <Grid item lg={12} className="text-center">
                 <Typography variant="h5" component="h5" >
                     Ajouter un produit
@@ -65,14 +88,25 @@ const AddProduct = () => {
                     name="title"
                     label= "Title"
                     onChange= {onchange}
+                    helperText={error}
                     />
                 </Grid>
-                <Grid item lg={3} className="mt-3">
+                <Grid item xs={4} sm={3} md={3} lg={3} className="mt-3">
                     <TextField
                     className="col-12"
                     name="price"
                     label= "Prix"
                     onChange= {onchange}
+                    helperText={error2}
+                    />
+                </Grid>
+                <Grid item xs={4} sm={3} md={3} lg={3} className="mt-3">
+                    <TextField
+                    className="col-12"
+                    name="stock"
+                    label= "Stock"
+                    onChange= {onchange}
+                    helperText={error2}
                     />
                 </Grid>
                 <Grid item lg={10} className="mt-3">
@@ -93,7 +127,7 @@ const AddProduct = () => {
                   <i className="mt-4">
                   { 
                     file ? (<img src={file} alt="image" className="col-3 border"/>)          
-                       : <img src={image} alt="image principale" style={{width:'20%', cursor: 'pointer'}} />
+                       : <img src={image} alt="image principale" style={{width:'15%', cursor: 'pointer'}} />
                     }
                   </i>
                 </label>
@@ -101,9 +135,9 @@ const AddProduct = () => {
                   <span className="text-secondary">Upload sub images (4 max)</span>
                   <i className="d-flex flex-row col-12 justify-content-start mt-4 flex-wrap">
                   { 
-                    files.length > 0 ? files.map((img, index)=>
+                    (files.length > 0 && files.length > 4) ? <h5 className="text-danger btn fw-bold">You must upload 4 pics max!</h5> : files.length ?  files.map((img, index)=>
                       <img key={index} src={img} alt="image" className="col-3 border"/>          
-                      ) : <img src={images} alt="images" style={{width:'20%', cursor: 'pointer'}} />
+                      )  : <img src={images} alt="images" style={{width:'15%', cursor: 'pointer'}} />
                     }
                   </i>
                  
@@ -117,7 +151,12 @@ const AddProduct = () => {
                     name="long-d"
                   />
                 </Grid>
+            <div className="d-flex flex-row col-12 justify-content-end mt-5">
+         
+            <button type="submit" className="btn btn-primary col-4">Ajouter</button>
+            </div>
             </Grid>
+            </form>
         </Grid>
         
     )
