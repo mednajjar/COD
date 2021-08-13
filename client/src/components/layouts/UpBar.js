@@ -19,7 +19,7 @@ import {
 } from 'reactstrap';
 import HomeIcon from '@material-ui/icons/Home';
 import { useCart } from "react-use-cart";
-
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 
 const UpBar = () => {
@@ -49,36 +49,45 @@ const UpBar = () => {
               title="Contemplative Reptile"
             />
             <div className={classes.menuButton} >
-              <div className="d-flex flex-wrap justify-content-end">
-              <Nav>
-                <UncontrolledDropdown nav inNavbar style={{ alignSelf: 'center' }}>
-                  <DropdownToggle nav className="fw-bold fs-6 " style={{ color: "black", paddingLeft: 0 }}>
-                    <Typography className="fw-bold">
-                      Se connecter
-                    </Typography>
-                  </DropdownToggle>
-                  <DropdownMenu>
-                    <DropdownItem className="text-warning fw-bold">
-                      <Link to="/login" className={classes.linkStyle}>
-                        SE CONNECTER
-                      </Link>
-                    </DropdownItem>
-                    <DropdownItem divider />
-                    <DropdownItem className="text-warning fw-bold">
-                      <Link to="/register" className={classes.linkStyle}>
-                        CREER UN COMPTE
-                      </Link>
-                    </DropdownItem>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-              </Nav>
-              <IconButton aria-label="show 17 new notifications" color="inherit" style={{ backgroundColor: 'transparent' }}>
-                <Badge badgeContent={cart} color="secondary" onClick={() => submit()}>
-                  <Typography style={{ marginRight: '12%' }}><b>Panier</b></Typography>
-                  <ShoppingCartIcon style={{ color: 'black' }} />
-                </Badge>
-              </IconButton>
-              </div>
+             {
+               role === "vendeur" ? (
+                 
+                  <button onClick="" className="text-black fw-bold bg-transparent border-0">Logout <ExitToAppIcon /></button>
+
+               ) : (
+                  <div className="d-flex flex-wrap justify-content-end">
+                  <Nav>
+                    <UncontrolledDropdown nav inNavbar style={{ alignSelf: 'center' }}>
+                      <DropdownToggle nav className="fw-bold fs-6 " style={{ color: "black", paddingLeft: 0 }}>
+                        <Typography className="fw-bold">
+                          Se connecter
+                        </Typography>
+                      </DropdownToggle>
+                      <DropdownMenu>
+                        <DropdownItem className="text-warning fw-bold">
+                          <Link to="/login" className={classes.linkStyle}>
+                            SE CONNECTER
+                          </Link>
+                        </DropdownItem>
+                        <DropdownItem divider />
+                        <DropdownItem className="text-warning fw-bold">
+                          <Link to="/register" className={classes.linkStyle}>
+                            CREER UN COMPTE
+                          </Link>
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
+                  </Nav>
+                  <IconButton aria-label="show 17 new notifications" color="inherit" style={{ backgroundColor: 'transparent' }}>
+                    <Badge badgeContent={cart} color="secondary" onClick={() => submit()}>
+                      <Typography style={{ marginRight: '12%' }}><b>Panier</b></Typography>
+                      <ShoppingCartIcon style={{ color: 'black' }} />
+                    </Badge>
+                  </IconButton>
+                  </div>
+
+               )
+             } 
             </div>
           </Toolbar>
         </div>
@@ -91,7 +100,7 @@ const UpBar = () => {
                 <ListItemAvatar>
                   <Avatar alt="Profile Picture" src={avatar} />
                 </ListItemAvatar>
-                <ListItemText primary="Vendeur" className="text-white" />
+                <ListItemText primary="VENDEUR" className="text-white" />
               </ListItem>
               </NavbarBrand>
             <MenuIcon className={classes.mainMenu} onClick={toggle}/>
@@ -104,7 +113,7 @@ const UpBar = () => {
                   <Link to="/vendeurDashboard/addProduct" className="text-white text-decoration-none">AJOUTER PRODUITS</Link>
                 </NavItem>
                 <NavItem className="align-items-center ps-1 pe-1">
-                  <Link to="/vendeurDashboard/shipping" className="text-white text-decoration-none">LIVRAISON</Link>
+                  <Link to="/vendeurDashboard/shipping" className="text-white text-decoration-none">COMMANDES & LIVRAISON</Link>
                 </NavItem>
               </Nav>
             </Collapse>

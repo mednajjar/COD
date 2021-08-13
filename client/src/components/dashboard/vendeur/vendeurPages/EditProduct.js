@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
+import {useParams, Link} from 'react-router-dom';
 import { Grid, TextField, Typography } from '@material-ui/core'
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState,ContentState, convertFromHTML } from "draft-js";
@@ -35,6 +35,7 @@ const EditProduct = () => {
     const [title, setTitle] = useState('this is title from id')
     const [shortD, setShortD] = useState('this is short description from id')
     const [prix, setPrice] = useState(30)
+    const [stock, setStock] = useState(300)
     const [longD, setLongD] = useState('this is a looooong description from id')
     const [file, setFile] = useState('')
     const [files, setFiles] = useState([])
@@ -62,6 +63,7 @@ const EditProduct = () => {
 
     return (
         <Grid container className="mx-auto d-flex flex-column p-3">
+        <form>
             <Grid item lg={12} className="text-center">
                 <Typography variant="h5" component="h5" >
                     Modifier le produit
@@ -77,13 +79,23 @@ const EditProduct = () => {
                     onChange= {onchange}
                     />
                 </Grid>
-                <Grid item lg={3} className="mt-3">
+                <Grid item xs={4} sm={3} md={3} lg={3} className="mt-3">
                     <TextField
                     className="col-12"
                     name="price"
                     label= "Prix"
                     value={prix}
                     onChange= {onchange}
+                    />
+                </Grid>
+                <Grid item xs={4} sm={3} md={3} lg={3} className="mt-3">
+                    <TextField
+                    className="col-12"
+                    name="stock"
+                    label= "Stock"
+                    onChange= {onchange}
+                    value={stock}
+                    helperText=""
                     />
                 </Grid>
                 <Grid item lg={10} className="mt-3">
@@ -112,10 +124,10 @@ const EditProduct = () => {
                 <label htmlFor="file2" className="d-flex flex-column justify-content-start mt-4 flex-wrap relative">
                   <span className="text-secondary">Upload sub images (4 max)</span>
                   <i className="d-flex flex-row col-12 justify-content-start mt-4 flex-wrap">
-                  { 
-                    files.length > 0 ? files.map((img, index)=>
+                    { 
+                    (files.length > 0 && files.length > 4) ? <h5 className="text-danger btn fw-bold">You must upload 4 pics max!</h5> : files.length ?  files.map((img, index)=>
                       <img key={index} src={img} alt="image" className="col-3 border"/>          
-                      ) : <img src={images} alt="images" style={{width:'15%', cursor: 'pointer'}} />
+                      )  : <img src={images} alt="images" style={{width:'15%', cursor: 'pointer'}} />
                     }
                   </i>
                  
@@ -131,7 +143,11 @@ const EditProduct = () => {
                   
                   />
                 </Grid>
+                <div className="d-flex flex-row col-12 justify-content-end mt-5">
+                  <Link to="/vendeurDashboard/myStore" className="btn btn-secondary col-4">Modifier</Link>
+                </div>
             </Grid>
+            </form>
         </Grid>
     )
 }

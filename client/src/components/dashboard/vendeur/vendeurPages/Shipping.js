@@ -13,8 +13,9 @@ import Data from '../../../layouts/Data';
 import ContactsIcon from '@material-ui/icons/Contacts';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import {useHistory} from 'react-router-dom';
-import MyModal from './MyModal'
-import ShippingModal from './ShippingModal'
+import MyModal from './modals/MyModal'
+import ShippingModal from './modals/ShippingModal'
+import EtatModal from './modals/EtatModal'
 
 const columns = [
     { id: 'product', label: 'Product', minWidth: 100 },
@@ -34,6 +35,13 @@ const columns = [
       format: (value) => value.toLocaleString('en-US'),
     },
     {
+      id: 'etat',
+      label: 'Etat',
+      minWidth: 170,
+      align: 'right',
+      format: (value) => value.toLocaleString('en-US'),
+    },
+    {
       id: 'action',
       label: 'Action',
       minWidth: 170,
@@ -42,8 +50,8 @@ const columns = [
     },
   ];
   
-  function createData(product, title, quantity, price, action) {
-    return { product, title, quantity, price, action };
+  function createData(product, title, quantity, price,etat, action) {
+    return { product, title, quantity, price,etat, action };
   }
   
   
@@ -60,8 +68,10 @@ const Shipping = () => {
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [modal, setModal] = useState(false);
     const [shipping, setShipping] = useState(false);
+    const [etat, setEtat] = useState(false);
     const toggle = () => setModal(!modal);
     const toggle2 = () => setShipping(!shipping);
+    const toggle3 = () => setEtat(!etat);
     let rows = [];
     const onchange=()=>{
         setId(4)
@@ -75,6 +85,7 @@ const Shipping = () => {
          item.title,
          1,
          item.price,
+        <button className="border-0 bg-transparent" onClick={toggle3}>Active</button>,
          <>
          <button className="btn btn-secondary me-1" onClick={toggle} onChange={onchange}><ContactsIcon/></button>
          <button className="btn btn-primary" onClick={toggle2}><LocalShippingIcon/></button>
@@ -96,6 +107,7 @@ const Shipping = () => {
         <Grid container lg={11} className="mx-auto">
         <MyModal modal={modal} setModal={setModal} toggle={toggle} id={id} />
         <ShippingModal shipping={shipping} setShipping={setShipping} toggle2={toggle2} />
+        <EtatModal etat={etat} setEtat={setEtat} toggle3={toggle3} />
       <TableContainer className={classes.container}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>

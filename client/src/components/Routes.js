@@ -9,7 +9,8 @@ import Login from './auth/Login';
 import Register from './auth/Register';
 import LivreurDash from './dashboard/livreur/LivreurDash';
 import VendeurDash from './dashboard/vendeur/VendeurDash';
-import CustomerDash from './dashboard/customer/CustomerDash';
+import ClientDash from './dashboard/client/ClientDash';
+import AdminDash from './dashboard/admin/AdminDash';
 import Product from './pages/ProductId';
 import Cart from './pages/cart/Cart'
 import Checkout from './pages/checkout/Checkout';
@@ -26,7 +27,8 @@ const Routes = () => {
             <Route path='/register' component={Register} />
             <Route path='/vendeurDashboard' component={VendeurDash} />
             <Route path='/livreurDashboard' component={LivreurDash} />
-            <Route path='/customerDashboard' component={CustomerDash} />
+            <Route path='/clientDashboard' component={ClientDash} />
+            <Route path='/adminDashboard' component={AdminDash} />
             <Route path='/product/:id' component={Product} />
             <Route path='/cart' component={Cart} />
             <Route path='/checkout' component={Checkout} />

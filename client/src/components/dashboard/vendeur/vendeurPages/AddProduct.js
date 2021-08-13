@@ -75,7 +75,7 @@ console.log('error2',error2)
     return (
       
         <Grid container className="mx-auto d-flex flex-column p-3">
-              <form action="">
+              <form>
             <Grid item lg={12} className="text-center">
                 <Typography variant="h5" component="h5" >
                     Ajouter un produit

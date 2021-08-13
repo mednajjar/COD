@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -14,17 +14,16 @@ const useStyles = makeStyles((theme) => ({
         },
       }
 }))
-const CustomerDash = () => {
+const Orders = () => {
     const classes = useStyles();
     return (
-        <Paper className={classes.paper}>
-            <h2 className="text-center">Customer Dashboard page</h2>
-            <div className="d-flex justify-content-around mt-5">
-                <h1>Hello Customer</h1>
-            </div>
-        </Paper>
+        <Grid container>
+            <Grid item lg={8} className="text-center bg-light mx-auto">
+                <Typography> Orders page </Typography>
+            </Grid>
+        </Grid>
     )
 }
 
-export default CustomerDash
+export default Orders
 
