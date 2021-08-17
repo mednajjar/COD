@@ -1,21 +1,23 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
+import Paper from '@material-ui/core/Paper';
 import SideBar from '../layouts/SideBar';
+import Banner from '../layouts/Banner';
 import Products from '../layouts/Products';
-import axios from 'axios'
+import HeaderCarousal from '../layouts/Carousal';
+
 const useStyles = makeStyles((theme) => ({
   content: {
     width: '80%',
     margin: '1% auto',
-    padding: '0.1%',
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap-reverse',
     justifyContent: 'space-between',
     overflow: 'hidden',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       width: '100%', 
     },
   },
@@ -53,6 +55,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       height: '16vh', 
     },
+  },
+  carousal:{
+    height: 'auto',
   }
  
 }));
@@ -66,24 +71,33 @@ const Home = () => {
     const classes = useStyles();
 
     return (
+      <>
         <div className={classes.content}>
-    
-
-   
-            <Grid container style={{flexWrap: 'wrap-reverse'}}>
-              <Grid item xs={12} sm={12} md={4} lg={2}>
+            <Grid container>
+              <Grid item xs={12} sm={12} md={3} lg={2}>
                 <SideBar />
               </Grid>
 
-              <Grid item xs sm style={{ marginBottom: '2%' }}>
-                <Card>
-                <Products />               
-                </Card>
+              <Grid item xs sm lg style={{ marginLeft: '1%', marginRight: '1%' }}>
+                <Paper elevation={0} className={classes.carousal}>
+                  <Grid lg={9} style={{margin: 'auto'}}>
+                      <HeaderCarousal />       
+                  </Grid>
+                </Paper>
+              </Grid>
+              <Grid item xs={12} sm={12} md={3} lg={2}  >
+                <Banner  />
               </Grid>
             </Grid>
-     
-    
         </div>
+            <div className={classes.content}>
+              <Grid item >
+                <Card>
+                  <Products /> 
+                </Card>
+              </Grid>
+            </div>
+      </>
     )
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper, Grid } from '@material-ui/core';
-import Routes from './routes';
+import { Grid, Typography } from '@material-ui/core';
+
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -14,16 +14,16 @@ const useStyles = makeStyles((theme) => ({
         },
       }
 }))
-const  AdminDash = () => {
+const Users = () => {
     const classes = useStyles();
     return (
-        <Paper className={classes.paper}>
-            <Grid style={{marginBottom: '6%'}}>
-                <Routes />
+        <Grid container >
+            <Grid item lg={8} className="text-center bg-light mx-auto">
+                <Typography> users page </Typography>
             </Grid>
-        </Paper>
+        </Grid>
     )
 }
 
-export default AdminDash
+export default Users
 

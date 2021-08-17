@@ -26,7 +26,7 @@ export default makeStyles((theme) => ({
       margin: '0 auto',
       paddingTop: '1.5%',
       background: 'white',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         width: '100%', 
       },
     },
@@ -34,7 +34,7 @@ export default makeStyles((theme) => ({
       width: '80%',
       margin: '0 auto',
       background: '#303F9F',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         width: '100%', 
       },
     },
@@ -55,13 +55,36 @@ export default makeStyles((theme) => ({
       fontWeight: 'bold'
     },
     paperSideBar: {
-      width: 250,
+      width: '100%',
+      height: '43vh',
+      [theme.breakpoints.down('md')]: {
+        height: '47vh', 
+      },
+      [theme.breakpoints.down(1025)]: {
+        height: '32vh', 
+      },
       [theme.breakpoints.down('sm')]: {
-        width: '100%', 
+        display: 'none' 
+      },
+    },
+    paperSideBar2: {
+      width: '100%',
+      height: '43vh',
+      padding: '3%',
+      margin: '0 auto',
+      [theme.breakpoints.down('md')]: {
+        height: '47vh', 
+      },
+      [theme.breakpoints.down(1025)]: {
+        height: '32vh', 
+      },
+      [theme.breakpoints.down('sm')]: {
+        display: 'none' 
       },
     },
     iconSpace: {
-      marginRight: '4%'
+      margin: '3.1%',
+      
     },
     mainMenu:{
       display: 'none',

@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper } from '@material-ui/core';
-
+import { Paper, Grid } from '@material-ui/core';
+import Routes from './routes';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -14,17 +14,16 @@ const useStyles = makeStyles((theme) => ({
         },
       }
 }))
-const ClientDashboard = () => {
+const ClientDash = () => {
     const classes = useStyles();
     return (
         <Paper className={classes.paper}>
-            <h2 className="text-center">Customer Dashboard page</h2>
-            <div className="d-flex justify-content-around mt-5">
-                <h1>Hello Customer</h1>
-            </div>
+            <Grid style={{marginBottom: '6%'}}>
+                <Routes />
+            </Grid>
         </Paper>
     )
 }
 
-export default ClientDashboard
+export default ClientDash
 

@@ -15,6 +15,8 @@ import Product from './pages/ProductId';
 import Cart from './pages/cart/Cart'
 import Checkout from './pages/checkout/Checkout';
 import Offre from './pages/Offre';
+import Store from './pages/Store';
+import Categories from './pages/Categories';
 const Routes = () => {
     return (
         <Switch>
@@ -33,6 +35,8 @@ const Routes = () => {
             <Route path='/cart' component={Cart} />
             <Route path='/checkout' component={Checkout} />
             <Route path='/offre' component={Offre} />
+            <Route path='/store' component={Store} />
+            <Route path='/category/:category' component={Categories} />
         </Switch>
     )
 }
