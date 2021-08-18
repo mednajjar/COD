@@ -5,8 +5,10 @@ import Card from '@material-ui/core/Card';
 import Paper from '@material-ui/core/Paper';
 import SideBar from '../layouts/SideBar';
 import Banner from '../layouts/Banner';
-import Products from '../layouts/Products';
+// import Products from '../layouts/Products';
 import HeaderCarousal from '../layouts/Carousal';
+import ProductSlide from '../layouts/ProductSlide';
+import { Typography } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   content: {
@@ -28,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'center',
     backgroundColor: theme.palette.background.paper,
-   
-  
+    
+    
     
   },
   imageList: {
@@ -58,8 +60,19 @@ const useStyles = makeStyles((theme) => ({
   },
   carousal:{
     height: 'auto',
+  },
+  slide:{
+    width: '80%',
+    margin: '0 auto 1%',
+    padding: '1%',
+    [theme.breakpoints.down(1280)]: {
+      width: '100%', 
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '100%', 
+    },
   }
- 
+  
 }));
 
 
@@ -68,10 +81,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 const Home = () => {
-    const classes = useStyles();
-
-    return (
-      <>
+  const classes = useStyles();
+  
+  return (
+    <>
         <div className={classes.content}>
             <Grid container>
               <Grid item xs={12} sm={12} md={3} lg={2}>
@@ -90,13 +103,12 @@ const Home = () => {
               </Grid>
             </Grid>
         </div>
-            <div className={classes.content}>
-              <Grid item >
-                <Card>
-                  <Products /> 
-                </Card>
-              </Grid>
-            </div>
+            <Paper className={classes.slide}>
+                <Typography variant="h6">Le plus vendu</Typography>
+            </Paper>
+            <Paper className={classes.slide}>
+                <ProductSlide /> 
+            </Paper>
       </>
     )
 }

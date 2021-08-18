@@ -5,6 +5,7 @@ import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { CartProvider } from "react-use-cart";
 
+
 ReactDOM.render(
   <React.StrictMode>
     <CartProvider>

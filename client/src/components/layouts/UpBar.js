@@ -28,7 +28,7 @@ const UpBar = () => {
   const { items } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const avatar = "https://pfpmaker.com/_nuxt/img/profile-4.871e331.png"
-  const [role, setRole] = useState('vendeur')
+  const [role, setRole] = useState('')
   let toggle = () => setIsOpen(!isOpen);
 
   const [cart, setCart] = React.useState(0);
@@ -208,7 +208,7 @@ const UpBar = () => {
             <Collapse isOpen={isOpen} navbar>
               <Nav className="mr-auto align-items-center " navbar>
                 <NavItem className="ps-1 pe-1">
-                  <Link to="/offre" className="text-white text-decoration-none">MEILLEURES OFFRES</Link>
+                  <Link to="/store" className="text-white text-decoration-none">BOUTIQUE</Link>
                 </NavItem>
                 <UncontrolledDropdown nav inNavbar className="ps-1 pe-1">
                   <DropdownToggle nav caret className="text-white">

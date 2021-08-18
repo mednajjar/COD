@@ -62,12 +62,12 @@ const Products = () => {
   const classes = useStyles();
   const { addItem } = useCart();
   const [currentPage, setCurrentPage] = useState(1);
-  const [productPerPage, setProductPerPage] = useState(5)
+  const [productPerPage, setProductPerPage] = useState(8)
   const indexOfPages = Math.ceil(itemData.length / productPerPage);
   const indexOfLastProduct = currentPage * productPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productPerPage;
   const currentProduct = itemData.slice(indexOfFirstProduct, indexOfLastProduct)
-  
+
   const handleChange = (event, value) => {
     setCurrentPage(value);
   };
