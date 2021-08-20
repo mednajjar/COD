@@ -5,7 +5,8 @@ import ProductSlide from '../layouts/slides/ProductSlide';
 import ProductSlide2 from '../layouts/slides/ProductSlide2';
 import HeaderHero from '../layouts/HeaderHero';
 import { bannerFull } from '../../assets';
-
+import BlocProduct from '../layouts/BlocProduct';
+import Footer from '../layouts/Footer';
 const useStyles = makeStyles((theme) => ({
   content: {
     width: '80%',
@@ -58,6 +59,12 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down('sm')]: {
       width: '100%',
     },
+  },
+  footer: {
+    width: '80%',
+    margin: '0 auto',
+    backgroundColor: 'gray',
+    paddingTop: '.5%'
   }
 
 }));
@@ -82,18 +89,15 @@ const Home = () => {
         <ProductSlide2 />
       </Grid>
       <Paper className={classes.slide}>
-        <Grid style={{ width: '100%', padding: '.5%'}}>
+        <Grid style={{ width: '100%', padding: '.5%' }}>
           <img src={bannerFull} alt="img" style={{ width: '100%', height: '100%' }} />
         </Grid>
       </Paper>
-      <Paper className={classes.slide}>
-        <Typography variant="h6">Le plus vendu</Typography>
-      </Paper>
-      <Paper className={classes.slide}>
-        <Typography>products</Typography>
-      </Paper>
-      <Paper>
-        <Typography>footer</Typography>
+      <Grid className={classes.slide}>
+        <BlocProduct />
+      </Grid>
+      <Paper className={classes.footer}>
+        <Footer />
       </Paper>
     </>
   )
