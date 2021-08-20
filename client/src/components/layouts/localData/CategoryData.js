@@ -1,4 +1,4 @@
-export default [
+const Category = [
     {category: 'informatique', slug: 'informatique'},
     {category: 'Autres catégories', slug: 'Autres_catégories'},
     {category: 'Téléphone & Tablette', slug: 'Téléphone_&_Tablette'},
@@ -7,3 +7,5 @@ export default [
     {category: 'Vêtement & Chaussures', slug: 'Vêtement_&_Chaussures'},
     {category: 'Electroménager', slug: 'Electroménager'},
 ]
+
+export default Category

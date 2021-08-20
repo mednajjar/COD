@@ -7,7 +7,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { useCart } from "react-use-cart";
-import itemData from './Data';
+import itemData from './localData/Data';
 import Pagination from '@material-ui/lab/Pagination';
 import { Grid } from '@material-ui/core';
 

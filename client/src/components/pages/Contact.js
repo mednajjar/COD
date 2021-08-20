@@ -9,7 +9,7 @@ import ShopTwoIcon from '@material-ui/icons/ShopTwo';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import {Link} from 'react-router-dom';
-import sky from '../../assets/sky.jpg';
+import {sky} from '../../assets';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

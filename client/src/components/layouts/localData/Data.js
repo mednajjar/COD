@@ -1,4 +1,4 @@
-export default [
+const Data = [
     {
       id: 1,
       img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
@@ -120,3 +120,5 @@ export default [
       category: 'Vêtement_&_Chaussures',
     },
   ];
+
+  export default Data;

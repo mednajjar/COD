@@ -5,9 +5,8 @@ import { Editor } from "react-draft-wysiwyg";
 import { EditorState,ContentState, convertFromHTML } from "draft-js";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { makeStyles } from '@material-ui/core/styles';
-import image from '../../../../assets/image.png';
-import images from '../../../../assets/images.png';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import {image, images} from '../../../../assets';
+// import CircularProgress from '@material-ui/core/CircularProgress';
 
 const useStyles = makeStyles((theme)=>({
   editor:{
@@ -116,8 +115,8 @@ const EditProduct = () => {
                 <span className="text-secondary">Upload image principale</span>
                   <i className="mt-4">
                   { 
-                    file ? (<img src={file} alt="image" className="col-3 border"/>)          
-                       : <img src={image} alt="image principale" style={{width:'15%', cursor: 'pointer'}} />
+                    file ? (<img src={file} alt="img" className="col-3 border"/>)          
+                       : <img src={image} alt="principale" style={{width:'15%', cursor: 'pointer'}} />
                     }
                   </i>
                 </label>
@@ -126,8 +125,8 @@ const EditProduct = () => {
                   <i className="d-flex flex-row col-12 justify-content-start mt-4 flex-wrap">
                     { 
                     (files.length > 0 && files.length > 4) ? <h5 className="text-danger btn fw-bold">You must upload 4 pics max!</h5> : files.length ?  files.map((img, index)=>
-                      <img key={index} src={img} alt="image" className="col-3 border"/>          
-                      )  : <img src={images} alt="images" style={{width:'15%', cursor: 'pointer'}} />
+                      <img key={index} src={img} alt="img" className="col-3 border"/>          
+                      )  : <img src={images} alt="img" style={{width:'15%', cursor: 'pointer'}} />
                     }
                   </i>
                  

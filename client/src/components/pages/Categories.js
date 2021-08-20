@@ -7,8 +7,8 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { useCart } from "react-use-cart";
-import itemData from '../layouts/Data';
-import CategoryData from '../layouts/CategoryData';
+import itemData from '../layouts/localData/Data';
+import CategoryData from '../layouts/localData/CategoryData';
 import { useParams } from 'react-router-dom';
 import { Grid, Paper, Typography } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({

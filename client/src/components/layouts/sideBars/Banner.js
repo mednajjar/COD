@@ -1,7 +1,7 @@
 import React from 'react';
-import { Paper, MenuList, MenuItem } from '@material-ui/core';
-import useStyles from './styles'
-import banner from './banner.png';
+import { Paper } from '@material-ui/core';
+import useStyles from '../styles'
+import {banner} from '../../../assets';
 
 const Banner = () => {
     const classes = useStyles();

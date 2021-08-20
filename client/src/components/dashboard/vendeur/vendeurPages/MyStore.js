@@ -9,7 +9,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import Data from '../../../layouts/Data';
+import Data from '../../../layouts/localData/Data';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteIcon from '@material-ui/icons/Delete';
 import {useHistory} from 'react-router-dom';
@@ -58,14 +58,16 @@ const MyStore = () => {
     let rows = [];
      
     Data.map((item)=>{
+      return (
         rows.push(createData(
-        <img src={item.img} className="col-3" />,
+        <img src={item.img} className="col-3" alt="img" />,
          item.title,
          item.price,
          '00-00-0000',
          <><button className="btn btn-secondary me-1" onClick={()=>history.push(`/vendeurDashboard/editProduct/${item.id}`)}><EditIcon/></button>
          <button className="btn btn-danger" onClick={()=>{(window.confirm("are you sure you want to delete this item!")) ? alert(`item id ${item.id} deleted test!`) : alert('not confirmed')}}><DeleteIcon/></button>
          </>)) 
+      )
 
     })
 

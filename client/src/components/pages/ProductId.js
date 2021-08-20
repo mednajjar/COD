@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import {useParams} from 'react-router-dom';
-import itemData from '../layouts/Data';
+import itemData from '../layouts/localData/Data';
 import {Link} from 'react-router-dom';
 import { useCart } from "react-use-cart";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';

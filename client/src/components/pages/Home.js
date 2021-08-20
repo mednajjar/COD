@@ -1,18 +1,15 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import Paper from '@material-ui/core/Paper';
-import SideBar from '../layouts/SideBar';
-import Banner from '../layouts/Banner';
-// import Products from '../layouts/Products';
-import HeaderCarousal from '../layouts/Carousal';
-import ProductSlide from '../layouts/ProductSlide';
-import { Typography } from '@material-ui/core';
+import { Grid, Paper, Typography } from '@material-ui/core';
+import ProductSlide from '../layouts/slides/ProductSlide';
+import ProductSlide2 from '../layouts/slides/ProductSlide2';
+import HeaderHero from '../layouts/HeaderHero';
+import { bannerFull } from '../../assets';
 
 const useStyles = makeStyles((theme) => ({
   content: {
     width: '80%',
+    height: 'auto',
     margin: '1% auto',
     display: 'flex',
     flexDirection: 'row',
@@ -20,19 +17,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     overflow: 'hidden',
     [theme.breakpoints.down('md')]: {
-      width: '100%', 
+      width: '100%',
     },
-  },
-  root: {
-    width: '66vw',
-    display: 'flex',
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    backgroundColor: theme.palette.background.paper,
-    
-    
-    
   },
   imageList: {
     width: '100%',
@@ -45,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     [theme.breakpoints.down('sm')]: {
       width: '100%',
-      
+
     },
   },
   icon: {
@@ -55,24 +41,25 @@ const useStyles = makeStyles((theme) => ({
     height: '12vh',
     padding: '1%',
     [theme.breakpoints.down('sm')]: {
-      height: '16vh', 
+      height: '16vh',
     },
   },
-  carousal:{
-    height: 'auto',
+  carousal: {
+    height: '100%',
   },
-  slide:{
+  slide: {
     width: '80%',
     margin: '0 auto 1%',
-    padding: '1%',
+    // padding: '1%',
+    background: 'yello',
     [theme.breakpoints.down(1280)]: {
-      width: '100%', 
+      width: '100%',
     },
     [theme.breakpoints.down('sm')]: {
-      width: '100%', 
+      width: '100%',
     },
   }
-  
+
 }));
 
 
@@ -82,35 +69,34 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = () => {
   const classes = useStyles();
-  
+
   return (
     <>
-        <div className={classes.content}>
-            <Grid container>
-              <Grid item xs={12} sm={12} md={3} lg={2}>
-                <SideBar />
-              </Grid>
-
-              <Grid item xs sm lg style={{ marginLeft: '1%', marginRight: '1%' }}>
-                <Paper elevation={0} className={classes.carousal}>
-                  <Grid lg={9} style={{margin: 'auto'}}>
-                      <HeaderCarousal />       
-                  </Grid>
-                </Paper>
-              </Grid>
-              <Grid item xs={12} sm={12} md={3} lg={2}  >
-                <Banner  />
-              </Grid>
-            </Grid>
-        </div>
-            <Paper className={classes.slide}>
-                <Typography variant="h6">Le plus vendu</Typography>
-            </Paper>
-            <Paper className={classes.slide}>
-                <ProductSlide /> 
-            </Paper>
-      </>
-    )
+      <Grid className={classes.content}>
+        <HeaderHero />
+      </Grid>
+      <Grid className={classes.slide}>
+        <ProductSlide />
+      </Grid>
+      <Grid className={classes.slide}>
+        <ProductSlide2 />
+      </Grid>
+      <Paper className={classes.slide}>
+        <Grid style={{ width: '100%', padding: '.5%'}}>
+          <img src={bannerFull} alt="img" style={{ width: '100%', height: '100%' }} />
+        </Grid>
+      </Paper>
+      <Paper className={classes.slide}>
+        <Typography variant="h6">Le plus vendu</Typography>
+      </Paper>
+      <Paper className={classes.slide}>
+        <Typography>products</Typography>
+      </Paper>
+      <Paper>
+        <Typography>footer</Typography>
+      </Paper>
+    </>
+  )
 }
 
 export default Home

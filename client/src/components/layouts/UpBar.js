@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Badge, Toolbar, IconButton, CardMedia, Typography, ListItem, ListItemAvatar, Avatar, ListItemText  } from '@material-ui/core';
 // import MenuIcon from '@material-ui/icons/Menu';
 import { useHistory, Link } from 'react-router-dom';
-import logo from './cashondelivery.png'
+import {cashondelivery} from '../../assets';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import MenuIcon from '@material-ui/icons/Menu';
 import {
@@ -45,7 +45,7 @@ const UpBar = () => {
           <Toolbar className={classes.space} >
             <CardMedia
               className={classes.media}
-              image={logo}
+              image={cashondelivery}
               title="Contemplative Reptile"
             />
             <div className={classes.menuButton} >

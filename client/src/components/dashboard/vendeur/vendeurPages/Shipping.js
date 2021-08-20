@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import Grid from '@material-ui/core/Grid';
 import TableBody from '@material-ui/core/TableBody';
@@ -9,7 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import Data from '../../../layouts/Data';
+import Data from '../../../layouts/localData/Data';
 import ContactsIcon from '@material-ui/icons/Contacts';
 import LocalShippingIcon from '@material-ui/icons/LocalShipping';
 import {useHistory} from 'react-router-dom';
@@ -73,15 +72,18 @@ const Shipping = () => {
     const toggle2 = () => setShipping(!shipping);
     const toggle3 = () => setEtat(!etat);
     let rows = [];
+
     const onchange=()=>{
         setId(4)
     }
     useEffect(()=>{
         onchange()
-    },[onchange])
+    },[id])
+
     Data.map((item)=>{
+      return (
         rows.push(createData(
-        <img src={item.img} className="col-3" />,
+        <img src={item.img} className="col-3" alt="img" />,
          item.title,
          1,
          item.price,
@@ -89,7 +91,9 @@ const Shipping = () => {
          <>
          <button className="btn btn-secondary me-1" onClick={toggle} onChange={onchange}><ContactsIcon/></button>
          <button className="btn btn-primary" onClick={toggle2}><LocalShippingIcon/></button>
-         </>)) 
+         </>)
+         ) 
+      )
 
     })
 
