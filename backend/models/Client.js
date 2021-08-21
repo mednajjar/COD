@@ -10,6 +10,22 @@ const clientSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    address: {
+        type: String,
+        required: true,
+    },
+    tel: {
+        type: String,
+        required: true,
+    },
+    ville: {
+        type: String,
+        required: true,
+    },
+    valid: {
+        type: Boolean,
+        default: false,
+    },
     email: {
         type: String,
         required: true,

@@ -10,6 +10,28 @@ const vendeurSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    address: {
+        type: String,
+        required: true,
+    },
+    tel: {
+        type: String,
+        required: true,
+    },
+    ville: {
+        type: String,
+        required: true,
+    },
+    codePostal: {
+        type: String,
+        required: true,
+    },
+    cin: [Object],
+    permis: [Object],
+    valid: {
+        type: Boolean,
+        default: false,
+    },
     email: {
         type: String,
         required: true,
