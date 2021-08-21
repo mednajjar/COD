@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const Admin = require('../models/Admin');
 
-exports.verifToken = (type) => (req, res, next) => {
+exports.verifToken = (type, model) => (req, res, next) => {
     const token = req.cookies.auth_token;
     if (token) {
         jwt.verify(token, process.env.SECRET_TOKEN, async (err, decodedToken) => {
             if (!err && decodedToken.role === type) {
-                res.auth = await User.findOne({ _id: decodedToken.id }).select('-password');
+                res.auth = await model.findOne({ _id: decodedToken.id }).select('-password');
                 next();
             } else {
                 return res.status(404).clearCookie('auth_token')

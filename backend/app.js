@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const app = express();
 const adminRoute = require('./routes/adminRoute');
 const authRoute = require('./routes/authRoute');
+const userRoute = require('./routes/userRoute');
 const { isAuth } = require('./middlewares/verifyToken');
 const cookieParser = require('cookie-parser');
 const Fawn = require('fawn');
@@ -59,6 +60,7 @@ app.get('env') === 'devlopement' &&
  */
 app.use('/api', adminRoute);
 app.use('/api', authRoute);
+app.use('/api', userRoute);
 
 /**
  * @params (check authentication for all routes)

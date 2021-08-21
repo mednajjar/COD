@@ -42,6 +42,6 @@ const customerSchema = mongoose.Schema({
 
 });
 // limit access to a second time with same email
-userSchema.plugin(uniqueValidator);
+customerSchema.plugin(uniqueValidator);
 
 module.exports = mongoose.model('Customer', customerSchema);
