@@ -1,7 +1,12 @@
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
-const userSchema = mongoose.Schema({
-    username: {
+
+const customerSchema = mongoose.Schema({
+    nom: {
+        type: String,
+        required: true,
+    },
+    prenom: {
         type: String,
         required: true,
     },
@@ -12,8 +17,7 @@ const userSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        ennum: ['admin', 'client', 'vendeur', 'livreur'],
-        default: 'client'
+        default: 'customer'
     },
     password: {
         type: String,
@@ -24,4 +28,4 @@ const userSchema = mongoose.Schema({
 // limit access to a second time with same email
 userSchema.plugin(uniqueValidator);
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Customer', customerSchema);
