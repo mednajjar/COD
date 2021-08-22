@@ -2,7 +2,8 @@ const Joi = require('joi');
 
 exports.validationRegister = data => {
     const schema = Joi.object({
-        username: Joi.string().required().min(4).max(20),
+        nom: Joi.string().required().min(3).max(20),
+        prenom: Joi.string().required().min(3).max(20),
         email: Joi.string().email().required(),
         role: Joi.string(),
         password: Joi.string().required().min(6)
