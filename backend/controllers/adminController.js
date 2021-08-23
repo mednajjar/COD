@@ -4,7 +4,8 @@ const Livreur = require('../models/Livreur');
 const Customer = require('../models/Customer');
 const Vendeur = require('../models/Vendeur');
 const bcrypt = require('bcrypt');
-const { validationRegister, validationUpdateUser } = require('../validation/validationForm')
+const { validationRegisterAdmin, validationUpdateUser } = require('../validation/validationForm')
+const {users} = require('../functions/functions')
 
 /**
  * @param get all users
@@ -26,16 +27,15 @@ exports.getUsers = async (req, res) => {
  */
 
 exports.createAdmin = async (req, res) => {
-    const { error } = validationRegister(req.body);
+    
+    const { error } = validationRegisterAdmin(req.body);
     if (error) return res.status(400).json(error.details[0].message);
     try {
         const { email, password } = req.body;
         const user = new Admin({
             ...req.body
         })
-        const emailExist = await Admin.findOne({
-            email
-        });
+        const emailExist = await users(Admin, Client, Livreur, Vendeur, email)
         if (emailExist) return res.json('Email already used!');
         // check confirmation password if you use it on form
         // if(password !== confirmPassword) return res.status(400).json('confirmation password not match to origin!');

@@ -26,8 +26,6 @@ const vendeurSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    cin: [Object],
-    permis: [Object],
     valid: {
         type: Boolean,
         default: false,
@@ -40,6 +38,20 @@ const vendeurSchema = mongoose.Schema({
     role: {
         type: String,
         default: 'vendeur'
+    },
+    startPack:{
+        type: String,
+        default: null,
+       
+    },
+    endPack:{
+        type: String,
+        default: null,
+    
+    },
+    pack:{
+        type: Number,
+        default: null,
     },
     password: {
         type: String,

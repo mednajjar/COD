@@ -54,6 +54,12 @@ app.use(`/uploads`, express.static(path.join(__dirname, 'uploads')));
  */
 app.get('env') === 'devlopement' &&
     app.use(morgan('combined', { stream: accessLogStream }));
+/**
+ *auto update for pack
+ */
+app.get('/', (req, res)=>{
+    res.send('ztaat ta ra ta taaat')
+})
 
 /**
  * @params (all routes)

@@ -38,7 +38,8 @@ const clientSchema = mongoose.Schema({
     password: {
         type: String,
         required: true
-    }
+    },
+
 
 });
 // limit access to a second time with same email

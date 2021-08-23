@@ -39,6 +39,8 @@ const livreurSchema = mongoose.Schema({
         type: String,
         default: 'livreur'
     },
+    cin: [Object],
+    permis: [Object],
     password: {
         type: String,
         required: true
