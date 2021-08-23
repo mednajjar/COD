@@ -19,6 +19,7 @@ const cors = require('cors');
  */
 db(mongoose)
 mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify', false);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))

@@ -1,7 +1,7 @@
 const express = require('express');
 const routes = express.Router();
 const { createClient, validClient } = require('../controllers/ClientController');
-const { createVendeur, validVendeur } = require('../controllers/VendeurController');
+const { createVendeur, validVendeur, freePack } = require('../controllers/VendeurController');
 
 
 /**
@@ -18,5 +18,6 @@ routes.post('/validClient', validClient);
 
  routes.post('/createVendeur', createVendeur);
  routes.post('/validVendeur', validVendeur);
+ routes.put('/freePack', freePack)
 
 module.exports = routes;

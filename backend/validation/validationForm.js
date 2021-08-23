@@ -36,7 +36,8 @@ exports.validationRegisterVendeur = data => {
         email: Joi.string().email().required(),
         startPack: Joi.string(),
         endPack: Joi.string(),
-        pack: Joi.number(),
+        pack: Joi.string(),
+        listing: Joi.number(),
         codeConfirmation: Joi.number(),
         password: Joi.string().required().min(6)
     })

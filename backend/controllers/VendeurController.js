@@ -47,3 +47,14 @@ const { code } = req.body;
         if(error) throw Error(error)
     }
 }
+
+exports.freePack = async ( req, res )=>{
+    const {id} = req.body;
+    const findUser = await Vendeur.findOne({_id: id});
+    if(findUser){
+        const updatePack = await Vendeur.findOneAndUpdate({_id: findUser._id},{pack: 'free', listing: 40});
+    }else{
+        return res.status(400).json('Error request!');
+    }
+    return res.status(200).json('Vous avez obtenu Free Pack');
+}

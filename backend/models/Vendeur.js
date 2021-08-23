@@ -50,6 +50,10 @@ const vendeurSchema = mongoose.Schema({
     
     },
     pack:{
+        type: String,
+        default: null,
+    },
+    listing:{
         type: Number,
         default: null,
     },
