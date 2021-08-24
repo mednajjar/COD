@@ -2,17 +2,17 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const adminRoute = require('./routes/adminRoute');
-const authRoute = require('./routes/authRoute');
-const userRoute = require('./routes/userRoute');
-const { isAuth } = require('./middlewares/verifyToken');
 const cookieParser = require('cookie-parser');
 const Fawn = require('fawn');
 const fs = require('fs');
 const path = require('path');
 const morgan = require('morgan');
-const { db } = require('./config/db');
 const cors = require('cors');
+const { db } = require('./config/db');
+const adminRoute = require('./routes/adminRoute');
+const authRoute = require('./routes/authRoute');
+const userRoute = require('./routes/userRoute');
+const { isAuth } = require('./middlewares/verifyToken');
 
 /**
  * @params (connection database)
@@ -35,6 +35,11 @@ app.use(cors({
 Fawn.init(mongoose)
 
 /**
+ * @params {require static folder for image}
+ */
+app.use(`/uploads`, express.static(path.join(__dirname, 'uploads')));
+
+/**
  * @params (create log file)
  */
 const accessLogStream = fs.createWriteStream(
@@ -43,12 +48,6 @@ const accessLogStream = fs.createWriteStream(
         flags: 'a',
     }
 );
-
-/**
- * @params {require static folder for image}
- */
-
-app.use(`/uploads`, express.static(path.join(__dirname, 'uploads')));
 
 /**
  * @params (keep trace on log file with morgan)

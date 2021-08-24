@@ -43,6 +43,23 @@ exports.validationRegisterVendeur = data => {
     })
     return schema.validate(data)
 }
+exports.validationAddProduct = data => {
+    const schema = Joi.object({
+        title: Joi.string().required(),
+        shortD: Joi.string().required(),
+        longD: Joi.string().required(),
+        initialPrice: Joi.number().required(),
+        soldPrice: Joi.number().required(),
+        imgPrincipal: Joi.string(),
+        images: Joi.string(),
+        stock: Joi.number().required(),
+        livreur: Joi.boolean(),
+        etat: Joi.string(),
+        idVendeur: Joi.string(),
+        idLivreur: Joi.string(),
+    })
+    return schema.validate(data)
+}
 
 exports.validationUpdateUser = data => {
     const schema = Joi.object({

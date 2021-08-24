@@ -1,11 +1,21 @@
 const express = require('express');
 const routes = express.Router();
-const { createClient, validClient } = require('../controllers/ClientController');
-const { createVendeur, validVendeur, freePack } = require('../controllers/VendeurController');
-
+const { 
+    createClient, 
+    validClient 
+    } = require('../controllers/ClientController');
+const { 
+    createVendeur, 
+    validVendeur, 
+    freePack, 
+    addProduct 
+    } = require('../controllers/VendeurController');
+const {verifToken} = require('../middlewares/verifyToken');
+const Vendeur = require('../models/Vendeur');
+const multer = require('../middlewares/multer')
 
 /**
- * @Client routes
+ * @param Client routes
  */
 
 routes.post('/createClient', createClient);
@@ -13,11 +23,21 @@ routes.post('/validClient', validClient);
 
 
 /**
- * @vendeur routes
+ * @param vendeur routes
  */
 
  routes.post('/createVendeur', createVendeur);
  routes.post('/validVendeur', validVendeur);
- routes.put('/freePack', freePack)
+ routes.put('/freePack', verifToken('vendeur', Vendeur), freePack);
+ routes.post('/addProduct', verifToken('vendeur', Vendeur), multer.fields([{ name: 'images', maxCount: 4 }, { name: 'imgPrincipal', maxCount: 1 }]) , addProduct);
+
+ /**
+  * @param customer routes
+  */
+
+
+  /**
+   * @param livreur routes
+   */
 
 module.exports = routes;
