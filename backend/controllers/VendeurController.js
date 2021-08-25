@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const Fawn = require("fawn");
 const Admin = require('../models/Admin');
 const Client = require('../models/Client');
 const Livreur = require('../models/Livreur');
@@ -9,6 +10,7 @@ const Product = require('../models/Product');
 const Validation = require('../models/Validation');
 const {register, validate} = require('../functions/register');
 const { validationRegisterVendeur, validationAddProduct } = require('../validation/validationForm');
+
 /**
  * @param create vendeur
  * @param check validation form by joi
@@ -81,11 +83,12 @@ exports.freePack = async ( req, res )=>{
  */
 
  exports.addProduct = async (req, res)=>{
-     const { error } = validationAddProduct(req.body);
+    const { error } = validationAddProduct(req.body);
     if (error) return res.status(400).json(error.details[0].message);
-     try {
-        let filesArray1 = [];
-        let filesArray2 = "";
+    let filesArray1 = [];
+    let filesArray2 = "";
+    // check listing value
+    const listing = await Vendeur.findOne({_id: res.auth._id});
 
         req.files.images.forEach(element => {
             const file = {
@@ -96,7 +99,6 @@ exports.freePack = async ( req, res )=>{
             filesArray1.push(file);
         });
         req.files.imgPrincipal.forEach(element => {
-            
             const file = {
                 fileName: element.originalname,
                 filePath: element.path,
@@ -104,21 +106,29 @@ exports.freePack = async ( req, res )=>{
             }
             filesArray2 = file;
         });
-       
+try {
+       if(listing && listing.listing <= 0){
+           return res.status(400).json(`Vous avez atteindre le maximum de listage de ${listing.pack} pack`)
+       }else{
         const product = new Product({
             ...req.body,
             idVendeur: res.auth._id,
             imgPrincipal: filesArray2.filePath,
             images: filesArray1
         })
-     
-        
-        const saved = await product.save();
-        if(saved) return res.status(201).json('Produit ajouter avec succée');
+        const task = Fawn.Task();
+        const taches = await task.save('Product', product)
+            .update('Vendeur',
+                { _id: listing._id }, { listing: listing.listing -1 })
+            .run({ useMongoose: true })
+
+        if(taches) return res.status(201).json('Produit ajouter avec succée');
+
+       }
         
     } catch (error) {
         res.status(400).json(error.message);
     }
-    
- 
  }
+
+ 

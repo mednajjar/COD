@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const productSchema = mongoose.Schema({
     idVendeur:{type: mongoose.Schema.Types.ObjectId, ref: 'Vendeur'},
-    idLivreur:{type: mongoose.Schema.Types.ObjectId, ref: 'Livreur'},
+    idLivreur:{type: mongoose.Schema.Types.ObjectId, ref: 'Livreur', default: null},
     title: {
         type: String,
         required: true,
