@@ -119,7 +119,7 @@ try {
         const task = Fawn.Task();
         const taches = await task.save('Product', product)
             .update('Vendeur',
-                { _id: listing._id }, { listing: listing.listing -1 })
+                { _id: listing._id }, {$inc: {listing: -1}})
             .run({ useMongoose: true })
 
         if(taches) return res.status(201).json('Produit ajouter avec succée');
@@ -127,8 +127,27 @@ try {
        }
         
     } catch (error) {
-        res.status(400).json(error.message);
+        return res.status(400).json(error.message);
     }
  }
 
- 
+ exports.deleteProduct = async (req, res)=>{
+     const {id} = req.body;
+     const product = await Product.findOne({_id: id});
+
+     const task = Fawn.Task();
+     try {
+        if(product){
+            const taches = await 
+            task.update('Vendeur',
+                { _id: product.idVendeur }, {$inc: {listing: 1}})
+            
+            .remove('Product', {_id: product._id})
+            .run({ useMongoose: true })
+
+        if(taches) return res.status(200).json('Produit supprimer avec succée');
+        } 
+     } catch (error) {
+         return res.status(400).json(error.message);
+     }
+ }

@@ -11,6 +11,11 @@ const orderSchema = mongoose.Schema({
         type: Number,
         required: true,
     },
+    etat: {
+        type: Number,
+        enum: ['enAttente','confirmer','annuler', 'enCours', 'livrer'],
+        default: 'enAttente'
+    },
 });
 
 module.exports = mongoose.model('Order', orderSchema);

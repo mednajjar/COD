@@ -8,7 +8,8 @@ const {
     createVendeur, 
     validVendeur, 
     freePack, 
-    addProduct 
+    addProduct,
+    deleteProduct 
     } = require('../controllers/VendeurController');
 const {verifToken} = require('../middlewares/verifyToken');
 const Vendeur = require('../models/Vendeur');
@@ -30,6 +31,7 @@ routes.post('/validClient', validClient);
  routes.post('/validVendeur', validVendeur);
  routes.put('/freePack', verifToken('vendeur', Vendeur), freePack);
  routes.post('/addProduct', verifToken('vendeur', Vendeur), multer.fields([{ name: 'images', maxCount: 4 }, { name: 'imgPrincipal', maxCount: 1 }]) , addProduct);
+ routes.delete('/deleteProduct', verifToken('vendeur', Vendeur), deleteProduct)
 
  /**
   * @param customer routes

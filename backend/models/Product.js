@@ -38,8 +38,8 @@ const productSchema = mongoose.Schema({
     },
     etat: {
         type: String,
-        enum: ['en-attente', 'confirmer', 'en-cours', 'livrer', 'annuler'],
-        default: 'en-attente'
+        enum: ['online', 'offList'],
+        default: 'online'
     }
 
 });
