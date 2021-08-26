@@ -2,9 +2,8 @@ const nodemailer = require('nodemailer');
 const smtpTransport = require('nodemailer-smtp-transport');
 const bcrypt = require('bcrypt');
 const { users } = require('./functions')
-const { countDocuments } = require('../models/Admin');
-var LocalStorage = require('node-localstorage').LocalStorage,
-    localStorage = new LocalStorage('./scratch');
+
+
 
 
 let transporter = nodemailer.createTransport(smtpTransport({
@@ -69,32 +68,3 @@ exports.register = async (req, res,validationForm, Admin, Client, Livreur, Vende
     }
 }
 
-// exports.validate = async (req, res, validModel, Model) => {
-//     const { code } = req.body;
-
-//     const object = req.cookies.user
-
-//     const details = await validModel.findOne({ idUser: object._id });
-   
-//     try {
-//         if (details.key === code){
-//             const validate = new Model({
-//                 _id: object._id,
-//                 nom: object.nom,
-//                 prenom: object.prenom,
-//                 email: object.email,
-//                 tel: object.tel,
-//                 address: object.address,
-//                 ville: object.ville,
-//                 valid: true,
-//                 password: object.password
-
-//             })
-//             const saved = validate.save()
-//             if(saved) return res.status(201).clearCookie('user').json('Your account created successfuly')
-//         }
-//     } catch (error) {
-//         if(error) throw Error(error)
-//     }
-
-// }

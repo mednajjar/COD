@@ -51,7 +51,7 @@ const vendeurSchema = mongoose.Schema({
     },
     pack:{
         type: String,
-        enum:['free', 'standard', 'premium'],
+        enum:[null, 'free', 'standard', 'premium'],
         default: null,
     },
     listing:{

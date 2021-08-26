@@ -9,6 +9,7 @@ const Vendeur = require('../models/Vendeur');
 const Product = require('../models/Product');
 const Validation = require('../models/Validation');
 const {register, validate} = require('../functions/register');
+const {findThing} = require('../functions/functions');
 const { validationRegisterVendeur, validationAddProduct } = require('../validation/validationForm');
 
 /**
@@ -150,4 +151,52 @@ try {
      } catch (error) {
          return res.status(400).json(error.message);
      }
+ }
+
+ exports.getProduct = async (req, res)=>{
+    const id = res.auth._id
+    try {
+        const products = await Product.find({idVendeur: id})
+        if(products) return res.status(200).json(products)
+        
+    } catch (error) {
+    return res.status(400).json(error.message);
+    }
+ }
+
+ exports.updateProduct = async (req, res)=>{
+     const {id} = req.params;
+    let filesArray1 = [];
+    let filesArray2 = "";
+    if(req.files){ 
+        req.files.images.forEach(element => {
+        const file = {
+            fileName: element.originalname,
+            filePath: element.path,
+            fileType: element.mimetype
+        }
+        filesArray1.push(file);
+        });
+        req.files.imgPrincipal.forEach(element => {
+            const file = {
+                fileName: element.originalname,
+                filePath: element.path,
+                fileType: element.mimetype
+            }
+            filesArray2 = file;
+        });
+    }
+    try {
+        const data = req.files ? {
+            ...req.body,
+            imgPrincipal: filesArray2.filePath,
+            images: filesArray1
+        } : { ...req.body }
+        const product = await Product.findByIdAndUpdate({ _id: id }, { ...data });
+        if (product) return res.status(201).json(product)
+    } catch (error) {
+        throw Error(error)
+    }
+
+ 
  }
