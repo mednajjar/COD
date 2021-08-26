@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const productSchema = mongoose.Schema({
     idVendeur:{type: mongoose.Schema.Types.ObjectId, ref: 'Vendeur'},
     idLivreur:{type: mongoose.Schema.Types.ObjectId, ref: 'Livreur', default: null},
+    idCategory:{type: mongoose.Schema.Types.ObjectId, ref: 'Category', default: null},
     title: {
         type: String,
         required: true,
