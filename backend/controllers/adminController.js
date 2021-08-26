@@ -3,6 +3,7 @@ const Client = require('../models/Client');
 const Livreur = require('../models/Livreur');
 const Customer = require('../models/Customer');
 const Vendeur = require('../models/Vendeur');
+const Category = require('../models/Category');
 const bcrypt = require('bcrypt');
 const { validationRegisterAdmin, validationUpdateUser } = require('../validation/validationForm')
 const {users} = require('../functions/functions')
@@ -81,4 +82,35 @@ exports.createAdmin = async (req, res) => {
 //         throw err;
 //     }
 // }
+
+/**
+ * @param create category
+ */
+
+exports.createCategory = async (req, res)=>{
+    try {
+        const category = new Category({
+            ...req.body
+        })
+        const save = await category.save();
+        if(save) return res.status(201).json(category)
+        
+    } catch (error) {
+        if(error) return res.status(400).json(error.message)
+    }
+}
+
+/**
+ * @param get categories
+ */
+
+exports.getCategories = async (req, res)=>{
+    try {
+        const category = await Category.find();
+        if(category) return res.status(200).json(category)  
+    } catch (error) {
+        if(error) return res.status(400).json(error.message)
+    }
+    
+}
 
