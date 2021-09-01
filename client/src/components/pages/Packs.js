@@ -1,52 +1,52 @@
 import React from 'react';
 import useStyles from './PackStyles';
-import {Button, Card, CardActions, CardContent, CardHeader, CssBaseline, Grid, Typography, Container, Paper} from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, CardHeader, CssBaseline, Grid, Typography, Container, Paper } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/StarBorder';
 import { useHistory } from 'react-router-dom';
 
 const tiers = [
-    {
-      title: 'Free',
-      price: '0',
-      description: ['50 produits limit', 'Support 7/7', 'Email support'],
-      buttonText: 'Sign up for free',
-      buttonVariant: 'outlined',
-    },
-    {
-      title: 'Pro',
-      subheader: 'Most popular',
-      price: '15',
-      description: [
-        '500 produits limit',
-        'Support 24/24',
-        'Priority email support',
-      ],
-      buttonText: 'Get started',
-      buttonVariant: 'contained',
-    },
-    {
-      title: 'Enterprise',
-      price: '30',
-      description: [
-        'Insertion des produits illimité',
-        'Support 24/24',
-        'Phone & email support',
-      ],
-      buttonText: 'Get this pack',
-      buttonVariant: 'outlined',
-    },
-  ];
+  {
+    title: 'Free',
+    price: '0',
+    description: ['50 produits limit', 'Support 7/7', 'Email support'],
+    buttonText: 'Sign up for free',
+    buttonVariant: 'outlined',
+  },
+  {
+    title: 'Pro',
+    subheader: 'Most popular',
+    price: '15',
+    description: [
+      '500 produits limit',
+      'Support 24/24',
+      'Priority email support',
+    ],
+    buttonText: 'Get started',
+    buttonVariant: 'contained',
+  },
+  {
+    title: 'Enterprise',
+    price: '30',
+    description: [
+      'Insertion des produits illimité',
+      'Support 24/24',
+      'Phone & email support',
+    ],
+    buttonText: 'Get this pack',
+    buttonVariant: 'outlined',
+  },
+];
 
 const Packs = () => {
-    const classes = useStyles();
-    const history = useHistory();
-    const submit = (x) =>{
-    
-        x === 'Sign up for free' ? history.push("/vendeurDashboard") : history.push("/checkout")
-     
-    }
-    return (
-        <Paper className={classes.paperPack}>
+  const classes = useStyles();
+  const history = useHistory();
+  const submit = (x) => {
+
+    x === 'Sign up for free' ? history.push("/vendeurDashboard/myStore") : history.push("/checkout")
+
+  }
+  return (
+    <Paper className={classes.paperPack}>
       <CssBaseline />
       {/* Hero unit */}
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
@@ -91,7 +91,7 @@ const Packs = () => {
                   </ul>
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={()=>submit(tier.buttonText)}>
+                  <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => submit(tier.buttonText)}>
                     {tier.buttonText}
                   </Button>
                 </CardActions>
@@ -100,9 +100,9 @@ const Packs = () => {
           ))}
         </Grid>
       </Container>
-     
+
     </Paper>
-    )
+  )
 }
 
 export default Packs
