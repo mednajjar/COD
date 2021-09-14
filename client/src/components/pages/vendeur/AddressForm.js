@@ -57,7 +57,7 @@ export default function AddressForm() {
       case "tel":
         setTel(e.target.value)
         valid = /^(\+\d{1,3}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(e.target.value);
-        !valid ? setTelHelper("Saisi un email valid!") : setTelHelper("")
+        !valid ? setTelHelper("Saisi un numero valid!") : setTelHelper("")
         break;
       case "password":
         setPassword(e.target.value)

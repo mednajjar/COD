@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react';
 import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, Paper} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import TwoWheelerIcon from '@material-ui/icons/TwoWheeler';
@@ -16,6 +16,52 @@ function Copyright() {
   }
 const Livreur = () => {
     const classes = useStyles();
+
+    const [prenom, setPrenom] = useState("");
+    const [nom, setNom] = useState("");
+    const [address, setAddress] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const [prenomHelper, setPrenomHelper] = useState("");
+    const [nomHelper, setNomHelper] = useState("");
+    const [addressHelper, setAddressHelper] = useState("");
+    const [emailHelper, setEmailHelper] = useState("");
+    const [passwordHelper, setPasswordHelper] = useState("");
+
+    const handlChange = e => {
+      let valid;
+      switch (e.target.id) {
+        case "prenom":
+          setPrenom(e.target.value)
+          valid = prenom.length > 1;
+          !valid ? setPrenomHelper("Doit contenir au mois 3 lettres!") : setPrenomHelper("")
+          break;
+        case "nom":
+          setNom(e.target.value)
+          valid = nom.length > 1;
+          !valid ? setNomHelper("Doit contenir au mois 3 lettres!") : setNomHelper("")
+          break;
+        case "address":
+          setAddress(e.target.value)
+          valid = address.length > 4;
+          !valid ? setAddressHelper("Address obligatoire") : setAddressHelper("")
+          break;
+        case "email":
+          setEmail(e.target.value)
+          valid = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(e.target.value);
+          !valid ? setEmailHelper("Saisi un email valid!") : setEmailHelper("")
+          break;
+        case "password":
+          setPassword(e.target.value)
+          valid = /^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(e.target.value);
+          !valid ? setPasswordHelper("Doit contenir au moins 6 lettre et 1 charactère @$!%*#?& ") : setPasswordHelper("")
+          break;
+        default:
+          break;
+      }
+    }
+
     return (
       <Paper className={classes.paperLivreur}>
         <Container component="main" maxWidth="xs">
@@ -31,46 +77,51 @@ const Livreur = () => {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
+                name="prenom"
+                error={prenomHelper.length !== 0}
+                helperText={prenomHelper}
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="prenom"
+                label="Prénom"
                 autoFocus
+                onChange={handlChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                variant="outlined"
                 required
+                error={nomHelper.length !== 0}
+                helperText={nomHelper}
                 fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
+                id="nom"
+                label="Nom"
+                name="nom"
+                onChange={handlChange}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                error={emailHelper.length !== 0}
+                helperText={emailHelper}
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label="Email"
                 name="email"
-                autoComplete="email"
+                onChange={handlChange}
               />
             </Grid>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                error={addressHelper.length !== 0}
+                helperText={addressHelper}
                 required
                 fullWidth
-                id="Address"
+                id="address"
                 label="Address"
                 name="address"
+                onChange={handlChange}
               />
             </Grid>
             <div style={{ width: '100%', margin: '2%', border: '1px solid silver', padding:'2%'}}>
@@ -87,7 +138,8 @@ const Livreur = () => {
             </div>
             <Grid item xs={12}>
               <TextField
-                variant="outlined"
+                error={passwordHelper.length !== 0}
+                helperText={passwordHelper}
                 required
                 fullWidth
                 name="password"
@@ -95,6 +147,7 @@ const Livreur = () => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={handlChange}
               />
             </Grid>
           </Grid>

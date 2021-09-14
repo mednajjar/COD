@@ -105,14 +105,14 @@ const Vendeur = () => {
     const handlePush = () => {
         history.push('/packs')
     }
-    const steps = ['Informations', 'Validation'];
+    const steps = ['Informations'];
 
     function getStepContent(step) {
         switch (step) {
             case 0:
                 return <AddressForm />;
-            case 1:
-                return <Review />;
+            // case 1:
+            //     return <Review />;
             default:
                 throw new Error('Unknown step');
         }
@@ -123,13 +123,13 @@ const Vendeur = () => {
             <Typography component="h1" variant="h4" align="center" className={classes.titleV}>
                 Devenir Vendeur
             </Typography>
-            <Stepper activeStep={activeStep} className={classes.stepper}>
+            {/* <Stepper activeStep={activeStep} className={classes.stepper}>
                 {steps.map((label) => (
                     <Step key={label}>
                         <StepLabel>{label}</StepLabel>
                     </Step>
                 ))}
-            </Stepper>
+            </Stepper> */}
             <main className={classes.layout}>
                 <Paper className={classes.paper}>
                     <React.Fragment>
@@ -139,7 +139,7 @@ const Vendeur = () => {
                                     Félicitation
                                 </Typography>
                                 <Typography variant="subtitle1">
-                                    Nous avons envoyé un code de confirmation par email.
+                                    Nous avons envoyé un code de confirmation par mail.
                                     veuillez valider votre email sous de-sous:
                                 </Typography>
                                 <Grid container spacing={4} className={classes.confirmation}>
