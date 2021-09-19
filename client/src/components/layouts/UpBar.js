@@ -28,7 +28,7 @@ const UpBar = () => {
   const { items } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const avatar = "https://pfpmaker.com/_nuxt/img/profile-4.871e331.png"
-  const [role, setRole] = useState('')
+  const [role, setRole] = useState('vendeur')
   let toggle = () => setIsOpen(!isOpen);
 
   const [cart, setCart] = React.useState(0);
