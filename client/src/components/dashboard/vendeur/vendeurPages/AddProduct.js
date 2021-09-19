@@ -7,27 +7,35 @@ import { makeStyles } from '@material-ui/core/styles';
 import { image, images } from '../../../../assets';
 // import CircularProgress from '@material-ui/core/CircularProgress';
 // import {Link} from 'react-router-dom';
+
 const useStyles = makeStyles((theme) => ({
   editor: {
-    maxWidth: '100%',
+    overFlowX: 'hidden',
+    width: '100%',
     height: 'auto',
     border: '1px solid #CCCCCC',
     marginTop: '1%',
     background: 'white',
-    bottom: 0,
   },
   block: {
-    
+    // width: theme.spacing(100),
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    padding: '3%',
     background: '#f9f9f9',
     marginLeft: 'auto',
     marginRight: 'auto',
     marginTop: '2%',
-    height: 'auto',
-    padding: '3%'
+    // width: '100%'
   },
+  content:{
+    display: 'block',
+    overFlowX: 'hidden'
+  },
+  error:{
+    color: 'red'
+  }
+  
   
 }))
 const AddProduct = () => {
@@ -41,12 +49,20 @@ const AddProduct = () => {
   const [files, setFiles] = useState([])
   const [longD, setLongD] = useState([])
   const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
+  const [titleHelper, setTitleHelper] = useState("");
+  const [priceHelper, setPriceHelper] = useState("");
+  const [stockHelper, setStockHelper] = useState("");
+  const [breveDHelper, setBreveDHelper] = useState("");
+  const [longDHelper, setLongDHelper] = useState("");
+  const [error1, setError1] = useState("");
+  const [error2, setError2] = useState("");
 
   useEffect(() => {
     setLongD(editorState.getCurrentContent().getPlainText())
   })
 
   console.log('magic', longD)
+
   const fileOnChange = (e) => {
     if (e.target.files) {
       const fileArray = URL.createObjectURL(e.target.files[0])
@@ -60,18 +76,6 @@ const AddProduct = () => {
       setFiles(filesArray)
     }
   }
-
- 
-  const [error1, setError1] = useState('')
-  const [error2, setError2] = useState('')
-
-  const [titleHelper, setTitleHelper] = useState("");
-  const [priceHelper, setPriceHelper] = useState("");
-  const [stockHelper, setStockHelper] = useState("");
-  const [breveDHelper, setBreveDHelper] = useState("");
-  const [longDHelper, setLongDHelper] = useState("");
-  const [fileHelper, setFileHelper] = useState("");
-
 
 
   const handlChange = e => {
@@ -97,24 +101,35 @@ const AddProduct = () => {
         valid = /^\d{1,7}$/.test(e.target.value);
         !valid ? setStockHelper("Saisi un numero valid!") : setStockHelper("")
         break;
-    
       default:
         break;
     }
   }
 
-// ?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}
+const onchange =(e)=>{
+  !fileOnChange(e) ? setError1("Insérer une image!") : setError1("")
+  !filesOnChange(e) ? setError2("Insérer une image!") : setError2("")
+}
+
+useEffect(()=>{
+  file && setError1("");
+},[file])
+
+useEffect(()=>{
+  files && setError2("");
+},[files])
+
 
   return (
 
-    <Grid container className="mx-auto d-flex flex-column justify-content-center">
+    <Grid container className={classes.content}>
       <form>
-        <Grid item lg={12} className="text-center">
+        <Grid item xs={12} sm={12} md={8} lg={10} className={classes.block}>
+        <Grid item lg={12} className="text-center ">
           <Typography variant="h5" component="h5" >
             Ajouter un produit
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={12} md={8} lg={8} className={classes.block}>
           <Grid item lg={10}>
             <TextField
               required
@@ -168,8 +183,8 @@ const AddProduct = () => {
               onChange={handlChange}
             />
           </Grid>
-          <input required type="file" className="mt-3" id="file" onChange={(e) => fileOnChange(e) && onchange} style={{ display: 'none' }} />
-          <input required type="file" multiple className="mt-3" id="file2" onChange={(e) => filesOnChange(e) && onchange} style={{ display: 'none' }} />
+          <input required type="file" className="mt-3" id="file" onChange={(e) => fileOnChange(e)} style={{ display: 'none' }} />
+          <input required type="file" multiple className="mt-3" id="file2" onChange={(e) => filesOnChange(e)} style={{ display: 'none' }} />
           <label htmlFor="file" className="d-flex flex-column mt-4">
             <span className="text-secondary">Upload image principale</span>
             <i className="mt-4">
@@ -178,6 +193,7 @@ const AddProduct = () => {
                   : <img src={image} alt="principale" style={{ width: '15%', cursor: 'pointer' }} />
               }
             </i>
+            {error1.length > 0 && (<p className={classes.error}>{error1}</p>)}
           </label>
           <label htmlFor="file2" className="d-flex flex-column justify-content-start mt-4 flex-wrap relative">
           
@@ -189,25 +205,14 @@ const AddProduct = () => {
                 ) : <img src={images} alt="imgs" style={{ width: '15%', cursor: 'pointer' }} />
               }
             </i>
-          <TextField
-              style={fileHelper.length !== 0 ? displayField("block") : displayField("none")}
-              className="col-12"
-              id="file"
-           
-       
-              name="short-d"
-              label={fileHelper}
-              // error={fileHelper.length !== 0}
-              // helperText={fileHelper}
-              onChange={handlChange}
-            />
+          {error2.length > 0 && (<p className={classes.error}>{error2}</p>)}
           </label>
           
 
           <label htmlFor="" style={{ marginTop: '4%', color: 'gray' }}>Longue description</label>
           <Grid item className={classes.editor}>
             <Editor
-            
+             
               editorState={editorState}
               onEditorStateChange={setEditorState}
               name="long-d"
@@ -215,7 +220,7 @@ const AddProduct = () => {
           </Grid>
           <div className="d-flex flex-row col-12 justify-content-end mt-5">
 
-            <button type="submit" className="btn btn-primary col-4" onClick={onchange}>Ajouter</button>
+            <button type="submit" className="btn btn-primary col-4" onClick={(e)=>onchange(e)}>Ajouter</button>
           </div>
         </Grid>
       </form>
@@ -223,8 +228,5 @@ const AddProduct = () => {
 
   )
 }
-const displayField=()=>{
-            let display;
-            display= 'block'
-}
+
 export default AddProduct
