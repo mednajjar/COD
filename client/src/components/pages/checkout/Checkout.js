@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper } from '@material-ui/core';
-import Form from './Form';
+
 import CartItem from './CartItem';
 
 
@@ -22,8 +22,7 @@ const Checkout = () => {
     return (
         <Paper className={classes.paper}>
             <h2 className="text-center">checkout page</h2>
-            <div className="d-flex justify-content-around mt-5 flex-wrap col-auto">
-                <Form />
+            <div>
                 <CartItem />
             </div>
         </Paper>

@@ -63,8 +63,12 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     width: '80%',
     margin: '0 auto',
-    backgroundColor: 'gray',
-    paddingTop: '.5%'
+    paddingTop: '.5%',
+    marginBottom: '.5%',
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      justifyContent: 'center'
+    },
   }
 
 }));

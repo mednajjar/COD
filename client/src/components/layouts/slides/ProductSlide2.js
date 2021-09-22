@@ -8,6 +8,7 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 import 'swiper/components/effect-fade/effect-fade.scss';
+import img from '../../../assets/images/cashondelivery.png'
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, EffectFade]);
 
@@ -25,7 +26,7 @@ const ProductSlide2 = () => {
                     slidesPerView={4}
                     navigation
                     pagination={{ clickable: true }}
-                    scrollbar={{ draggable: true }}
+                    // scrollbar={{ draggable: true }}
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log('slide change')}
                     style={{ textAlign: 'center' }}
@@ -44,14 +45,14 @@ const ProductSlide2 = () => {
                         }
                     }}
                 >
-                    <SwiperSlide><img src="https://lallahoriye.com/wp-content/uploads/2019/04/Product_Lg_Type.jpg" style={{ width: '80%' }} alt="img" /></SwiperSlide>
-                    <SwiperSlide><img src="https://lallahoriye.com/wp-content/uploads/2019/04/Product_Lg_Type.jpg" style={{ width: '80%' }} alt="img" /></SwiperSlide>
-                    <SwiperSlide><img src="https://lallahoriye.com/wp-content/uploads/2019/04/Product_Lg_Type.jpg" style={{ width: '80%' }} alt="img" /></SwiperSlide>
-                    <SwiperSlide><img src="https://lallahoriye.com/wp-content/uploads/2019/04/Product_Lg_Type.jpg" style={{ width: '80%' }} alt="img" /></SwiperSlide>
-                    <SwiperSlide><img src="https://lallahoriye.com/wp-content/uploads/2019/04/Product_Lg_Type.jpg" style={{ width: '80%' }} alt="img" /></SwiperSlide>
-                    <SwiperSlide><img src="https://lallahoriye.com/wp-content/uploads/2019/04/Product_Lg_Type.jpg" style={{ width: '80%' }} alt="img" /></SwiperSlide>
-                    <SwiperSlide><img src="https://lallahoriye.com/wp-content/uploads/2019/04/Product_Lg_Type.jpg" style={{ width: '80%' }} alt="img" /></SwiperSlide>
-                    <SwiperSlide><img src="https://lallahoriye.com/wp-content/uploads/2019/04/Product_Lg_Type.jpg" style={{ width: '80%' }} alt="img" /></SwiperSlide>
+                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
+                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
+                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
+                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
+                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
+                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
+                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
+                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
 
                 </Swiper>
             </Paper>

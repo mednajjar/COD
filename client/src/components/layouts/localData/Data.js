@@ -1,7 +1,8 @@
+import img from '../../../assets/images/cashondelivery.png'
 const Data = [
     {
       id: 1,
-      img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
+      img: img,
       title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       price: 10,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat imperdiet leo, vitae congue est efficitur eget. Nunc tempor urna ac malesuada varius. Sed feugiat porta erat sit amet imperdiet. In pellentesque urna vitae ullamcorper finibus. Integer ac efficitur sem. Aenean feugiat eu ligula a convallis. Nulla varius dictum nibh sodales fringilla.',
@@ -11,7 +12,7 @@ const Data = [
     },
     {
       id: 2,
-      img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
+      img: img,
       title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       price: 20,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat imperdiet leo, vitae congue est efficitur eget. Nunc tempor urna ac malesuada varius. Sed feugiat porta erat sit amet imperdiet. In pellentesque urna vitae ullamcorper finibus. Integer ac efficitur sem. Aenean feugiat eu ligula a convallis. Nulla varius dictum nibh sodales fringilla.',
@@ -21,7 +22,7 @@ const Data = [
     },
     {
       id: 3,
-      img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
+      img: img,
       title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       price: 30,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat imperdiet leo, vitae congue est efficitur eget. Nunc tempor urna ac malesuada varius. Sed feugiat porta erat sit amet imperdiet. In pellentesque urna vitae ullamcorper finibus. Integer ac efficitur sem. Aenean feugiat eu ligula a convallis. Nulla varius dictum nibh sodales fringilla.',
@@ -31,7 +32,7 @@ const Data = [
     },
     {
       id: 4,
-      img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
+      img: img,
       title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       price: 40,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat imperdiet leo, vitae congue est efficitur eget. Nunc tempor urna ac malesuada varius. Sed feugiat porta erat sit amet imperdiet. In pellentesque urna vitae ullamcorper finibus. Integer ac efficitur sem. Aenean feugiat eu ligula a convallis. Nulla varius dictum nibh sodales fringilla.',
@@ -41,7 +42,7 @@ const Data = [
     },
     {
       id: 5,
-      img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
+      img: img,
       title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       price: 50,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat imperdiet leo, vitae congue est efficitur eget. Nunc tempor urna ac malesuada varius. Sed feugiat porta erat sit amet imperdiet. In pellentesque urna vitae ullamcorper finibus. Integer ac efficitur sem. Aenean feugiat eu ligula a convallis. Nulla varius dictum nibh sodales fringilla.',
@@ -51,7 +52,7 @@ const Data = [
     },
     {
       id: 6,
-      img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
+      img: img,
       title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       price: 60,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat imperdiet leo, vitae congue est efficitur eget. Nunc tempor urna ac malesuada varius. Sed feugiat porta erat sit amet imperdiet. In pellentesque urna vitae ullamcorper finibus. Integer ac efficitur sem. Aenean feugiat eu ligula a convallis. Nulla varius dictum nibh sodales fringilla.',
@@ -61,7 +62,7 @@ const Data = [
     },
     {
       id: 7,
-      img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
+      img: img,
       title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       price: 70,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat imperdiet leo, vitae congue est efficitur eget. Nunc tempor urna ac malesuada varius. Sed feugiat porta erat sit amet imperdiet. In pellentesque urna vitae ullamcorper finibus. Integer ac efficitur sem. Aenean feugiat eu ligula a convallis. Nulla varius dictum nibh sodales fringilla.',
@@ -71,7 +72,7 @@ const Data = [
     },
     {
       id: 8,
-      img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
+      img: img,
       title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       price: 80,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat imperdiet leo, vitae congue est efficitur eget. Nunc tempor urna ac malesuada varius. Sed feugiat porta erat sit amet imperdiet. In pellentesque urna vitae ullamcorper finibus. Integer ac efficitur sem. Aenean feugiat eu ligula a convallis. Nulla varius dictum nibh sodales fringilla.',
@@ -81,7 +82,7 @@ const Data = [
     },
     {
       id: 9,
-      img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
+      img: img,
       title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       price: 90,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat imperdiet leo, vitae congue est efficitur eget. Nunc tempor urna ac malesuada varius. Sed feugiat porta erat sit amet imperdiet. In pellentesque urna vitae ullamcorper finibus. Integer ac efficitur sem. Aenean feugiat eu ligula a convallis. Nulla varius dictum nibh sodales fringilla.',
@@ -91,7 +92,7 @@ const Data = [
     },
     {
       id: 10,
-      img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
+      img: img,
       title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       price: 100,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat imperdiet leo, vitae congue est efficitur eget. Nunc tempor urna ac malesuada varius. Sed feugiat porta erat sit amet imperdiet. In pellentesque urna vitae ullamcorper finibus. Integer ac efficitur sem. Aenean feugiat eu ligula a convallis. Nulla varius dictum nibh sodales fringilla.',
@@ -101,7 +102,7 @@ const Data = [
     },
     {
       id: 11,
-      img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
+      img: img,
       title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       price: 110,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat imperdiet leo, vitae congue est efficitur eget. Nunc tempor urna ac malesuada varius. Sed feugiat porta erat sit amet imperdiet. In pellentesque urna vitae ullamcorper finibus. Integer ac efficitur sem. Aenean feugiat eu ligula a convallis. Nulla varius dictum nibh sodales fringilla.',
@@ -111,7 +112,7 @@ const Data = [
     },
     {
       id: 12,
-      img: 'https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg',
+      img: img,
       title: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
       price: 120,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque volutpat imperdiet leo, vitae congue est efficitur eget. Nunc tempor urna ac malesuada varius. Sed feugiat porta erat sit amet imperdiet. In pellentesque urna vitae ullamcorper finibus. Integer ac efficitur sem. Aenean feugiat eu ligula a convallis. Nulla varius dictum nibh sodales fringilla.',

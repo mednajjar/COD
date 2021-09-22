@@ -8,13 +8,33 @@ import { Link } from 'react-router-dom';
 const styles = makeStyles((theme) => ({
     newsletter: {
         width: '90%',
+        display: 'flex',
+        flexWrap: 'wrap',
         margin: '1% auto',
         borderRadius: '4px',
         padding: '1%',
         backgroundColor: 'white',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        [theme.breakpoints.down('sm')]: {
+            width: '100%',
+            justifyContent: 'center',
+            padding: '4%'
+          },
+    },
+    marg:{
+        [theme.breakpoints.down('sm')]: {
+            marginTop: '10%',
+            textAlign: 'center'
+          },
+    },
+    textNews:{
+        marginBottom: '2%',
+        [theme.breakpoints.down('sm')]: {   
+            fontSize: 18,
+            textAlign: 'center'
+          },
     }
 }))
 const Footer = () => {
@@ -26,7 +46,7 @@ const Footer = () => {
                     <img src={cashondelivery} alt="" />
                 </Grid>
                 <Grid>
-                    <Typography variant="h6" className="mb-1">RCEVOIR TOUT LES NOUVEAUTES !</Typography>
+                    <Typography variant="h6" className={classes.textNews}>RCEVOIR TOUT LES NOUVEAUTES !</Typography>
                     <form className="col-12 d-flex flex-row justify-content-between">
 
                         <TextField
@@ -38,7 +58,7 @@ const Footer = () => {
 
                     </form>
                 </Grid>
-                <Grid>
+                <Grid className={classes.marg}>
                     <Typography variant="h6" className="mb-2">RETROUVEZ-NOUS SUR</Typography>
                     <Grid className="col-12 d-flex flex-row justify-content-between">
                         <Link to={{ pathname: "https://www.facebook.com" }} target="_blank"><img src={facebook} alt={facebook} style={{ width: '65%' }} /></Link>
@@ -48,8 +68,8 @@ const Footer = () => {
                     </Grid>
                 </Grid>
             </Grid >
-            <Grid className="text-center p-2 text-white">
-                <Typography>Copyright 2021 All Right Reserved</Typography>
+            <Grid className="text-center p-2">
+                <Typography className={classes.marg}>Copyright 2021 All Right Reserved</Typography>
             </Grid>
         </React.Fragment>
     )

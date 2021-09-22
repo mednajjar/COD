@@ -11,6 +11,11 @@ import { useCart } from "react-use-cart";
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
+import pro1 from '../../assets/images/pro-1.png';
+import pro2 from '../../assets/images/pro-2.jpg';
+import pro3 from '../../assets/images/pro-3.jpg';
+import pro4 from '../../assets/images/pro-4.jpg';
+import pro5 from '../../assets/images/pro-5.jpg';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -45,7 +50,7 @@ const ProductId = () => {
     const classes = useStyles();
     const {id} = useParams();
     const { addItem } = useCart();
-    const [selected, setSelected] = useState("https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg")
+    const [selected, setSelected] = useState(pro1)
     return (
         <Paper className={classes.paper}>
             {
@@ -65,31 +70,31 @@ const ProductId = () => {
                     </ButtonBase>
                     <Grid item className="d-flex justify-content-between mt-2">
                         <ButtonBase className="border">
-                            <img className={classes.imgSize} style={{border: selected === "https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg" ? "2px solid orange" : "none"}} 
+                            <img className={classes.imgSize} style={{border: selected === pro1 ? "2px solid orange" : "none"}} 
                             alt="complex" 
-                            src="https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg"
-                            onClick={()=>setSelected("https://images-na.ssl-images-amazon.com/images/I/51qBHRNusSL._AC_SY350_.jpg")} 
+                            src={pro1}
+                            onClick={()=>setSelected(pro1)} 
                             />
                         </ButtonBase>
                         <ButtonBase className="border">
-                            <img className={classes.imgSize} style={{border: selected === "https://sc04.alicdn.com/kf/Hc8c5d0d14f574450a8797e678841a9deU.jpg" ? "2px solid orange" : "none"}} 
+                            <img className={classes.imgSize} style={{border: selected === pro3 ? "2px solid orange" : "none"}} 
                             alt="complex" 
-                            src="https://sc04.alicdn.com/kf/Hc8c5d0d14f574450a8797e678841a9deU.jpg"
-                            onClick={()=>setSelected("https://sc04.alicdn.com/kf/Hc8c5d0d14f574450a8797e678841a9deU.jpg")} 
+                            src={pro3}
+                            onClick={()=>setSelected(pro3)} 
                             />
                         </ButtonBase>
                         <ButtonBase className="border">
-                            <img className={classes.imgSize} style={{border: selected === "https://m.media-amazon.com/images/I/71hzYEQJftL._AC_SX466_.jpg" ? "2px solid orange" : "none"}} 
+                            <img className={classes.imgSize} style={{border: selected === pro4 ? "2px solid orange" : "none"}} 
                             alt="complex" 
-                            src="https://m.media-amazon.com/images/I/71hzYEQJftL._AC_SX466_.jpg"
-                            onClick={()=>setSelected("https://m.media-amazon.com/images/I/71hzYEQJftL._AC_SX466_.jpg")} 
+                            src={pro4}
+                            onClick={()=>setSelected(pro4)} 
                             />
                         </ButtonBase>
                         <ButtonBase className="border">
-                            <img className={classes.imgSize} style={{border: selected === "https://i5.walmartimages.com/asr/fbbdea99-387a-4775-9e84-6c67de1a6681.6b070a7b22523d1ee8318efd6dcc9cb5.jpeg" ? "2px solid orange" : "none"}} 
+                            <img className={classes.imgSize} style={{border: selected === pro5 ? "2px solid orange" : "none"}} 
                             alt="complex" 
-                            src="https://i5.walmartimages.com/asr/fbbdea99-387a-4775-9e84-6c67de1a6681.6b070a7b22523d1ee8318efd6dcc9cb5.jpeg"
-                            onClick={()=>setSelected("https://i5.walmartimages.com/asr/fbbdea99-387a-4775-9e84-6c67de1a6681.6b070a7b22523d1ee8318efd6dcc9cb5.jpeg")} 
+                            src={pro5}
+                            onClick={()=>setSelected(pro5)} 
                             />
                         </ButtonBase>
                     </Grid>
@@ -108,7 +113,7 @@ const ProductId = () => {
                         {item.description}
                         </Typography>
                     <div className="d-flex justify-content-between mt-5">
-                        <Link to='/' className="btn btn-warning col-5 fw-bold ">Reteur</Link>
+                        <Link to='/store' className="btn btn-warning col-5 fw-bold ">Reteur</Link>
                         <button className="btn col-5 text-white fw-bold" style={{background: '#278BE3'}} onClick={()=>addItem(item)}>Ajouter <ShoppingCartIcon/></button>
                     </div>
                     </Grid>
