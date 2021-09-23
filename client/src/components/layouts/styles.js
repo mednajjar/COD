@@ -100,5 +100,9 @@ export default makeStyles((theme) => ({
   carouselHeader:{
     width: '100%',
     height: 'auto'
+  },
+  panier:{
+    display: 'flex',
+    flexDirection: 'end',
   }
 }));

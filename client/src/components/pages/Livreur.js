@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, Paper} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import TwoWheelerIcon from '@material-ui/icons/TwoWheeler';
@@ -17,43 +17,76 @@ function Copyright() {
 const Livreur = () => {
     const classes = useStyles();
 
-    const [prenom, setPrenom] = useState("");
-    const [nom, setNom] = useState("");
-    const [address, setAddress] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [data, setData] = useState({
+      prenom:"",
+      nom:"",
+      address:"",
+      email:"",
+      password:""
+    })
 
     const [prenomHelper, setPrenomHelper] = useState("");
     const [nomHelper, setNomHelper] = useState("");
     const [addressHelper, setAddressHelper] = useState("");
     const [emailHelper, setEmailHelper] = useState("");
     const [passwordHelper, setPasswordHelper] = useState("");
+    const [error1, setError1] = useState("");
+    const [error2, setError2] = useState("");
+    const [file, setFile] = useState('')
+    const [files, setFiles] = useState([])
+
+    const fileOnChange = (e) => {
+      if (e.target.files) {
+        const fileArray = URL.createObjectURL(e.target.files[0])
+        setFile(fileArray)
+      }
+    }
+  
+    const filesOnChange = (e) => {
+      if (e.target.files) {
+        const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file))
+        setFiles(filesArray)
+      }
+    }
+
+    const onchange =(e)=>{
+      !fileOnChange(e) ? setError1("Insérer une image!") : setError1("")
+      !filesOnChange(e) ? setError2("Insérer une image!") : setError2("")
+    }
+
+    useEffect(()=>{
+      file && setError1("");
+    },[file])
+    
+    useEffect(()=>{
+      files && setError2("");
+    },[files])
 
     const handlChange = e => {
       let valid;
       switch (e.target.id) {
         case "prenom":
-          setPrenom(e.target.value)
-          valid = prenom.length > 1;
+          setData({...data, prenom: e.target.value})
+          valid = data.prenom.toString().length > 1;
           !valid ? setPrenomHelper("Doit contenir au mois 3 lettres!") : setPrenomHelper("")
           break;
         case "nom":
-          setNom(e.target.value)
-          valid = nom.length > 1;
+          setData({...data, nom: e.target.value})
+          valid = data.nom.toString().length > 1;
           !valid ? setNomHelper("Doit contenir au mois 3 lettres!") : setNomHelper("")
           break;
         case "address":
-          setAddress(e.target.value)
-          valid = address.length > 4;
+          setData({...data, address: e.target.value})
+          valid = data.address.toString().length > 4;
           !valid ? setAddressHelper("Address obligatoire") : setAddressHelper("")
           break;
         case "email":
-          setEmail(e.target.value)
+          setData({...data, email: e.target.value})
           valid = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(e.target.value);
           !valid ? setEmailHelper("Saisi un email valid!") : setEmailHelper("")
           break;
         case "password":
-          setPassword(e.target.value)
+          setData({...data, password: e.target.value})
           valid = /^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(e.target.value);
           !valid ? setPasswordHelper("Doit contenir au moins 6 lettre et 1 charactère @$!%*#?& ") : setPasswordHelper("")
           break;
@@ -73,14 +106,14 @@ const Livreur = () => {
         <Typography component="h1" variant="h5">
           Devenir livreur
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
+                required
                 name="prenom"
                 error={prenomHelper.length !== 0}
                 helperText={prenomHelper}
-                required
                 fullWidth
                 id="prenom"
                 label="Prénom"
@@ -102,9 +135,9 @@ const Livreur = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                required
                 error={emailHelper.length !== 0}
                 helperText={emailHelper}
-                required
                 fullWidth
                 id="email"
                 label="Email"
@@ -114,9 +147,9 @@ const Livreur = () => {
             </Grid>
             <Grid item xs={12}>
               <TextField
+                required
                 error={addressHelper.length !== 0}
                 helperText={addressHelper}
-                required
                 fullWidth
                 id="address"
                 label="Address"
@@ -138,15 +171,14 @@ const Livreur = () => {
             </div>
             <Grid item xs={12}>
               <TextField
+                required
                 error={passwordHelper.length !== 0}
                 helperText={passwordHelper}
-                required
                 fullWidth
                 name="password"
                 label="Password"
                 type="password"
                 id="password"
-                autoComplete="current-password"
                 onChange={handlChange}
               />
             </Grid>
@@ -157,9 +189,11 @@ const Livreur = () => {
             variant="contained"
             color="primary"
             className={classes.submit}
+            // onClick={handlChange}
           >
             Devenir livreur
           </Button>
+        </form>
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Link to="/login" variant="body2">
@@ -167,7 +201,6 @@ const Livreur = () => {
               </Link>
             </Grid>
           </Grid>
-        </form>
       </div>
       <Box mt={5}>
         <Copyright />

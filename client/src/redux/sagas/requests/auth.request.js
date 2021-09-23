@@ -1,39 +1,39 @@
-// import axios from 'axios';
+import axios from 'axios';
 
-// axios.defaults.withCredentials = true;
+axios.defaults.withCredentials = true;
 
-// const URL = 'http://localhost:4600/api';
+const URL = 'http://localhost:5000/api';
 
-// export function requestIfLoged() {
-//   return axios.request({
-//     method: 'get',
-//     url: `${URL}`,
-//   });
-// }
-// export function requestLogin(action) {
-//   return axios.request({
-//     method: 'post',
-//     url: `${URL}/login`,
-//     data: {
-//       ...action.payload,
-//     },
-//   });
-// }
-// export function requestRegister(action) {
-//   return axios.request({
-//     method: 'post',
-//     url: `${URL}/register`,
-//     data: {
-//       ...action.payload,
-//     },
-//   });
-// }
-// export function requestLogout() {
-//   return axios.request({
-//     method: 'post',
-//     url: `${URL}/logout`,
-//   });
-// }
+export function requestIfLoged() {
+  return axios.request({
+    method: 'get',
+    url: `${URL}`,
+  });
+}
+export function requestLogin(action) {
+  return axios.request({
+    method: 'post',
+    url: `${URL}/login`,
+    data: {
+      ...action.payload,
+    },
+  });
+}
+export function requestRegister(action) {
+  return axios.request({
+    method: 'post',
+    url: `${URL}/createVendeur`,
+    data: {
+      ...action.payload,
+    },
+  });
+}
+export function requestLogout() {
+  return axios.request({
+    method: 'post',
+    url: `${URL}/logout`,
+  });
+}
 
 
 

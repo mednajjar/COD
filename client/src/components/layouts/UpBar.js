@@ -55,7 +55,7 @@ const UpBar = () => {
                   <button onClick="" className="text-black fw-bold bg-transparent border-0">Logout <ExitToAppIcon /></button>
 
                ) : (
-                  <div className="d-flex flex-wrap justify-content-end">
+                  <div className={classes.panier}>
                   <Nav>
                     <UncontrolledDropdown nav inNavbar style={{ alignSelf: 'center' }}>
                       <DropdownToggle nav className="fw-bold fs-6 " style={{ color: "black", paddingLeft: 0 }}>
