@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Switch } from 'react-router-dom';
+import {Route, Switch, Redirect, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import Vendeur from './pages/vendeur/Vendeur';
 import Livreur from './pages/Livreur';
@@ -17,7 +17,12 @@ import Checkout from './pages/checkout/Checkout';
 import Offre from './pages/Offre';
 import Store from './pages/Store';
 import Categories from './pages/Categories';
+import { useSelector } from 'react-redux';
+
 const Routes = () => {
+    const { isAuthenticated, role } = useSelector(state => state.authentification)
+    console.log({isAuthenticated, role})
+
     return (
         <Switch>
             <Route path='/' exact component={Home} />
@@ -25,7 +30,7 @@ const Routes = () => {
             <Route path='/livreur' component={Livreur} />
             <Route path='/contact' component={Contact} />
             <Route path='/packs' component={Packs} />
-            <Route path='/login' component={Login} />
+            <AuthRoute path='/login' auth={isAuthenticated} role={role} component={Login} />
             <Route path='/register' component={Register} />
             <Route path='/vendeurDashboard' component={VendeurDash} />
             <Route path='/livreurDashboard' component={LivreurDash} />
@@ -38,6 +43,25 @@ const Routes = () => {
             <Route path='/store' component={Store} />
             <Route path='/category/:category' component={Categories} />
         </Switch>
+    )
+}
+
+const AuthRoute = ({ path, component: Component, role, auth, ...rest }) => {
+    const location  = useLocation()
+console.log(location)
+    return (
+
+        <Route
+            {...rest}
+            render={() =>
+                !auth ? (<Component />) :
+                    role === 'admin' ? (<Redirect to={location.state?.vendeurPath || '/adminDashboard/orders'} />) :
+                    role === 'vendeur' ? (<Redirect to={location.state?.vendeurPath || '/vendeurDashboard/myStore'} />) :
+                        role === 'livreur' ? (<Redirect to={ location.state?.livreurPath || '/livreurDashboard/orders'} />) :
+                            (<Redirect to={ location.state?.clientPath ||'/'} />)
+
+            }
+        />
     )
 }
 

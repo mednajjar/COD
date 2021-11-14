@@ -5,6 +5,8 @@ import { Badge, Toolbar, IconButton, CardMedia, Typography, ListItem, ListItemAv
 import { useHistory, Link } from 'react-router-dom';
 import {cashondelivery} from '../../assets';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import {useSelector, useDispatch} from 'react-redux';
+import {getLogout} from '../../redux/slices/authSlice';
 import MenuIcon from '@material-ui/icons/Menu';
 import {
   Collapse,
@@ -24,16 +26,23 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const UpBar = () => {
   const classes = useStyles();
+  const {role} = useSelector(state => state.authentification)
   const history = useHistory();
+  const dispatch = useDispatch();
   const { items } = useCart();
   const [isOpen, setIsOpen] = useState(false);
   const avatar = "https://pfpmaker.com/_nuxt/img/profile-4.871e331.png"
-  const [role, setRole] = useState('')
+
   let toggle = () => setIsOpen(!isOpen);
 
   const [cart, setCart] = React.useState(0);
+
   const submit = () => {
     history.push('/cart')
+  }
+
+  const logout =()=>{
+    dispatch(getLogout())
   }
   useEffect(() => {
     setCart(items.length)
@@ -50,9 +59,9 @@ const UpBar = () => {
             />
             <div className={classes.menuButton} >
              {
-               role === "vendeur" ? (
+               role ? (
                  
-                  <button onClick="" className="text-black fw-bold bg-transparent border-0">Logout <ExitToAppIcon /></button>
+                  <button onClick={logout} className="text-black fw-bold bg-transparent border-0">Logout <ExitToAppIcon /></button>
 
                ) : (
                   <div className={classes.panier}>
@@ -154,7 +163,7 @@ const UpBar = () => {
                 <ListItemAvatar>
                   <Avatar alt="Profile Picture" src={avatar} />
                 </ListItemAvatar>
-                <ListItemText primary="admin" className="text-white" />
+                <ListItemText primary="Admin" className="text-white" />
               </ListItem>
               </NavbarBrand>
             <MenuIcon className={classes.mainMenu} onClick={toggle}/>
@@ -173,7 +182,7 @@ const UpBar = () => {
             </Collapse>
           </Navbar>
         </div>
-          ) : role === 'customer' ? (
+          ) : role === 'client' ? (
             <div className={classes.menu2}>
           <Navbar light expand="md" className="ps-4 pe-4 ">
             <NavbarBrand >
@@ -181,7 +190,7 @@ const UpBar = () => {
                 <ListItemAvatar>
                   <Avatar alt="Profile Picture" src={avatar} />
                 </ListItemAvatar>
-                <ListItemText primary="Customer" className="text-white" />
+                <ListItemText primary="Client" className="text-white" />
               </ListItem>
               </NavbarBrand>
             <MenuIcon className={classes.mainMenu} onClick={toggle}/>

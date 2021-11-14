@@ -1,9 +1,10 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, Paper} from '@material-ui/core';
-import {Link} from 'react-router-dom'
+import {Link, useHistory} from 'react-router-dom'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './LoginStyles';
-
+import {getLogin} from '../../redux/slices/authSlice';
+import {useDispatch, useSelector} from 'react-redux';
 
 function Copyright() {
   return (
@@ -16,6 +17,19 @@ function Copyright() {
 }
 const Login = () => {
     const classes = useStyles();
+
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const [formData, setFormData] = useState({ email: '', password: '' })
+    const {loginError} = useSelector(state => state.authentification)
+
+    const handleChange = (e) => {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+    const onsubmit = async (e) => {
+      e.preventDefault();
+      dispatch(getLogin(formData))
+    }
     return (
       <Paper className={classes.paperLogin}>
 
@@ -29,7 +43,8 @@ const Login = () => {
         <Typography component="h1" variant="h5">
           Login
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={onsubmit}>
+        {loginError && <p>{loginError}</p>}
           <TextField
             variant="outlined"
             margin="normal"
@@ -38,7 +53,7 @@ const Login = () => {
             id="email"
             label="Email Address"
             name="email"
-            autoComplete="email"
+            onChange={handleChange}
             autoFocus
           />
           <TextField
@@ -50,7 +65,7 @@ const Login = () => {
             label="Password"
             type="password"
             id="password"
-            autoComplete="current-password"
+            onChange={handleChange}
           />
           <Button
             type="submit"
@@ -63,7 +78,7 @@ const Login = () => {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link to="!#" variant="body2">
                 Forgot password?
               </Link>
             </Grid>

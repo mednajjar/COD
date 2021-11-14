@@ -10,6 +10,7 @@ export function requestIfLoged() {
     url: `${URL}`,
   });
 }
+
 export function requestLogin(action) {
   return axios.request({
     method: 'post',
@@ -19,15 +20,7 @@ export function requestLogin(action) {
     },
   });
 }
-export function requestRegister(action) {
-  return axios.request({
-    method: 'post',
-    url: `${URL}/createVendeur`,
-    data: {
-      ...action.payload,
-    },
-  });
-}
+
 export function requestLogout() {
   return axios.request({
     method: 'post',

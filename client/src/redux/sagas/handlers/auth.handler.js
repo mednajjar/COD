@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { call, put } from 'redux-saga/effects';
-import { requestIfLoged, requestLogin, requestLogout ,requestRegister} from '../requests/auth.request';
-import { setLogin, loginError,registerError } from '../../slices/authSlice';
+import { requestIfLoged, requestLogin, requestLogout } from '../requests/auth.request';
+import { setLogin, loginError } from '../../slices/authSlice';
 
 export function* handelGetLogin(action) {
   try {
@@ -11,16 +11,6 @@ export function* handelGetLogin(action) {
     }
   } catch (error) {
     if (error.response) yield put(loginError(error.response.data));
-  }
-}
-export function* handelGetRegister(action) {
-  try {
-    const { data } = yield call(requestRegister, action);
-    if (data) {
-      yield put(setLogin(data));
-    }
-  } catch (error) {
-    if (error.response) yield put(registerError(error.response.data));
   }
 }
 
