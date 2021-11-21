@@ -4,7 +4,11 @@ const vendeurSlice = createSlice({
     name: 'vendeurSlice',
     initialState: {
         products: [],
-        category:[],
+        category: [],
+        allProducts: [],
+        slideProducts: [],
+        slideProductsByCategory1: [],
+        slideProductsByCategory2: [],
         // productError: "",
         // myTicket: [],
         // technicien: [],
@@ -14,9 +18,14 @@ const vendeurSlice = createSlice({
     reducers: {
         addProduct: () => {},
         fetchProduct: () => {},
-        deleteProduct:()=>{},
-        editProduct: ()=>{},
-        fetchCategory:()=>{},
+        deleteProduct: () => {},
+        editProduct: () => {},
+        fetchCategory: () => {},
+        fetchAllProducts: () => {},
+        fetchSlideProducts: () => {},
+        fetchSlideProductsByCategory1: () => {},
+        fetchSlideProductsByCategory2: () => {},
+        orderProduct:()=>{},
         setProducts: (state = this.initialState, action) => {
             return {
                 ...state,
@@ -28,6 +37,34 @@ const vendeurSlice = createSlice({
             return {
                 ...state,
                 category: [...action.payload],
+
+            }
+        },
+        setAllProducts: (state = this.initialState, action) => {
+            return {
+                ...state,
+                allProducts: [...action.payload],
+
+            }
+        },
+        setSlideProducts: (state = this.initialState, action) => {
+            return {
+                ...state,
+                slideProducts: [...action.payload],
+
+            }
+        },
+        setSlideProductsByCategory1: (state = this.initialState, action) => {
+            return {
+                ...state,
+                slideProductsByCategory1: [...action.payload],
+
+            }
+        },
+        setSlideProductsByCategory2: (state = this.initialState, action) => {
+            return {
+                ...state,
+                slideProductsByCategory2: [...action.payload],
 
             }
         },
@@ -66,5 +103,24 @@ const vendeurSlice = createSlice({
     },
 });
 
-export const { setProducts, productError, addProduct, fetchProduct, deleteProduct, editProduct, fetchCategory, setCategory } = vendeurSlice.actions;
+export const {
+    setProducts,
+    productError,
+    addProduct,
+    fetchProduct,
+    deleteProduct,
+    editProduct,
+    fetchCategory,
+    setCategory,
+    fetchAllProducts,
+    setAllProducts,
+    fetchSlideProducts,
+    setSlideProducts,
+    fetchSlideProductsByCategory1,
+    fetchSlideProductsByCategory2,
+    setSlideProductsByCategory1,
+    setSlideProductsByCategory2,
+    orderProduct,
+} = vendeurSlice.actions;
+
 export default vendeurSlice.reducer;

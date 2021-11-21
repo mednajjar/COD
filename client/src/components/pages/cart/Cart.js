@@ -44,7 +44,7 @@ const Cart = () => {
                                     return(
                                         <tr key={index} className="lh-lg">
                                             <td>
-                                                <img src={item.img} alt="product" style={{height: '6rem'}} />
+                                                <img src={__dirname + item.imgPrincipal} alt="product" style={{height: '6rem'}} />
                                             </td>
                                             <td>
                                                 <tr>

@@ -7,6 +7,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { useCart } from "react-use-cart";
+import { useSelector  } from 'react-redux'
 import itemData from './localData/Data';
 import Pagination from '@material-ui/lab/Pagination';
 import { Grid } from '@material-ui/core';
@@ -61,12 +62,13 @@ const useStyles = makeStyles((theme) => ({
 const Products = () => {
   const classes = useStyles();
   const { addItem } = useCart();
+  const { allProducts } = useSelector(state => state.vendeur)
   const [currentPage, setCurrentPage] = useState(1);
   const [productPerPage, setProductPerPage] = useState(8)
-  const indexOfPages = Math.ceil(itemData.length / productPerPage);
+  const indexOfPages = Math.ceil(allProducts.length / productPerPage);
   const indexOfLastProduct = currentPage * productPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productPerPage;
-  const currentProduct = itemData.slice(indexOfFirstProduct, indexOfLastProduct)
+  const currentProduct = allProducts.slice(indexOfFirstProduct, indexOfLastProduct)
 
   const handleChange = (event, value) => {
     setCurrentPage(value);
@@ -77,9 +79,9 @@ const Products = () => {
     <>
       <ImageList className={classes.imageList}>
         {currentProduct.map((item) => (
-          <ImageListItem key={item.id} style={{ width: 300, height: 'auto', margin: '2% 1%' }}>
-            <Link to={`/product/${item.id}`} >
-              <img src={item.img} alt={item.title} style={{ width: '100%' }} />
+          <ImageListItem key={item._id} style={{ width: 300, height: 'auto', margin: '2% 1%' }}>
+            <Link to={`/product/${item._id}`} >
+              <img src={__dirname + item.imgPrincipal} alt={item.title} style={{ width: '100%' }} />
             </Link>
             <ImageListItemBar
               className={classes.itemBar}

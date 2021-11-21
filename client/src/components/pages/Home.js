@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Paper, Typography } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 import ProductSlide from '../layouts/slides/ProductSlide';
 import ProductSlide2 from '../layouts/slides/ProductSlide2';
+import ProductSlide3 from '../layouts/slides/ProductSlide3';
 import HeaderHero from '../layouts/HeaderHero';
 import { bannerFull } from '../../assets';
 import BlocProduct from '../layouts/BlocProduct';
 import Footer from '../layouts/Footer';
+
 const useStyles = makeStyles((theme) => ({
   content: {
     width: '80%',
@@ -81,6 +84,19 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
 
+
+  // useEffect(()=>{
+  //   dispatch(fetchAllProducts())
+  // },[]);
+// allProducts && console.log('pro', allProducts)
+// const pro = allProducts && allProducts.length
+// function getRandomInt(max) {
+//   return Math.floor(Math.random() * max);
+// }
+
+// console.log('result',  getRandomInt(pro))
+
+
   return (
     <>
       <Grid className={classes.content}>
@@ -90,7 +106,7 @@ const Home = () => {
         <ProductSlide />
       </Grid>
       <Grid className={classes.slide}>
-        <ProductSlide2 />
+        <ProductSlide2 cat="Vêtement & Chaussures" />
       </Grid>
       <Paper className={classes.slide}>
         <Grid style={{ width: '100%', padding: '.5%' }}>
@@ -98,7 +114,8 @@ const Home = () => {
         </Grid>
       </Paper>
       <Grid className={classes.slide}>
-        <BlocProduct />
+        {/* <BlocProduct /> */}
+        <ProductSlide3 cat="Beauté & Santé" />
       </Grid>
       <Paper className={classes.footer}>
         <Footer />

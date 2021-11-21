@@ -2,19 +2,22 @@ import React, {useState, useEffect} from 'react';
 import {Grid, FormControlLabel, Checkbox, Typography, TextField} from '@material-ui/core';
 import {Link} from 'react-router-dom';
 import { useCart } from "react-use-cart";
-
+import {useDispatch} from 'react-redux';
+import {orderProduct} from '../../../redux/slices/vendeurSlice'
+import axios from 'axios';
 
 const CartItem = () => {
+  const dispatch = useDispatch();
     const [check, setCheck] = useState(false);
-    const initialState =  {
+    const [data, setData] =  useState({
       nom:"",
       prenom:"",
       address:"",
       ville:"",
       tel:"",
       email:""
-  }
-    const [data, setData] = useState(initialState)
+  })
+    
 
   
 
@@ -67,18 +70,42 @@ const CartItem = () => {
         cartTotal,
     } = useCart();
 
-    
+    console.log('data', data)
+    console.log('items', items)
 
     const handleChange = (event) => {
     setCheck(event.target.checked);
     };
 
-    const checkTerms = () =>{
+    const checkTerms = async(e) =>{
         if(check === false){
             alert('terms and conditions not checked!') 
         }else{
-            alert('checkbox is checked');
-            console.log(items)
+            e.preventDefault();
+
+    try {
+      const formData = new FormData();
+      for (const [key, value] of Object.entries(data))
+        {
+          formData.append(key, value);
+        }                     
+      
+      // for (const [key, value] of Object.entries(items))
+      //   {
+      //     formData.append(key, value);
+      //   }  
+      //  for (let i = 0; i < items.length; i++) {
+      //     formData.append( items[i]);                      
+      // }                   
+      
+      //  await axios.post('http://localhost:5000/api/orderPro', {data})
+        dispatch(orderProduct({formData}));
+        // history.push('/vendeurDashboard/myStore')
+       
+        
+    } catch (error) {
+        if(error) console.log(error.response)
+    }
         }
     }
 
@@ -94,7 +121,7 @@ const CartItem = () => {
 
     return (
 
-        <form className="d-flex justify-content-around mt-5 flex-wrap">
+        <form className="d-flex justify-content-around mt-5 flex-wrap" onSubmit={checkTerms}>
         <Grid item xs={12} sm={6} md={5} className="p-5 m-2">
       <Typography variant="h6" gutterBottom className="mb-3">
         Details
@@ -193,7 +220,7 @@ const CartItem = () => {
             </Grid>
             <div className="d-flex justify-content-between mt-5">
                 <Link to="/cart" className="btn btn-warning col-5 fw-bold ">Reteur</Link>
-                <button className="btn col-5 text-white fw-bold" style={{background: '#278BE3'}} onClick={checkTerms}>Valider</button>
+                <button className="btn col-5 text-white fw-bold" style={{background: '#278BE3'}} type="submit" >Valider</button>
             </div>
         </Grid>
         </form>

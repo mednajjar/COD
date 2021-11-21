@@ -7,10 +7,12 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { useCart } from "react-use-cart";
+import { useSelector } from 'react-redux';
 import itemData from '../layouts/localData/Data';
 import CategoryData from '../layouts/localData/CategoryData';
 import { useParams } from 'react-router-dom';
 import { Grid, Paper, Typography } from '@material-ui/core';
+
 const useStyles = makeStyles((theme) => ({
     paper:{
         width: '80%',
@@ -59,26 +61,31 @@ const useStyles = makeStyles((theme) => ({
 
 const Categories = () => {
     const classes = useStyles();
-    const { category } = useParams()
+    const { categorie} = useParams()
+    const { category, allProducts } = useSelector(state => state.vendeur)
+    console.log(category)
+    console.log(categorie)
     const { addItem } = useCart();
 
     return (
         <Paper className={classes.paper}>
             {
-                CategoryData.map((cat)=>cat.slug === category && (
+                category && category.map((cat)=> cat.slug === categorie  && (
+                    <>
                 <Grid className="d-flex flex-row justify-content-between bg-light p-2 text-dark rounded">
                     <Typography>Categorie - {cat.category}</Typography>
                     <Link to="/store" className="text-decoration-none" >Voir tous </Link>
-                </Grid> ))
-            }
+                </Grid> 
+                
+               
             
             <Grid continer className={classes.content} >
                 <ImageList className={classes.imageList}>
                     {
-                     itemData.map((item) => item.category === category && (
-                        <ImageListItem key={item.id} style={{ width: 280, height: 'auto', margin: '2%' }}>
+                     allProducts && allProducts.map((item) => item.idCategory === cat._id && (
+                        <ImageListItem key={item._id} style={{ width: 280, height: 'auto', margin: '2%' }}>
                             <Link to={`/product/${item.id}`} >
-                                <img src={item.img} alt={item.title} style={{ width: '100%' }} />
+                                <img src={__dirname + item.imgPrincipal} alt={item.title} style={{ width: '100%' }} />
                             </Link>
                             <ImageListItemBar
                                 className={classes.itemBar}
@@ -93,10 +100,13 @@ const Categories = () => {
                         </ImageListItem>
                     )) 
                     }
+          
                 </ImageList>
 
             </Grid>
-
+            </>
+           ))
+        }
         </Paper>
     )
 }

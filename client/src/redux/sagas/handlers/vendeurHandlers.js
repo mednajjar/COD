@@ -1,6 +1,21 @@
 import { call, put } from 'redux-saga/effects';
-import { requestFetchProduct, requestDeleteProduct, requestEditProduct, requestFetchCategory } from '../requests/vendeurRequests';
-import { setProducts, setCategory } from '../../slices/vendeurSlice';
+import { requestFetchProduct, 
+  requestDeleteProduct, 
+  requestEditProduct, 
+  requestFetchCategory, 
+  requestFetchAllProduct, 
+  requestFetchSlideProducts, 
+  requestFetchSlideProductsByCategory1, 
+  requestFetchSlideProductsByCategory2, 
+  requestOrderProduct,
+  } from '../requests/vendeurRequests';
+import { setProducts,
+  setCategory, 
+  setAllProducts, 
+  setSlideProductsByCategory1, 
+  setSlideProductsByCategory2, 
+  setSlideProducts 
+  } from '../../slices/vendeurSlice';
 
 export function* handelGetCategory(action) {
   try {
@@ -14,17 +29,53 @@ export function* handelGetCategory(action) {
       }  }
 }
 
-// export function* handelGetMyTicket(action) {
-//   try {
-//     const { data } = yield call(requestMyTicket, action);
-//     if (data) {
-//       yield put(setMyTicket(data));
-//     }
-//   } catch (error) {
-//     if (error.response) {
-//         console.log(error.response);
-//       }  }
-// }
+export function* handelGetAllProduct(action) {
+  try {
+    const { data } = yield call(requestFetchAllProduct, action);
+    if (data) {
+      yield put(setAllProducts(data));
+    }
+  } catch (error) {
+    if (error.response) {
+        console.log(error.response);
+      }  }
+}
+
+export function* handelGetSlideProducts(action) {
+  try {
+    const { data } = yield call(requestFetchSlideProducts, action);
+    if (data) {
+      yield put(setSlideProducts(data));
+    }
+  } catch (error) {
+    if (error.response) {
+        console.log(error.response);
+      }  }
+}
+
+export function* handelGetSlideProductsByCategory1(action) {
+  try {
+    const { data } = yield call(requestFetchSlideProductsByCategory1, action);
+    if (data) {
+      yield put(setSlideProductsByCategory1(data));
+    }
+  } catch (error) {
+    if (error.response) {
+        console.log(error.response);
+      }  }
+}
+
+export function* handelGetSlideProductsByCategory2(action) {
+  try {
+    const { data } = yield call(requestFetchSlideProductsByCategory2, action);
+    if (data) {
+      yield put(setSlideProductsByCategory2(data));
+    }
+  } catch (error) {
+    if (error.response) {
+        console.log(error.response);
+      }  }
+}
 
 // export function* handelAddProduct(action) {
 //   try {
@@ -71,6 +122,22 @@ export function* handelEditProduct(action) {
     if (data) {
       yield put(setProducts(data));
     }
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response);
+    }
+  }
+}
+
+export function* handelOrderProduct(action) {
+ 
+  try {
+    yield call(requestOrderProduct, action);
+     console.log('daz man hna',action)
+
+    // if (data) {
+    //   yield put(setProducts(data));
+    // }
   } catch (error) {
     if (error.response) {
       console.log(error.response);

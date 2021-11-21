@@ -41,7 +41,7 @@ const Routes = () => {
             <Route path='/checkout' component={Checkout} />
             <Route path='/offre' component={Offre} />
             <Route path='/store' component={Store} />
-            <Route path='/category/:category' component={Categories} />
+            <Route path='/category/:categorie' component={Categories} />
         </Switch>
     )
 }

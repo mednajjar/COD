@@ -9,7 +9,7 @@ import { image, images } from '../../../../assets';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { addProduct, fetchCategory } from '../../../../redux/slices/vendeurSlice';
+import { addProduct } from '../../../../redux/slices/vendeurSlice';
 axios.defaults.withCredentials = true;
 const useStyles = makeStyles((theme) => ({
   editor: {
@@ -53,13 +53,11 @@ category && console.log('category', category)
   useEffect(() => {
     setLongDes(editorState.getCurrentContent().getPlainText())
   })
-  useEffect(() => {
-    dispatch(fetchCategory())
-  },[])
+
   const [data, setData] = useState({
     title: '',
     initialPrice: '',
-    soldPrice: '',
+    price: '',
     stock: '',
     shortD: '',
     longD: '',
@@ -119,8 +117,8 @@ category && console.log('category', category)
         valid = /^\d{1,7}$/.test(e.target.value);
         !valid ? setInitialPriceHelper("Saisi un numero valid!") : setInitialPriceHelper("")
         break;
-      case "soldPrice":
-        setData({ ...data, soldPrice: e.target.value })
+      case "price":
+        setData({ ...data, price: e.target.value })
         valid = /^\d{1,7}$/.test(e.target.value);
         !valid ? setSoldPriceHelper("Saisi un numero valid!") : setSoldPriceHelper("")
         break;
@@ -239,12 +237,12 @@ category && console.log('category', category)
             <TextField
               required
               className="col-12"
-              id="soldPrice"
-              name="soldPrice"
+              id="price"
+              name="price"
               label="Prix de vente"
               error={soldPriceHelper.length !== 0}
               helperText={soldPriceHelper}
-              onChange={(e) => handlChange(e) && setData({ ...data, soldPrice: e.target.value })}
+              onChange={(e) => handlChange(e) && setData({ ...data, price: e.target.value })}
 
             />
           </Grid>

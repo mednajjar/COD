@@ -1,7 +1,9 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y, EffectFade } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link, Paper, Typography } from '@material-ui/core';
+import {fetchSlideProductsByCategory1} from '../../../redux/slices/vendeurSlice';
+import {useDispatch,useSelector} from 'react-redux'
 // Import Swiper styles
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
@@ -12,12 +14,22 @@ import img from '../../../assets/images/cashondelivery.png'
 // install Swiper modules
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y, EffectFade]);
 
-const ProductSlide2 = () => {
+const ProductSlide2 = ({cat}) => {
+// const [category, setCategory]=useState(cat)
 
+    const dispatch = useDispatch()
+    useEffect(()=>{
+        dispatch(fetchSlideProductsByCategory1(cat))
+    },[])
+
+ const { slideProductsByCategory1 } = useSelector(state => state.vendeur)
+
+
+ slideProductsByCategory1 && console.log('cat b vet', slideProductsByCategory1)
     return (
         <React.Fragment>
             <Paper className="p-3 mb-2 d-flex flex-row align-items-center justify-content-between cursor-pointer">
-                <Typography variant="h6">Vêtements</Typography>
+                <Typography variant="h6">{cat}</Typography>
                 <Link to="!#" role="button" className="text-decoration-none">Voir Plus</Link>
             </Paper>
             <Paper style={{ padding: '1%', marginBottom: '1%' }}>
@@ -45,14 +57,14 @@ const ProductSlide2 = () => {
                         }
                     }}
                 >
-                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
-                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
-                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
-                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
-                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
-                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
-                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
-                    <SwiperSlide><img src={img} style={{ width: '60%' }} alt="img" /></SwiperSlide>
+                {
+                    slideProductsByCategory1 && slideProductsByCategory1.map((res, i)=>(
+                        <SwiperSlide key={i}>
+                            <img src={__dirname + res.imgPrincipal} style={{ width: '60%' }} alt="img" />
+                        </SwiperSlide>
+                    ))
+                }
+                    
 
                 </Swiper>
             </Paper>

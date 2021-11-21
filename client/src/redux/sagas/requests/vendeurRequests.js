@@ -22,12 +22,41 @@ export function requestFetchProduct() {
   });
 }
 
-// export function requestFetchAllProduct() {
-//   return axios.request({
-//     method: 'get',
-//     url: `${URL}/allProducts`,
-//   });
-// }
+export function requestFetchAllProduct() {
+  return axios.request({
+    method: 'get',
+    url: `${URL}/allPro`,
+  });
+}
+
+export function requestFetchSlideProducts() {
+  return axios.request({
+    method: 'get',
+    url: `${URL}/slidePro`,
+  });
+}
+
+export function requestFetchSlideProductsByCategory1(action) {
+  const cat = action.payload
+  return axios.request({
+    method: 'post',
+    url: `${URL}/slideProByCategory1/`,
+    data: {
+      cat,
+    }
+  });
+}
+
+export function requestFetchSlideProductsByCategory2(action) {
+  const cat = action.payload
+  return axios.request({
+    method: 'post',
+    url: `${URL}/slideProByCategory2/`,
+    data: {
+      cat,
+    }
+  });
+}
 
 export function requestFetchCategory() {
   return axios.request({
@@ -49,7 +78,7 @@ export function requestDeleteProduct(action) {
 
 export function requestEditProduct(action) {
   const {formData} = action.payload;
-//  return axios.put(`${URL}/updateProduct/${id}`, {formData})
+
 return axios.request({
   method: 'put',
   url: `${URL}/updateProduct/`,
@@ -58,7 +87,20 @@ return axios.request({
   }
 })
    
+}
 
+export function requestOrderProduct(action) {
+const {data} = action.payload
+return axios.post(`${URL}/orderPro`, data)
+// return axios.request({
+//   method: 'post',
+//   url: `${URL}/orderPro/`,
+//   data: {
+//     data
+//   },
+  
+// })
+   
 }
 
 // export function requestGetTechnicien() {
