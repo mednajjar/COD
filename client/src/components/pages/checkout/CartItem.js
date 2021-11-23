@@ -14,6 +14,13 @@ const CartItem = () => {
     totalItems,
     cartTotal,
   } = useCart();
+
+  const [cart, setCart] = useState({
+    itemTotal: [],
+    quantity: [],
+    idVendeur: []
+  })
+  
   const [data, setData] = useState({
     nom: "",
     prenom: "",
@@ -21,23 +28,23 @@ const CartItem = () => {
     ville: "",
     tel: "",
     email: "",
+    info: cart
   })
 
-  const [cart, setCart] = useState({
-    itemTotal: [],
-    quantity: [],
-    idVendeur: []
-  })
+ 
+
 
   useEffect(() => {
     items && items.map(res => {
       cart.itemTotal.push(res.itemTotal)
       cart.idVendeur.push(res.idVendeur)
-      cart.quantity.push(res.quantity)
+     cart.quantity.push(res.quantity)
     })
-  }, [items])
+  }, [cartTotal])
 
-  console.log('cart', cart)
+  console.log('idVendeur', cart.idVendeur)
+  console.log('quantity', cart.quantity)
+  console.log('itemTotal', cart.itemTotal)
 
 
 
@@ -102,25 +109,35 @@ const CartItem = () => {
 
       try {
         const formData = new FormData();
-        for (const [key, value] of Object.entries(data)) {
-          formData.append(key, value);
-        }
+        formData.append('nom', data.nom);
+        formData.append('prenom', data.prenom);
+        formData.append('address', data.address);
+        formData.append('tel', data.tel);
+        formData.append('ville', data.ville);
+        formData.append('email', data.email);
+        // formData.append('quantity', quantity)
+        // formData.append('idVendeur', idVendeur)
+        // formData.append('itemTotal', itemTotal)
 
-        // for (const [key, value] of Object.entries(items))
-        //   {
-        //     formData.append(key, value);
-        //   }  
-        for (let i = 0; i < data.quantity.length; i++) {
-          formData.append('quantity', data.quantity[i]);
-        }
-        for (let i = 0; i < data.idVendeur.length; i++) {
-          formData.append('idVendeur', data.idVendeur[i]);
-        }
-        for (let i = 0; i < data.itemTotal.length; i++) {
-          formData.append('itemTotal', data.itemTotal[i]);
-        }
+        // for (const [key, value] of Object.entries(data)) {
+        //   formData.append(key, value);
+        // }
 
-        await axios.post('http://localhost:5000/api/orderPro', formData)
+         for (const [key, value] of Object.entries(cart))
+           {
+            formData.append(key, value);
+         }  
+        // for (let i = 0; i < cart.quantity.length; i++) {
+        //   formData.append('quantity', cart.quantity[i]);
+        // }
+        // for (let i = 0; i < cart.idVendeur.length; i++) {
+        //   formData.append('idVendeur', cart.idVendeur[i]);
+        // }
+        // for (let i = 0; i < cart.itemTotal.length; i++) {
+        //   formData.append('itemTotal', cart.itemTotal[i]);
+        // }
+
+        await axios.post('http://localhost:5000/api/orderPro', {data})
         // dispatch(orderProduct(formData));
         // history.push('/vendeurDashboard/myStore')
 
