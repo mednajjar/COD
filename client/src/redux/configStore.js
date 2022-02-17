@@ -1,7 +1,7 @@
 import {
   configureStore,
   combineReducers,
-  getDefaultMiddleware
+
 } from '@reduxjs/toolkit';
 
 import createSagaMiddleware from 'redux-saga';
@@ -24,6 +24,6 @@ const reducer = combineReducers({
 
 export default configureStore({
   reducer,
-  middleware: [...getDefaultMiddleware({ thunk: false }), ...middleware],
+  middleware: (getDefaultMiddleware) => [...getDefaultMiddleware({ thunk: false }), ...middleware],
 });
 sagaMiddleware.run(watcherSaga);

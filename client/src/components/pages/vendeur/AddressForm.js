@@ -1,16 +1,44 @@
-import React, { useState } from 'react';
-import { Grid, Typography, TextField, Button } from '@material-ui/core';
-
+import React, { useState, useEffect } from 'react';
+import { makeStyles, Grid, Typography, TextField, Button, Box, Fade,  CircularProgress } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
+import { registerVendeur } from '../../../redux/slices/vendeurSlice';
+import { useHistory } from 'react-router-dom';
+const useStyles = makeStyles((theme) => ({
+  btnInpt: {
+    width: '100%',
+    marginTop: theme.spacing(3),
+  }
+}));
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
 
 export default function AddressForm() {
-  const [prenom, setPrenom] = useState("");
-  const [nom, setNom] = useState("");
-  const [ville, setVille] = useState("");
-  const [address, setAddress] = useState("");
-  const [codePostal, setCodePostal] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [tel, setTel] = useState("");
+  const classes = useStyles();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const { respond, registerError } = useSelector(state => state.vendeur);
+  const { isAuthenticated, valid } = useSelector(state => state.authentification);
+  const [loading, setLoading] = useState(false)
+
+  const [formData, setFormData] = useState({
+    prenom: "",
+    nom: "",
+    ville: "",
+    address: "",
+    codePostal: "",
+    email: "",
+    password: "",
+    tel: ""
+  })
 
   const [prenomHelper, setPrenomHelper] = useState("");
   const [nomHelper, setNomHelper] = useState("");
@@ -25,42 +53,42 @@ export default function AddressForm() {
     let valid;
     switch (e.target.id) {
       case "prenom":
-        setPrenom(e.target.value)
-        valid = prenom.length > 1;
+        setFormData({ ...formData, prenom: e.target.value })
+        valid = formData.prenom.length > 1;
         !valid ? setPrenomHelper("Doit contenir au mois 3 lettres!") : setPrenomHelper("")
         break;
       case "nom":
-        setNom(e.target.value)
-        valid = nom.length > 1;
+        setFormData({ ...formData, nom: e.target.value })
+        valid = formData.nom.length > 1;
         !valid ? setNomHelper("Doit contenir au mois 3 lettres!") : setNomHelper("")
         break;
       case "ville":
-        setVille(e.target.value)
-        valid = ville.length > 1;
+        setFormData({ ...formData, ville: e.target.value })
+        valid = formData.ville.length > 1;
         !valid ? setVilleHelper("Ville obligatoire") : setVilleHelper("")
         break;
       case "address":
-        setAddress(e.target.value)
-        valid = address.length > 4;
+        setFormData({ ...formData, address: e.target.value })
+        valid = formData.address.length > 4;
         !valid ? setAddressHelper("Address obligatoire") : setAddressHelper("")
         break;
       case "codePostal":
-        setCodePostal(e.target.value)
-        valid = codePostal.length > 3;
+        setFormData({ ...formData, codePostal: e.target.value })
+        valid = formData.codePostal.length > 3;
         !valid ? setCodePostalHelper("Code postal obligatoire") : setCodePostalHelper("")
         break;
       case "email":
-        setEmail(e.target.value)
+        setFormData({ ...formData, email: e.target.value })
         valid = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/.test(e.target.value);
         !valid ? setEmailHelper("Saisi un email valid!") : setEmailHelper("")
         break;
       case "tel":
-        setTel(e.target.value)
+        setFormData({ ...formData, tel: e.target.value })
         valid = /^(\+\d{1,3}\s?)?1?\-?\.?\s?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/.test(e.target.value);
         !valid ? setTelHelper("Saisi un numero valid!") : setTelHelper("")
         break;
       case "password":
-        setPassword(e.target.value)
+        setFormData({ ...formData, password: e.target.value })
         valid = /^(?=.*[A-Za-z])(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$/.test(e.target.value);
         !valid ? setPasswordHelper("mot de pass doit contenir au moins 6 lettre et 1 charactère @$!%*#?& ") : setPasswordHelper("")
         break;
@@ -69,13 +97,38 @@ export default function AddressForm() {
     }
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(registerVendeur(formData))
+    setLoading(true)
+    
+  
+  }
+
+  useEffect(()=>{
+    (isAuthenticated && valid === false) && history.push('/validation')
+  }, [])
+
+  respond.length > 0 && console.log("respond", respond)
+  registerError.length > 0 && console.log("error", registerError)
 
   return (
     <React.Fragment>
+      <Grid style={{textAlign: 'center'}}>
+      {
+        <Box sx={{ height: 40 }}>
+        {
+        loading ?  (<CircularProgress />) : respond.length > 0 &&  <Typography color='secondary'>{respond}</Typography> 
+        }
+      </Box>
+      }
+     
+      {registerError.length > 0 && <Typography color='secondary'>{registerError}</Typography>}
+      </Grid>
       <Typography variant="h6" gutterBottom>
         Vendeur details
       </Typography>
-      <Grid container spacing={3}>
+      <Grid component="form" validate onSubmit={handleSubmit} container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
             required
@@ -175,13 +228,14 @@ export default function AddressForm() {
             helperText={passwordHelper}
             id="password"
             name="password"
+            type="password"
             label="Mot de pass"
             fullWidth
             autoComplete="tel"
             onChange={handlChange}
           />
         </Grid>
-
+        <Button variant="contained" color="primary" type="submit" className={classes.btnInpt}>Confirmer</Button>
       </Grid>
     </React.Fragment>
   );

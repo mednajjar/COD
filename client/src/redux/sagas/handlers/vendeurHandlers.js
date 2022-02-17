@@ -1,21 +1,69 @@
 import { call, put } from 'redux-saga/effects';
-import { requestFetchProduct, 
-  requestDeleteProduct, 
-  requestEditProduct, 
-  requestFetchCategory, 
-  requestFetchAllProduct, 
-  requestFetchSlideProducts, 
-  requestFetchSlideProductsByCategory1, 
-  requestFetchSlideProductsByCategory2, 
+import {
+  requestFetchProduct,
+  requestDeleteProduct,
+  requestEditProduct,
+  requestFetchCategory,
+  requestFetchOrders,
+  requestFetchAllProduct,
+  requestFetchSlideProducts,
+  requestFetchSlideProductsByCategory1,
+  requestFetchSlideProductsByCategory2,
   requestOrderProduct,
-  } from '../requests/vendeurRequests';
-import { setProducts,
-  setCategory, 
-  setAllProducts, 
-  setSlideProductsByCategory1, 
-  setSlideProductsByCategory2, 
-  setSlideProducts 
-  } from '../../slices/vendeurSlice';
+  requestRegisterVendeur,
+  requestValidateVendeur,
+  requestFreePack,
+} from '../requests/vendeurRequests';
+import {
+  setValidateRespond,
+  setValidateError,
+  setResponse,
+  setOrders,
+  setRegisterError,
+  setPack,
+  setProducts,
+  setCategory,
+  setAllProducts,
+  setSlideProductsByCategory1,
+  setSlideProductsByCategory2,
+  setSlideProducts
+} from '../../slices/vendeurSlice';
+
+export function* handelRegisterVendeur(action) {
+  try {
+    const {data} = yield call(requestRegisterVendeur, action);
+    if (data) {
+      yield put(setResponse(data));
+    }
+  } catch (error) {
+    if (error.response) {
+      console.log("error", error.response);
+      yield put(setRegisterError(error.response.data));
+    }
+  }
+}
+
+export function* handelValidateVendeur(action) {
+  try {
+    const {data} = yield call(requestValidateVendeur, action);
+    if (data) {
+      yield put(setValidateRespond(data));
+    }
+  } catch (error) {
+    if (error.response) yield put(setValidateError(error.response.data)); 
+  }
+}
+
+export function* handelPack(action) {
+  try {
+    const {data} = yield call(requestFreePack, action);
+    if (data) {
+      yield put(setPack(data));
+    }
+  } catch (error) {
+    if (error.response) console.log(error.response.data); 
+  }
+}
 
 export function* handelGetCategory(action) {
   try {
@@ -25,8 +73,22 @@ export function* handelGetCategory(action) {
     }
   } catch (error) {
     if (error.response) {
-        console.log(error.response);
-      }  }
+      console.log(error.response);
+    }
+  }
+}
+
+export function* handelGetOrders(action) {
+  try {
+    const { data } = yield call(requestFetchOrders, action);
+    if (data) {
+      yield put(setOrders(data));
+    }
+  } catch (error) {
+    if (error.response) {
+      console.log(error.response);
+    }
+  }
 }
 
 export function* handelGetAllProduct(action) {
@@ -37,8 +99,9 @@ export function* handelGetAllProduct(action) {
     }
   } catch (error) {
     if (error.response) {
-        console.log(error.response);
-      }  }
+      console.log(error.response);
+    }
+  }
 }
 
 export function* handelGetSlideProducts(action) {
@@ -49,8 +112,9 @@ export function* handelGetSlideProducts(action) {
     }
   } catch (error) {
     if (error.response) {
-        console.log(error.response);
-      }  }
+      console.log(error.response);
+    }
+  }
 }
 
 export function* handelGetSlideProductsByCategory1(action) {
@@ -61,8 +125,9 @@ export function* handelGetSlideProductsByCategory1(action) {
     }
   } catch (error) {
     if (error.response) {
-        console.log(error.response);
-      }  }
+      console.log(error.response);
+    }
+  }
 }
 
 export function* handelGetSlideProductsByCategory2(action) {
@@ -73,8 +138,9 @@ export function* handelGetSlideProductsByCategory2(action) {
     }
   } catch (error) {
     if (error.response) {
-        console.log(error.response);
-      }  }
+      console.log(error.response);
+    }
+  }
 }
 
 // export function* handelAddProduct(action) {
@@ -130,10 +196,10 @@ export function* handelEditProduct(action) {
 }
 
 export function* handelOrderProduct(action) {
- 
+
   try {
     yield call(requestOrderProduct, action);
-     console.log('daz man hna',action)
+    console.log('daz man hna', action)
 
     // if (data) {
     //   yield put(setProducts(data));

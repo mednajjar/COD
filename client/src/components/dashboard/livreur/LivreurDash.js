@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper, Grid } from '@material-ui/core';
+import { Paper, Grid , Typography} from '@material-ui/core';
 import Routes from './routes';
 
 const useStyles = makeStyles((theme) => ({
@@ -18,6 +18,7 @@ const LivreurDash = () => {
     const classes = useStyles();
     return (
         <Paper className={classes.paper}>
+             <Typography variant="h1">Dashboard</Typography>
             <Grid style={{marginBottom: '6%'}}>
                 <Routes />
             </Grid>

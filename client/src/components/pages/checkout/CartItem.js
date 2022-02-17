@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Grid, FormControlLabel, Checkbox, Typography, TextField } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { useCart } from "react-use-cart";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { orderProduct } from '../../../redux/slices/vendeurSlice'
+
 import axios from 'axios';
 
 const CartItem = () => {
   const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector(state => state.authentification)
   const [check, setCheck] = useState(false);
   const {
     items,
@@ -16,11 +18,13 @@ const CartItem = () => {
   } = useCart();
 
   const [cart, setCart] = useState({
+    title: [],
     itemTotal: [],
     quantity: [],
+    idProduct: [],
     idVendeur: []
   })
-  
+
   const [data, setData] = useState({
     nom: "",
     prenom: "",
@@ -28,23 +32,43 @@ const CartItem = () => {
     ville: "",
     tel: "",
     email: "",
-    info: cart
+    title: cart.title,
+    itemTotal: cart.itemTotal,
+    quantity: cart.quantity,
+    idProduct: cart.idProduct,
+    idVendeur: cart.idVendeur,
+    cartTotal: cartTotal,
+
   })
 
- 
+  const [authCart, setAuthCart] = useState({
+    title: cart.title,
+    itemTotal: cart.itemTotal,
+    quantity: cart.quantity,
+    idProduct: cart.idProduct,
+    idVendeur: cart.idVendeur,
+    cartTotal: cartTotal,
+  }) 
+
+
 
 
   useEffect(() => {
     items && items.map(res => {
       cart.itemTotal.push(res.itemTotal)
+      cart.quantity.push(res.quantity)
+      cart.title.push(res.title)
+      cart.idProduct.push(res.id)
       cart.idVendeur.push(res.idVendeur)
-     cart.quantity.push(res.quantity)
     })
-  }, [cartTotal])
+  }, [items])
 
-  console.log('idVendeur', cart.idVendeur)
-  console.log('quantity', cart.quantity)
-  console.log('itemTotal', cart.itemTotal)
+  console.log('quantity', data.quantity)
+  console.log('itemTotal', data.itemTotal)
+  console.log('total items', totalItems)
+  console.log('cart total', cartTotal)
+  console.log('idProduct', data.idProduct)
+
 
 
 
@@ -102,46 +126,21 @@ const CartItem = () => {
   };
 
   const checkTerms = async (e) => {
+
     if (check === false) {
       alert('terms and conditions not checked!')
     } else {
       e.preventDefault();
 
       try {
-        const formData = new FormData();
-        formData.append('nom', data.nom);
-        formData.append('prenom', data.prenom);
-        formData.append('address', data.address);
-        formData.append('tel', data.tel);
-        formData.append('ville', data.ville);
-        formData.append('email', data.email);
-        // formData.append('quantity', quantity)
-        // formData.append('idVendeur', idVendeur)
-        // formData.append('itemTotal', itemTotal)
+        if (isAuthenticated) {
+          return await axios.post('http://localhost:5000/api/orderByClient', { authCart })
 
-        // for (const [key, value] of Object.entries(data)) {
-        //   formData.append(key, value);
-        // }
+        } else {
+          return dispatch(orderProduct({ data }));
 
-         for (const [key, value] of Object.entries(cart))
-           {
-            formData.append(key, value);
-         }  
-        // for (let i = 0; i < cart.quantity.length; i++) {
-        //   formData.append('quantity', cart.quantity[i]);
-        // }
-        // for (let i = 0; i < cart.idVendeur.length; i++) {
-        //   formData.append('idVendeur', cart.idVendeur[i]);
-        // }
-        // for (let i = 0; i < cart.itemTotal.length; i++) {
-        //   formData.append('itemTotal', cart.itemTotal[i]);
-        // }
-
-        await axios.post('http://localhost:5000/api/orderPro', {data})
-        // dispatch(orderProduct(formData));
+        }
         // history.push('/vendeurDashboard/myStore')
-
-
       } catch (error) {
         if (error) console.log(error.response)
       }
@@ -162,84 +161,91 @@ const CartItem = () => {
 
     <form className="d-flex justify-content-around mt-5 flex-wrap" onSubmit={checkTerms}>
       <Grid item xs={12} sm={6} md={5} className="p-5 m-2">
-        <Typography variant="h6" gutterBottom className="mb-3">
-          Details
-        </Typography>
+        {
+          !isAuthenticated && (
+            <>
+              <Typography variant="h6" gutterBottom className="mb-3">
+                Details
+              </Typography>
 
-        <Grid container spacing={3}>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              error={prenomHelper.length !== 0}
-              helperText={prenomHelper}
-              id="prenom"
-              name="prenom"
-              label="Prénom"
-              fullWidth
-              onChange={onchange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              error={nomHelper.length !== 0}
-              helperText={nomHelper}
-              id="nom"
-              name="nom"
-              label="Nom"
-              fullWidth
-              onChange={onchange}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              required
-              error={addressHelper.length !== 0}
-              helperText={addressHelper}
-              id="address"
-              name="address"
-              label="Address"
-              fullWidth
-              onChange={onchange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              error={villeHelper.length !== 0}
-              helperText={villeHelper}
-              id="ville"
-              name="ville"
-              label="Ville"
-              fullWidth
-              onChange={onchange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              error={telHelper.length !== 0}
-              helperText={telHelper}
-              id="tel"
-              name="tel"
-              label="Tel"
-              fullWidth
-              onChange={onchange}
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <TextField
-              required
-              error={emailHelper.length !== 0}
-              helperText={emailHelper}
-              id="email"
-              name="email"
-              label="Email"
-              fullWidth
-              onChange={onchange}
-            />
-          </Grid>
-        </Grid>
+              <Grid container spacing={3}>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    error={prenomHelper.length !== 0}
+                    helperText={prenomHelper}
+                    id="prenom"
+                    name="prenom"
+                    label="Prénom"
+                    fullWidth
+                    onChange={onchange}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    error={nomHelper.length !== 0}
+                    helperText={nomHelper}
+                    id="nom"
+                    name="nom"
+                    label="Nom"
+                    fullWidth
+                    onChange={onchange}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    error={addressHelper.length !== 0}
+                    helperText={addressHelper}
+                    id="address"
+                    name="address"
+                    label="Address"
+                    fullWidth
+                    onChange={onchange}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    error={villeHelper.length !== 0}
+                    helperText={villeHelper}
+                    id="ville"
+                    name="ville"
+                    label="Ville"
+                    fullWidth
+                    onChange={onchange}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    error={telHelper.length !== 0}
+                    helperText={telHelper}
+                    id="tel"
+                    name="tel"
+                    label="Tel"
+                    fullWidth
+                    onChange={onchange}
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    error={emailHelper.length !== 0}
+                    helperText={emailHelper}
+                    id="email"
+                    name="email"
+                    label="Email"
+                    fullWidth
+                    onChange={onchange}
+                  />
+                </Grid>
+              </Grid>
+            </>
+          )
+        }
+
 
       </Grid>
       <Grid item xs={12} sm={6} md={4} className="p-5 bg-light m-2">

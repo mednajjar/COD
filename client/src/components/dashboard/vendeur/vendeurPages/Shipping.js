@@ -15,6 +15,10 @@ import {useHistory} from 'react-router-dom';
 import MyModal from './modals/MyModal'
 import ShippingModal from './modals/ShippingModal'
 import EtatModal from './modals/EtatModal'
+import { useSelector } from 'react-redux';
+
+// import axios from 'axios';
+// axios.defaults.withCredentials = true;
 
 const columns = [
     { id: 'product', label: 'Product', minWidth: 100 },
@@ -61,8 +65,11 @@ const useStyles = makeStyles({
 
 const Shipping = () => {
     const classes = useStyles();
+    const{orders} = useSelector(state=>state.vendeur)
+    const{id} = useSelector(state=>state.authentification)
     const history = useHistory();
-    const [id, setId] = useState(null)
+    // const [id, setId] = useState(null)
+    // const [orders, setOrders] = useState([])
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = useState(10);
     const [modal, setModal] = useState(false);
@@ -73,31 +80,56 @@ const Shipping = () => {
     const toggle3 = () => setEtat(!etat);
     let rows = [];
 
-    const onchange=()=>{
-        setId(4)
-    }
-    useEffect(()=>{
-        onchange()
-    },[id])
+    // useEffect(() => {
+    //   return async () => {
+    //     const {data} = await axios.get('http://localhost:5000/api/sellerOrders')
+    //     if(data) setOrders(data)
+    //   }
+    // }, [])
+    // orders.map(res=> res.idVendeur.forEach(function (item, index, array){item.toString() === id.toString() && console.log('orders', res.idProduct)} ))
+   
+  
+    
 
-    Data.map((item)=>{
+    // const onchange=()=>{
+    //     setId(4)
+    // }
+    // useEffect(()=>{;
+    //     onchange()
+    // },[id])
+
+    orders.map((data)=>{
+      data.idVendeur.map((x, i)=>console.log({
+        idVendeur: x,
+         itemTotal: data.itemTotal[i], 
+         quantity: data.quantity[i], 
+         title: data.title[i], 
+         idProduct: data.idProduct[i].id, 
+         imgPrincipal: data.idProduct[i].imgPrincipal,
+         cartTotal: data.cartTotal
+         }))
       return (
-        rows.push(createData(
-        <img src={item.img} className="col-3" alt="img" />,
-         item.title,
-         1,
-         item.price,
-        <button className="border-0 bg-transparent" onClick={toggle3}>Active</button>,
-         <>
-         <button className="btn btn-secondary me-1" onClick={toggle} onChange={onchange}><ContactsIcon/></button>
-         <button className="btn btn-primary" onClick={toggle2}><LocalShippingIcon/></button>
-         </>)
-         ) 
+        data.idVendeur.map((x, i)=>x === id && rows.push(createData(
+              <img src={__dirname +  data.idProduct[i].imgPrincipal} className="col-6" alt="img" />,
+              data.title[i],
+              data.quantity[i],
+              data.cartTotal,
+              <button className="border-0 bg-transparent" onClick={toggle3}>Active</button>,
+              <>
+              {/* <button className="btn btn-secondary me-1" onClick={toggle} onChange={onchange}><ContactsIcon/></button> */}
+              <button className="btn btn-primary" onClick={toggle2}>Mark as shipped</button>
+              </>
+                )
+              ) 
+        )
       )
+      
 
     })
 
-    console.log('rows', rows) 
+    console.log('orders', orders) 
+    // orders.map(res=>res.idVendeur.forEach((item, i)=>{item === id && console.log('my id', res.title)}))
+
 
     const handleChangePage = (event, newPage) => {
       setPage(newPage);
@@ -107,6 +139,7 @@ const Shipping = () => {
       setRowsPerPage(+event.target.value);
       setPage(0);
     };
+    // orders.length > 0 && orders.map((res, i)=>{console.log('id vendeur ==> ',res + ' ' + i);})
     return (
         <Grid container lg={11} className="mx-auto">
         <MyModal modal={modal} setModal={setModal} toggle={toggle} id={id} />

@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {Avatar, Button, CssBaseline, TextField, Grid, Box, Typography, Container, Paper} from '@material-ui/core';
-import {Link, useHistory} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './LoginStyles';
 import {getLogin} from '../../redux/slices/authSlice';
@@ -17,9 +17,7 @@ function Copyright() {
 }
 const Login = () => {
     const classes = useStyles();
-
     const dispatch = useDispatch();
-    const history = useHistory();
     const [formData, setFormData] = useState({ email: '', password: '' })
     const {loginError} = useSelector(state => state.authentification)
 

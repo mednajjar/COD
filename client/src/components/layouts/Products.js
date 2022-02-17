@@ -73,7 +73,7 @@ const Products = () => {
   const handleChange = (event, value) => {
     setCurrentPage(value);
   };
-
+console.log('current', currentProduct)
 
   return (
     <>
@@ -86,7 +86,8 @@ const Products = () => {
             <ImageListItemBar
               className={classes.itemBar}
               title={item.title}
-              subtitle={<><h3>Prix: {item.price} MAD</h3><br></br><span>by: {item.author}</span></>}
+              subtitle={<><h3>Prix: {item.soldPrice} MAD</h3></>
+              }
               actionIcon={
                 <IconButton className={classes.icon}>
                   <ShoppingCartIcon onClick={() => addItem(item)} />

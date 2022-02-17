@@ -1,7 +1,9 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Paper } from '@material-ui/core';
+import { Grid, Paper, Typography} from '@material-ui/core';
 import Routes from './routes';
+import { useDispatch } from 'react-redux';
+import { fetchOrders } from '../../../redux/slices/vendeurSlice';
 // import {BrowserRouter as Router} from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -16,14 +18,17 @@ const useStyles = makeStyles((theme) => ({
       }
 }))
 const VendeurDash = () => {
+    const dispatch = useDispatch();
     const classes = useStyles();
+
+    useEffect(()=>{
+        dispatch(fetchOrders())
+    },[])
     return (
         <Paper className={classes.paper}>
-            
                 <Grid style={{marginBottom: '6%'}}>
                     <Routes />
                 </Grid>
-           
             </Paper>
     )
 }

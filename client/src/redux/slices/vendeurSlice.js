@@ -5,27 +5,73 @@ const vendeurSlice = createSlice({
     initialState: {
         products: [],
         category: [],
+        orders: [],
         allProducts: [],
         slideProducts: [],
         slideProductsByCategory1: [],
         slideProductsByCategory2: [],
+        respond: '',
+        registerError: '',
+        validateRespond: '',
+        validateError: '',
+        packRespond:''
         // productError: "",
-        // myTicket: [],
-        // technicien: [],
-        // assignTicket: {}
+        
 
     },
     reducers: {
+        registerVendeur: () => {},
+        validateVendeur: () => {},
+        packVendeur: () => {},
         addProduct: () => {},
         fetchProduct: () => {},
         deleteProduct: () => {},
         editProduct: () => {},
         fetchCategory: () => {},
+        fetchOrders: () => {},
         fetchAllProducts: () => {},
         fetchSlideProducts: () => {},
         fetchSlideProductsByCategory1: () => {},
         fetchSlideProductsByCategory2: () => {},
         orderProduct:()=>{},
+        setResponse: (state = this.initialState, action) => {
+            return {
+                ...state,
+                respond: action.payload,
+                registerError:''
+
+            }
+        },
+        setRegisterError: (state = this.initialState, action) => {
+            return {
+                ...state,
+                respond: '',
+                registerError: action.payload
+
+            }
+        },
+        setValidateRespond: (state = this.initialState, action) => {
+            return {
+                ...state,
+                validateRespond: action.payload
+
+            }
+        },
+        setValidateError: (state = this.initialState, action) => {
+            return {
+                ...state,
+                validateError: action.payload
+
+            }
+        },
+        setPack: (state = this.initialState, action) => {
+            return {
+                ...state,
+                packRespond: action.payload
+
+            }
+        },
+        
         setProducts: (state = this.initialState, action) => {
             return {
                 ...state,
@@ -37,6 +83,13 @@ const vendeurSlice = createSlice({
             return {
                 ...state,
                 category: [...action.payload],
+
+            }
+        },
+        setOrders: (state = this.initialState, action) => {
+            return {
+                ...state,
+                orders: [...action.payload],
 
             }
         },
@@ -68,49 +121,27 @@ const vendeurSlice = createSlice({
 
             }
         },
-        // productError: (state = this.initialState, action) => ({
-        //     ...state,
-        //     productError: action.payload,
-        // }),
-        //     getMyTicket: () =>{},
-        //     addTicket: () =>{},
-        //     setMyTicket: (state = this.initialState, action) => {
-        //         return{
-        //             ...state,
-        //             myTicket: [...action.payload],
-        //         }
-        //     },
-        //     techTicket: ()=>{},
-        //     resolvedTicket: ()=>{},
-        //     getTechnicien: ()=>{},
-        //     setTechnicien: (state = this.initialState, action) => {
-        //       return{
-        //           ...state,
-        //           technicien: [...action.payload],
-        //       }
-        //   },
-        //   assignTech: ()=>{},
-        //   getTicketById:()=>{},
-        //   setAssignTicket: (state = this.initialState, action) => {
-        //     return{
-        //         ...state,
-        //         assignTicket: action.payload,
-        //     }
-        //   },
-        //   getTechTicketById: ()=>{},  
-        //   cancelTicket:()=>{},
-
     },
 });
 
 export const {
+    registerVendeur,
+    setResponse,
+    setRegisterError,
+    validateVendeur,
+    setValidateError,
+    setValidateRespond,
+    setPack,
     setProducts,
     productError,
+    packVendeur,
     addProduct,
     fetchProduct,
     deleteProduct,
     editProduct,
     fetchCategory,
+    fetchOrders,
+    setOrders,
     setCategory,
     fetchAllProducts,
     setAllProducts,

@@ -1,15 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import useStyles from './PackStyles';
 import { Button, Card, CardActions, CardContent, CardHeader, CssBaseline, Grid, Typography, Container, Paper } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/StarBorder';
 import { useHistory } from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {packVendeur} from '../../redux/slices/vendeurSlice';
+import PayementWindow from './PayementWindow';
 
 const tiers = [
   {
     title: 'Free',
     price: '0',
     description: ['50 produits limit', 'Support 7/7', 'Email support'],
-    buttonText: 'Sign up for free',
+    buttonText: 'Get this Pack',
     buttonVariant: 'outlined',
   },
   {
@@ -32,7 +35,7 @@ const tiers = [
       'Support 24/24',
       'Phone & email support',
     ],
-    buttonText: 'Get this pack',
+    buttonText: 'Apply for this pack',
     buttonVariant: 'outlined',
   },
 ];
@@ -40,11 +43,43 @@ const tiers = [
 const Packs = () => {
   const classes = useStyles();
   const history = useHistory();
-  const submit = (x) => {
+  const dispatch = useDispatch();
 
-    x === 'Sign up for free' ? history.push("/vendeurDashboard/myStore") : history.push("/checkout")
+  const [open, setOpen] = useState(false);
+  const [price, setPrice] = useState("")
+  const [title, setTitle] = useState()
+  const [pack, setPack] = useState("")
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const submit = async (e) => {
+    e.preventDefault();
+    setPack("free")
+    dispatch(packVendeur({pack}))
   }
+
+  const submit2 = async (e) => {
+    e.preventDefault();
+    setPack("pro")
+    setTitle("Pro Pack")
+    setPrice(15)
+    handleClickOpen()
+  }
+
+  const submit3 = async (e) => {
+    e.preventDefault();
+    setPack("entreprise")
+    setTitle("Entreprise Pack")
+    setPrice(30)
+    handleClickOpen()
+  }
+
   return (
     <Paper className={classes.paperPack}>
       <CssBaseline />
@@ -63,7 +98,7 @@ const Packs = () => {
         <Grid container spacing={5} alignItems="flex-end">
           {tiers.map((tier) => (
             // Enterprise card is full width at sm breakpoint
-            <Grid item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
+            <Grid component="form" onSubmit={submit} item key={tier.title} xs={12} sm={tier.title === 'Enterprise' ? 12 : 6} md={4}>
               <Card>
                 <CardHeader
                   title={tier.title}
@@ -91,16 +126,25 @@ const Packs = () => {
                   </ul>
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={() => submit(tier.buttonText)}>
+                
+                <Button fullWidth variant={tier.buttonVariant} color="primary" onClick={tier.title === 'Free' ? submit : tier.title === 'Pro' ? submit2 : submit3}>
                     {tier.buttonText}
                   </Button>
+                  
                 </CardActions>
               </Card>
             </Grid>
-          ))}
+          ))}         
         </Grid>
       </Container>
-
+      <PayementWindow 
+        open={open}
+        handleClickOpen={handleClickOpen}
+        handleClose={handleClose}
+        pack={pack}
+        title={title}
+        price={price}
+      />
     </Paper>
   )
 }

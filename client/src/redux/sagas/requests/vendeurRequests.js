@@ -15,6 +15,37 @@ const URL = 'http://localhost:5000/api';
 //   });
 // }
 
+export function requestRegisterVendeur(action) {
+  const formData = action.payload
+  return axios.request({
+    method: 'post',
+    url: `${URL}/createVendeur`,
+    data: {
+      formData,
+    }
+  });
+}
+
+export function requestValidateVendeur(action) {
+  const code = action.payload
+  return axios.request({
+    method: 'post',
+    url: `${URL}/validateVendeur`,
+    data: {
+      code,
+    }
+  });
+}
+
+export function requestFreePack(action) {
+  return axios.request({
+    method: 'put',
+    url: `${URL}/freePack`,
+    data: action.payload,
+    
+  });
+}
+
 export function requestFetchProduct() {
   return axios.request({
     method: 'get',
@@ -65,6 +96,13 @@ export function requestFetchCategory() {
   });
 }
 
+export function requestFetchOrders() {
+  return axios.request({
+    method: 'get',
+    url: `${URL}/sellerOrders`,
+  });
+}
+
 export function requestDeleteProduct(action) {
   const id = action.payload
   return axios.request({
@@ -103,38 +141,7 @@ return axios.post(`${URL}/orderPro`, data)
    
 }
 
-// export function requestGetTechnicien() {
-//   return axios.request({
-//     method: 'get',
-//     url: `${URL}/tech`,
-//   });
-// }
 
-// export function requestAssignTechnicien(action) {
-//   const {id, formData}= action.payload;
-//   return axios.post(`${URL}/assign/${id}`, formData)
-// }
-
-// export function requestGetTicketById(action) {
-//   return axios.request({
-//     method: 'get',
-//     url: `${URL}/ticket/${action.payload}`,
-//   });
-// }
-
-// export function requestGetTechTicketById(action) {
-//   return axios.request({
-//     method: 'get',
-//     url: `${URL}/techticket/${action.payload}`,
-//   });
-// }
-
-// export function requestCancelTicket(action) {
-//   return axios.request({
-//     method: 'post',
-//     url: `${URL}/cancelTicket/${action.payload}`,
-//   });
-// }
 
 
 
